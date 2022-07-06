@@ -1,0 +1,5 @@
+{
+    "require": {
+        "lenochware/pclib": "^2.6"
+    }
+}

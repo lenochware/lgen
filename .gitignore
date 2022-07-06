@@ -1,0 +1,9 @@
+# taxon ignored directories
+
+/_etc/*
+/images/*
+/temp/*
+/vendor/*
+/uploaded/*
+
+*.bak

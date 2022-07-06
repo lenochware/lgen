@@ -1,0 +1,67 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "4ac3b8e5a6b677475c6d076fa5147405",
+    "packages": [
+        {
+            "name": "lenochware/pclib",
+            "version": "v2.6.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/lenochware/pclib.git",
+                "reference": "590611890fc830d4c35f8320d07e22d4cf03080e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/lenochware/pclib/zipball/590611890fc830d4c35f8320d07e22d4cf03080e",
+                "reference": "590611890fc830d4c35f8320d07e22d4cf03080e",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "pclib/pclib.php"
+                ],
+                "classmap": [
+                    "pclib"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL-2.1+"
+            ],
+            "authors": [
+                {
+                    "name": "lenochware",
+                    "email": "lenochware@gmail.com"
+                }
+            ],
+            "description": "Pclib framework",
+            "homepage": "http://pclib.brambor.net",
+            "keywords": [
+                "framework",
+                "pclib"
+            ],
+            "support": {
+                "issues": "https://github.com/lenochware/pclib/issues",
+                "source": "https://github.com/lenochware/pclib/tree/v2.6.5"
+            },
+            "time": "2022-03-18T14:02:47+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": [],
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": [],
+    "plugin-api-version": "2.0.0"
+}

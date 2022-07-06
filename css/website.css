@@ -1,0 +1,175 @@
+body {
+	margin: 0;
+}
+
+.content {
+	margin: 20px;	
+}
+
+.bottom-menu {
+	background-color: #f6f8fa;
+	border-top: 1px solid #d1d5da;
+	height: 80px;
+	width: 100%;
+	position: fixed;
+	bottom: 0px;
+	padding: 4px;
+}
+
+
+/* RAMECKY */
+
+.warning, .error {
+  width: 500px;
+  background-color: #ff9;
+  border: 1px solid red;
+  padding: 10px;
+}
+
+.message {
+  width: 500px;
+  background-color: #eef;
+  border: 1px solid #00f;
+  padding: 10px;
+  cursor: pointer;
+}
+
+/* PREHLEDY */
+
+TABLE.grid {
+border-collapse: collapse;
+empty-cells: show;
+width: 100%;
+}
+
+TABLE.grid TR:first-child {
+  border: 1px solid rgb(180,180,150);
+}
+
+TABLE.grid TH {
+  background-color: rgb(247,243,221);
+  background: -moz-linear-gradient(top, rgb(255,250,229), rgb(234,232,209));
+  background: -webkit-linear-gradient(top, rgb(255,250,229), rgb(234,232,209));
+  background: linear-gradient(top, rgb(255,250,229), rgb(234,232,209));
+  text-align: left;
+  padding: 4px 2px;
+  text-shadow: 0px 1px 0px rgba(255, 255, 255, 0.7);
+}
+
+TABLE.grid TD {
+  border-bottom: 1px dotted #ccd;
+  height: 20px;
+  text-shadow: 0px 1px 0px rgba(255, 255, 255, 0.7);
+
+}
+
+TABLE.grid TR.link {
+  cursor: pointer;
+}
+
+TABLE.grid TR {
+  background: white;
+}
+
+
+TABLE.grid TR:hover {
+  background-color: #fff3f0;
+}
+
+TABLE.strips tr:nth-child(even) {
+  background-color: #f0f0ff;
+}
+
+TABLE.grid.strips TR:hover {
+  background-color: #fff3f0;
+}
+
+DIV.pager {
+  padding: 4px 2px;
+  margin-top: 8px;
+}
+
+.page-item.active {
+  padding:3px 6px;
+  border: 1px solid gray;
+  border-radius: 15px;
+}
+
+.page-item a {
+  padding: 4px;
+  text-decoration: none;
+}
+
+.page-item a:hover {
+  background-color: #eee;
+}
+
+.pagination {
+  padding-left: 0px;
+}
+
+.disabled td {
+  color: #ccc;
+}
+
+/* FORM */
+
+.form {
+  border: 1px solid gray;
+  border-radius: 2px;
+  box-shadow:1px 1px 1px 0px #eee;
+  background-color: rgb(234,232,209);
+  padding: 5px;
+  margin: 5px 0px;
+  text-shadow: 0px 1px 0px rgba(255, 255, 255, 0.7);
+}
+
+.form h1 {
+ padding: 0px;
+ margin: 0px;
+ font-size: 18px;
+}
+
+input.button {
+  cursor: pointer;
+}
+
+input.image-picker {
+  padding-right: 18px;
+}
+
+.input-container { 
+  display: inline-block;
+  position:relative;
+  padding:0;
+  margin:0;
+}
+
+.input-icon {
+  position:absolute;
+  right:2px;
+  top:2px;
+}
+
+label.required:before {
+  content: "(*) ";
+  color:red;
+}
+
+input::placeholder {
+  color: #999;
+}
+
+.select-small {
+ max-width:400px;
+}
+
+.checkbox-group, .radio-group {
+  columns: 4;
+}
+
+.searchform input {
+  margin-bottom: 3px;
+}
+
+.inline div {float:left}
