@@ -38,20 +38,19 @@ class Sector extends Entity
 
   function reset()
   {
-  	$this->tunnels = [];
   	$this->connected = false;
   }
 
   function randomConnect()
   {
-  	$nb = $this->getNeighbours();
+  	$nb = $this->getFreeNeighbours();
   	if (!$nb) return;
 
 
  		$this->connected = $this->random->get($nb);
   }
 
-	protected function getNeighbours()
+	protected function getFreeNeighbours()
 	{
 		$neighbours = [];
 
@@ -72,7 +71,36 @@ class Sector extends Entity
 		return $neighbours;
 	}
 
-	function strConnected()
+	function getConnected()
+	{
+		$x = $this->x;
+		$y = $this->y;
+
+		$nb = [
+			$this->level->getSector($x-1, $y),
+			$this->level->getSector($x+1, $y),
+			$this->level->getSector($x, $y-1),
+			$this->level->getSector($x, $y+1),
+		];
+
+		$connected = [];
+		
+		foreach($nb as $sec)
+		{
+			if (!$sec) continue;
+			if (!$sec->isConnectedWith($this)) continue;
+			$connected[] = $sec;
+		}
+
+		return $connected;
+	}
+
+	function isConnectedWith(Sector $sec)
+	{
+		return ($sec->connected == $this or $this->connected == $sec);
+	}
+
+	function strConnection()
 	{
 		if (!$this->connected) return 'none';
 		$px = $this->connected->x - $this->x;

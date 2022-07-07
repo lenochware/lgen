@@ -52,13 +52,18 @@ class Level extends Entity
     $this->build($x, $y+1, $biom);
   }
 
+  private function nextBiom($id)
+  {
+    $bioms = $this->config['bioms'];
+
+    $biom = $bioms[$id];
+    if (!$biom) return $id;
+
+    return $this->random->pick($biom);
+  }
+
   function connect()
   {
-    // for (let r of this.rooms) {
-    //   r.connected = [];
-    //   r.isConnected = false;
-    // }
-
     foreach($this->sectors as $sector) {
       $sector->reset();
     }
@@ -70,17 +75,23 @@ class Level extends Entity
 
   function isConnected()
   {
-    return true;
+    $visited = [];
+
+    $this->visit($visited, $this->getSector(0,0));
+
+    if (count($visited) == count($this->sectors)) return true;
+    else return false;
+
   }
 
-  protected function nextBiom($id)
+  private function visit(&$visited, $sec)
   {
-    $bioms = $this->config['bioms'];
+    if (in_array($sec, $visited)) return;
+    $visited[] = $sec;
 
-    $biom = $bioms[$id];
-    if (!$biom) return $id;
-
-    return $this->random->pick($biom);
+    foreach($sec->getConnected() as $next) {
+      $this->visit($visited, $next);
+    }
   }
 
   function create()
@@ -95,15 +106,21 @@ class Level extends Entity
       for ($y=0; $y < $this->height; $y++)
       { 
         $sector = new Sector($this, $x, $y);
-        $this->sectors[$y * $this->height + $x] = $sector;
-        $sector->create($this->number, $this->bioms[$x][$y]);
+        $this->setSector($x, $y, $sector);
+        $sector->create($this->number, $this->getBiom($x, $y));
       }
     }
   }
 
+
   function getBiom($x, $y)
   {
     return $this->bioms[$x][$y];
+  }
+
+  function setSector($x, $y, Sector $sector)
+  {
+    $this->sectors[$y * $this->height + $x] = $sector;
   }
 
   function getSector($x, $y)
@@ -134,7 +151,7 @@ function draw()
     for ($x=0; $x < $this->width; $x++) { 
       $this->drawTile($this->getBiom($x, $y));
 
-      //print $this->getSector($x, $y)->strConnected();
+      //print $this->getSector($x, $y)->strConnection();
     }
 
     print "<br>";

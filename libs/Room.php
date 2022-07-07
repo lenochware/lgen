@@ -116,12 +116,12 @@ class Room extends Entity
   		$this->data[$i] = ['floor', '', ''];
   	}
 
-    for ($i = 0; $i < $this->width; $i++) { 
+    for ($i = 0; $i < $this->width; $i++) {
       $this->set($i, 0, 'wall');
       $this->set($i, $this->height - 1, 'wall');
     }
 
-    for ($i = 0; $i < $this->height; $i++) { 
+    for ($i = 0; $i < $this->height; $i++) {
       $this->set(0, $i, 'wall');
       $this->set($this->width - 1, $i, 'wall');
     }
