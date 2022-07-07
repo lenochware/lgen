@@ -4,8 +4,14 @@ class Room extends Entity
 {
 	protected $data = [];
 
+	public $x;
+	public $y;
+
 	public $width = 1;
 	public $height = 1;
+
+	public $sectorWidth = 16;
+	public $sectorHeight = 16;
 
   protected $sector;
   protected $level;
@@ -27,10 +33,13 @@ class Room extends Entity
     $this->level = $sector->level;
   }
 
-  function setSize($x, $y)
+  function setSize($width, $height)
   {
-    $this->width = $x;
-    $this->height = $y;
+    $this->width = $width;
+    $this->height = $height;
+
+    $this->x = rint(0, $this->sectorWidth - $width - 1);
+    $this->y = rint(0, $this->sectorHeight - $height - 1);
   }
 
   function create()
@@ -41,8 +50,8 @@ class Room extends Entity
   function each($func)
   {
     foreach ($this->data as $i => $tile) {
-      $y = floor($i / $this->width);
-      $x = $i % $this->width;
+      $y = floor($i / $this->sectorWidth);
+      $x = $i % $this->sectorWidth;
 
       if (!empty($tile[0])) $func($this, $x, $y, $tile[0]);
       if (!empty($tile[1])) $func($this, $x, $y, $tile[1]);
@@ -64,14 +73,23 @@ class Room extends Entity
     return $types[$x];
   }
 
-  function set($x, $y, $id)
+  function set($x, $y, $id, $rel = false)
   {
-    $this->data[$y * $this->width + $x][$this->getTypeId($id)] = $id;
+  	if ($rel) {
+  		$x += $this->x;
+  		$y += $this->y;
+  	}
+    $this->data[$y * $this->sectorWidth + $x][$this->getTypeId($id)] = $id;
   }
 
-  function get($x, $y)
+  function get($x, $y, $rel = false)
   {
-    return $this->data[$y * $this->width + $x];
+  	if ($rel) {
+  		$x += $this->x;
+  		$y += $this->y;
+  	}
+
+    return $this->data[$y * $this->sectorWidth + $x];
   }
 
   // i pro level sectors? i pro libovolny rect nad levelem (celkove predvyplneni tiles)?
@@ -110,20 +128,26 @@ class Room extends Entity
 
   function clear()
   {
-  	$n = $this->width * $this->height;
+  	$n = $this->sectorWidth * $this->sectorHeight;
 
   	for ($i = 0; $i < $n; $i++) { 
-  		$this->data[$i] = ['floor', '', ''];
+  		$this->data[$i] = ['outer-wall', '', ''];
   	}
 
+    for ($y = 0; $y < $this->height; $y++) {
+    	for ($x = 0; $x < $this->width; $x++) {
+        $this->set($x, $y, 'floor', true);
+    	}
+    }
+
     for ($i = 0; $i < $this->width; $i++) {
-      $this->set($i, 0, 'wall');
-      $this->set($i, $this->height - 1, 'wall');
+      $this->set($i, 0, 'wall', true);
+      $this->set($i, $this->height - 1, 'wall', true);
     }
 
     for ($i = 0; $i < $this->height; $i++) {
-      $this->set(0, $i, 'wall');
-      $this->set($this->width - 1, $i, 'wall');
+      $this->set(0, $i, 'wall', true);
+      $this->set($this->width - 1, $i, 'wall', true);
     }
 
   }
@@ -150,8 +174,8 @@ function draw()
   print paramStr("Room {0}x{1} ({2})<br>", [$this->width, $this->height,$this->type]);
 
   print "<code style=\"font-size:24px\">";
-  for ($y=0; $y < $this->height; $y++) {
-    for ($x=0; $x < $this->width; $x++) { 
+  for ($y=0; $y < $this->sectorHeight; $y++) {
+    for ($x=0; $x < $this->sectorWidth; $x++) { 
       $this->drawTile($this->get($x, $y));
     }
 
