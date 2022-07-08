@@ -6,8 +6,8 @@ class Sector extends Entity
 	protected $x;
 	protected $y;
 
-	protected $width = 10;
-	protected $height = 10;
+	protected $width;
+	protected $height;
 
 	public $room;
 	public $biom;
@@ -17,6 +17,8 @@ class Sector extends Entity
   {
   	parent::__construct();
     $this->level = $level;
+    $this->width = $level->sectorWidth;
+    $this->height = $level->sectorHeight;
     $this->x = $x;
     $this->y = $y;
     $this->reset();
@@ -29,6 +31,12 @@ class Sector extends Entity
     $this->add($room);
   	$room->create();
   }
+
+  function position()
+  {
+    return [$this->x * $this->width, $this->y * $this->height];
+  }
+
 
   function add(Room $room)
   {

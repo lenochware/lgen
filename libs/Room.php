@@ -20,6 +20,8 @@ class Room extends Entity
   protected $lvl;
   protected $type;
 
+  protected $pivotPos = [1,1];
+
   function __construct($lvl, $biom)
   {
     parent::__construct();
@@ -40,6 +42,8 @@ class Room extends Entity
 
     $this->x = rint(0, $this->sectorWidth - $width - 1);
     $this->y = rint(0, $this->sectorHeight - $height - 1);
+
+    $this->pivotPos = [rint(1 ,$width-2), rint(1 ,$height-2)];
   }
 
   function create()
@@ -62,6 +66,17 @@ class Room extends Entity
   function size()
   {
     return ($this->width-1)*($this->height-1);
+  }
+
+  function position()
+  {
+    $pos = $this->sector->position();
+    return [$pos[0] + $this->x, $pos[1] + $this->y];
+  }
+
+  function pivot()
+  {
+    return $this->pivotPos;
   }
 
   protected function getTypeId($id)

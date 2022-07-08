@@ -7,6 +7,9 @@ class Level extends Entity
   protected $width = 5;
   protected $height = 5;
 
+  public $sectorWidth = 16;
+  public $sectorHeight = 16;  
+
   public $sectors = [];
   public $config;
 
@@ -127,6 +130,22 @@ class Level extends Entity
   {
     if ($x < 0 or $y < 0 or $x >= $this->width or $y >= $this->height) return null;
     return $this->sectors[$y * $this->width + $x];
+  }
+
+  function get($x, $y)
+  {
+    $sx = floor($x / $this->sectorWidth);
+    $sy = floor($y / $this->sectorHeight);
+    $room = $this->getSector($sx, $sy)->room;
+    return $room->get($x % $this->sectorWidth, $y % $this->sectorHeight);
+  }
+
+  function set($x, $y, $id)
+  {
+    $sx = floor($x / $this->sectorWidth);
+    $sy = floor($y / $this->sectorHeight);
+    $room = $this->getSector($sx, $sy)->room;
+    $room->set($x % $this->sectorWidth, $y % $this->sectorHeight, $id);
   }
 
 
