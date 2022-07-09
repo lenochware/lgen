@@ -2,16 +2,16 @@
 
 class Room extends Entity
 {
-	protected $data = [];
+  protected $data = [];
 
-	public $x;
-	public $y;
+  public $x;
+  public $y;
 
-	public $width = 1;
-	public $height = 1;
+  public $width = 1;
+  public $height = 1;
 
-	public $sectorWidth = 16;
-	public $sectorHeight = 16;
+  public $sectorWidth = 16;
+  public $sectorHeight = 16;
 
   protected $sector;
   protected $level;
@@ -91,19 +91,19 @@ class Room extends Entity
 
   function set($x, $y, $id, $rel = false)
   {
-  	if ($rel) {
-  		$x += $this->x;
-  		$y += $this->y;
-  	}
+    if ($rel) {
+      $x += $this->x;
+      $y += $this->y;
+    }
     $this->data[$y * $this->sectorWidth + $x][$this->getTypeId($id)] = $id;
   }
 
   function get($x, $y, $rel = false)
   {
-  	if ($rel) {
-  		$x += $this->x;
-  		$y += $this->y;
-  	}
+    if ($rel) {
+      $x += $this->x;
+      $y += $this->y;
+    }
 
     return $this->data[$y * $this->sectorWidth + $x];
   }
@@ -124,7 +124,7 @@ class Room extends Entity
     }
   }
 
-	function spread($where, $func, $n)
+  function spread($where, $func, $n)
   {
     $found = $this->find($where);
     if (!$found) return;
@@ -150,17 +150,17 @@ class Room extends Entity
 
   function clear()
   {
-  	$n = $this->sectorWidth * $this->sectorHeight;
+    $n = $this->sectorWidth * $this->sectorHeight;
 
-  	for ($i = 0; $i < $n; $i++) { 
-  		$this->data[$i] = ['granite-wall', '', '', 'outside'];
-  	}
+    for ($i = 0; $i < $n; $i++) { 
+      $this->data[$i] = ['granite-wall', '', '', 'outside'];
+    }
 
     for ($y = 0; $y < $this->height; $y++) {
-    	for ($x = 0; $x < $this->width; $x++) {
+      for ($x = 0; $x < $this->width; $x++) {
         $this->set($x, $y, 'room-floor', true);
         $this->set($x, $y, 'floor', true);
-    	}
+      }
     }
 
     for ($i = 0; $i < $this->width; $i++) {
