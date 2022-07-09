@@ -3,9 +3,22 @@
 class Random implements \pclib\IService
 {
 
+public $seed = 1;
+
+function __construct()
+{
+	$this->seed = time();
+}
+
 function float()
 {
-	return mt_rand() / mt_getrandmax();
+  $x = sin($this->seed++) * 10000;
+  return $x - floor($x);	
+}
+
+function integer($max)
+{
+	return floor($this->float() * ++$max);
 }
 
 function chance($p)
@@ -26,7 +39,7 @@ function get2($list)
 function int($a, $b = null)
 {
 	if (is_array($a)) return $this->int($a[0], $a[1]);
-	return rand($a, $b);
+	return $this->integer($b - $a) + $a;
 }
 
 function int2($a, $b = null)
