@@ -46,6 +46,11 @@ function dbget($id)
 	return $app->db->get($id);
 }
 
+function sign($x)
+{
+	return $x <=> 0;
+}
+
 
 function xtr($x, $from, $to)
 {
@@ -66,6 +71,15 @@ function smoothstep ($min, $max, $x)
    $x = ($x - $min) / ($max - $min);
 
    return $x * $x * (3 - 2 * $x);
+}
+
+function vec_add($a, $b)
+{
+	foreach($a as $i => $it) { 
+		$a[$i] += $b[$i]; 
+	}
+
+	return $a;
 }
 
 // var seed = 1;

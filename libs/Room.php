@@ -141,6 +141,12 @@ class Room extends Entity
     }
   }
 
+  function tunnel(Room $target)
+  {
+    $tunnel = new Tunnel($this->level, $this, $target);
+    $tunnel->create();
+  }
+
   function clear()
   {
   	$n = $this->sectorWidth * $this->sectorHeight;
