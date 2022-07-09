@@ -60,6 +60,7 @@ class Room extends Entity
       if (!empty($tile[0])) $func($this, $x, $y, $tile[0]);
       if (!empty($tile[1])) $func($this, $x, $y, $tile[1]);
       if (!empty($tile[2])) $func($this, $x, $y, $tile[2]);
+      if (!empty($tile[3])) $func($this, $x, $y, $tile[3]);
     }
   }
 
@@ -81,7 +82,7 @@ class Room extends Entity
 
   protected function getTypeId($id)
   {
-    $types = ['ground' => 0, 'item' => 1, 'actor' => 2];
+    $types = ['ground' => 0, 'item' => 1, 'actor' => 2, 'meta' => 3];
 
     $obj = $this->db->get($id);
     $x = $obj['family'][0];
@@ -152,11 +153,12 @@ class Room extends Entity
   	$n = $this->sectorWidth * $this->sectorHeight;
 
   	for ($i = 0; $i < $n; $i++) { 
-  		$this->data[$i] = ['outer-wall', '', ''];
+  		$this->data[$i] = ['granite-wall', '', '', 'outside'];
   	}
 
     for ($y = 0; $y < $this->height; $y++) {
     	for ($x = 0; $x < $this->width; $x++) {
+        $this->set($x, $y, 'room-floor', true);
         $this->set($x, $y, 'floor', true);
     	}
     }
@@ -164,11 +166,17 @@ class Room extends Entity
     for ($i = 0; $i < $this->width; $i++) {
       $this->set($i, 0, 'wall', true);
       $this->set($i, $this->height - 1, 'wall', true);
+
+      $this->set($i, 0, 'room-wall', true);
+      $this->set($i, $this->height - 1, 'room-wall', true);
     }
 
     for ($i = 0; $i < $this->height; $i++) {
       $this->set(0, $i, 'wall', true);
       $this->set($this->width - 1, $i, 'wall', true);
+
+      $this->set(0, $i, 'room-wall', true);
+      $this->set($this->width - 1, $i, 'room-wall', true);
     }
 
   }
@@ -176,13 +184,17 @@ class Room extends Entity
 protected function drawTile($tile)
 {
   $title = '';
-  foreach($tile as $id) {
+  
+  for($i = 0; $i < 3; $i++) {
+    $id = $tile[$i];
     if (!$id) continue;
     $obj = $this->db->get($id);
     if ($title) $title .= ', ';
-    $title .= $obj['name'];
+    $title .= $id;
     $render = $obj['render'];
   }
+
+  $title .= ', '. $tile[3];
 
   print paramStr('<span style="color:{color}" title="'.$title.'">{char}</span>', $render);
 

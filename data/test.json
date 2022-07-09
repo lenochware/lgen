@@ -254,6 +254,32 @@
 		"name": "x arrows"
 	},
 
+// *** Meta ***
+
+	"outside": {
+		"render": {"char": "#", "color": "gray" },
+		"family": ["meta", "wall"],
+		"name": "outside"
+	},
+
+	"room-wall": {
+		"render": {"char": "#", "color": "black" },
+		"family": ["meta", "wall"],
+		"name": "room-wall"
+	},
+
+	"room-floor": {
+		"render": {"char": ".", "color": "gray" },
+		"family": ["meta", "floor"],
+		"name": "room-floor"
+	},
+
+	"tunnel": {
+		"render": {"char": ".", "color": "black" },
+		"family": ["meta", "floor"],
+		"name": "tunnel"
+	},
+
 // *** Grounds ***
 
 	"wall": {
@@ -268,10 +294,9 @@
 		]
 	},
 
-	"outer-wall": {
+	"granite-wall": {
 		"render": {"char": "#", "color": "gray" },
 		"family": ["ground", "wall"],
-		"tags": ["hiding"],
 		"name": "granite wall"
 	},
 

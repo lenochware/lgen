@@ -63,10 +63,11 @@ class Tunnel extends Entity
 
     $id = 'floor';
 
-    if ($prev[0] == 'wall') {
+    if ($prev[3] == 'room-wall') {
       $id = 'door';
     }
 
+    if ($prev[3] == 'outside') $this->level->set($x, $y, 'tunnel');
     $this->level->set($x, $y, $id);
   }
 
