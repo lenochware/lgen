@@ -11,7 +11,7 @@ class HellRoom extends Room
   function createDefault()
   {
     $this->clear();
-    $this->fill('floor', 'grass');
+    $this->fill('room-floor', 'grass');
   }
 
 }

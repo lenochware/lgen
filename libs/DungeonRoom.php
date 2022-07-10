@@ -19,19 +19,17 @@ class DungeonRoom extends Room
 
   function createDefault()
   {
-    //vytvorit zdi a outer? obj. ProceduralRoom() n. TemplateRoom()
     $this->clear();
 
-    //musi byt pred prepsanim floor...
     $n = $this->random->int2(0, $this->size() / 2);
-    $this->spread('floor', rfunc('i2', 'actor'), $n);
+    $this->spread('room-floor', rfunc('i2', 'actor'), $n);
 
     if (rbet(0.2))
-      $this->spread('floor', rfunc('', ['mud','dirt']),  $this->random->int(1,10));
+      $this->spread('room-floor', rfunc('', ['mud','dirt']),  $this->random->int(1,10));
 
 
     if (rbet(xtr($this->lvl, [1, 10], [0.1, 0.5]) )) {
-      $this->fill('floor', 'dirt');
+      $this->fill('room-floor', 'dirt');
     }
 
 
@@ -39,11 +37,11 @@ class DungeonRoom extends Room
     {
       $obj = dbget(rget('actor'));
 
-      $this->fill('floor', rfunc('', $obj['family'][1]));
-      //$this->fill('floor', rget('actor'));
+      $this->fill('room-floor', rfunc('', $obj['family'][1]));
+      //$this->fill('room-floor', rget('actor'));
     }
 
-    //$this->fill('floor', pass('grass'));
+    //$this->fill('room-floor', pass('grass'));
 
     // $this->fill('wall', $this->random->func('', ['granite-wall','decor-wall']));
     //outer?
