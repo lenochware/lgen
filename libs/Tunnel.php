@@ -21,53 +21,51 @@ class Tunnel extends Entity
     $start = vec_add($this->start->position(), $this->start->pivot());
     $fin = vec_add($this->fin->position(), $this->fin->pivot());
 
-    $xlen = $fin[0] - $start[0];
-    $ylen = $fin[1] - $start[1];
-
-    $pos = $start;
-    while($pos != $fin)
-    {
-      //$n = rint(0, $xlen);
-      $n = $xlen;
-      $pos = $this->line($pos, [$pos[0] + $n, $pos[1]]);
-      $xlen -= $n;
-
-      //$n = rint(0, $ylen);
-      $n = $ylen;
-      $pos = $this->line($pos, [$pos[0], $pos[1] + $n]);
-      $ylen -= $n;
-    }
+    $this->line($start, $fin);
   }
 
-
-  protected function line($from, $to)
+  protected function line($a, $b)
   {
-    if ($from == $to) return $to;
+    if ($a == $b) return $b;
 
-    $len = $to[0] - $from[0];
+    $len = $b[0] - $a[0];
     for($i = 0; $i < $len*sign($len); $i++) {
-      $this->dig($from[0] + $i*sign($len), $from[1]);
+      $this->dig($a[0] + $i*sign($len), $a[1]);
     }
 
-    $len = $to[1] - $from[1];
+    $len = $b[1] - $a[1];
     for($i = 0; $i < $len*sign($len); $i++) {
-      $this->dig($to[0], $from[1] + $i*sign($len));
+      $this->dig($b[0], $a[1] + $i*sign($len));
     }
     
-    return $to;
+    return $b;
   }
 
   protected function dig($x, $y)
   {
-    $prev = $this->level->get($x, $y);
+    static $door, $outside = false;
 
-    $id = 'floor';
+    $tile = $this->level->get($x, $y);
 
-    if ($prev[3] == 'room-wall') {
-      $id = 'door';
+    if ($tile[3] == 'room-wall')
+    {
+      if ($door and $outside) return;
+      if ($door and !$outside) {
+        $this->level->set($door[0], $door[1], 'wall');
+      };
+
+      $id =  'door';
+      $door = [$x, $y];
+    }
+    else $id = 'floor';
+
+
+    if ($tile[3] == 'outside') {
+      $this->level->set($x, $y, 'tunnel');
+      $outside = true;
+      $door = null;
     }
 
-    if ($prev[3] == 'outside') $this->level->set($x, $y, 'tunnel');
     $this->level->set($x, $y, $id);
   }
 
