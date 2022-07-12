@@ -13,19 +13,20 @@ function indexAction()
   // $room->draw();
   // die('aaa');
 
-  $this->app->random->seed = 19;
+  //$this->app->random->seed = 19;
+
+  print "Seed: ".$this->app->random->seed . '<br>';
+
 
   $level = new Level(1);
 
   $level->create();
-  $level->connect();
 
   $r1 = $level->getSector(0,0)->room;
   $r2 = $level->getSector(0,1)->room;
 
-  $r1->tunnel($r2);
+  //$level->draw();
 
-  $level->draw();
   $r1->draw();
   $r2->draw();
 

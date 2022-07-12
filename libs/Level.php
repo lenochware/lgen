@@ -159,8 +159,10 @@ class Level extends Entity
   }
 
 
-protected function drawTile($name)
+protected function drawBiom($x, $y)
 {
+	$name = $this->getBiom($x, $y);
+
   $t = [
     'dungeon' => 'd',
     'forest' => '<font color="green">T</font>',
@@ -173,23 +175,56 @@ protected function drawTile($name)
   print $t[$name];
 }
 
-function draw()
+function drawBioms()
 {
   print "<code style=\"font-size:24px\">";
   for ($y=0; $y < $this->height; $y++) {
     for ($x=0; $x < $this->width; $x++) { 
-      $this->drawTile($this->getBiom($x, $y));
-
-      //print $this->getSector($x, $y)->strConnection();
+      $this->drawBiom($x, $y);
     }
 
     print "<br>";
   }
-  print "</code>";
+  print "</code>";	
+}
 
-  foreach ($this->sectors as $sector) {
-    //$sector->room->draw();
+protected function drawTile($x, $y)
+{
+	$tile = $this->get($x, $y);
+  $title = '';
+  
+  for($i = 0; $i < 3; $i++) {
+    $id = $tile[$i];
+    if (!$id) continue;
+    $obj = $this->db->get($id);
+    if ($title) $title .= ', ';
+    $title .= $id;
+    $render = $obj['render'];
   }
+
+  $title .= ', '. $tile[3];
+
+  print paramStr('<span style="color:{color}" title="'.$title.'">{char}</span>', $render);
+
+  //print '<font color="orange">0</font>';
+
+}
+
+function draw()
+{
+	//$this->drawBioms();
+
+  //print paramStr("Room {0}x{1} ({2})<br>", [$this->width, $this->height,$this->type]);
+
+  print "<code style=\"font-size:14px\">";
+  for ($y=0; $y < $this->sectorHeight*$this->height; $y++) {
+    for ($x=0; $x < $this->sectorWidth*$this->width; $x++) { 
+      $this->drawTile($x, $y);
+    }
+
+    print "<br>";
+  }
+  print "</code>";	
 
 }
 

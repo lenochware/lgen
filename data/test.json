@@ -319,7 +319,7 @@
 	},
 
 	"water": {
-		"render": {"char": "~", "color": "light-blue" },
+		"render": {"char": "~", "color": "lightblue" },
 		"family": ["ground", "water"],
 		"lvl": [3, 30],
 		"tags": ["hiding"],

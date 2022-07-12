@@ -22,6 +22,8 @@ class DungeonRoom extends Room
     $n = $this->random->int2(0, $this->size() / 2);
     $this->spread('room-floor', rfunc('i2', 'actor'), $n);
 
+    //$this->fill('tunnel', 'water', 10);
+
     if (rbet(0.2))
       $this->spread('room-floor', rfunc('', ['mud','dirt']),  $this->random->int(1,10));
 
@@ -38,11 +40,6 @@ class DungeonRoom extends Room
       $this->fill('room-floor', rfunc('', $obj['family'][1]));
       //$this->fill('room-floor', rget('actor'));
     }
-
-    //$this->fill('room-floor', pass('grass'));
-
-    // $this->fill('wall', $this->random->func('', ['granite-wall','decor-wall']));
-    //outer?
 
     $this->each([$this, 'onSpawn']);
   }

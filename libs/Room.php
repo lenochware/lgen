@@ -126,6 +126,10 @@ class Room extends Entity
 
   function spread($where, $func, $n)
   {
+    if (!is_callable($func)) {
+      $func = fn() => $func;
+    }
+    
     $found = $this->find($where);
     if (!$found) return;
     
