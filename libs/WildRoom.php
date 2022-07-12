@@ -10,7 +10,6 @@ class WildRoom extends Room
 
   function createDefault()
   {
-  	$this->clear();
   	$this->fill('room-floor', 'grass');
   }
 

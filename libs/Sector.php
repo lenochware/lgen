@@ -24,12 +24,20 @@ class Sector extends Entity
     $this->reset();
   }
 
-  function create($lvl, $biom)
+  function init($lvl, $biom)
   {
   	$this->biom = $biom;
-  	$room = $this->createRoom($lvl, $biom);
+  	
+    $room = $this->getRoom($lvl, $biom);
+    $room->setSize(rint([5,8]), rint([5,8]));
+    $room->init();
+
     $this->add($room);
-  	$room->create();
+  }
+
+  function create()
+  {
+    $this->room->create();
   }
 
   function position()
@@ -46,7 +54,7 @@ class Sector extends Entity
 
   function reset()
   {
-  	$this->connected = false;
+  	$this->connected = null;
   }
 
   function randomConnect()
@@ -120,15 +128,12 @@ class Sector extends Entity
 		if ($py < 0) return 'U';
 	}
 
-  function createRoom($lvl, $biom)
+  function getRoom($lvl, $biom)
   {
     if ($biom == 'dungeon') $room = new DungeonRoom($lvl, $biom);
     elseif ($biom == 'hell') $room = new HellRoom($lvl, $biom);
     elseif (in_array($biom, ['forest', 'rocks', 'desert', 'water'])) $room = new WildRoom($lvl, $biom);
     else throw new Exception('Unknown biom.');
-
-    $room->setSize(rint([5,8]), rint([5,8]));
-
     return $room;
   }
 

@@ -148,7 +148,7 @@ class Room extends Entity
     $tunnel->create();
   }
 
-  function clear()
+  function init()
   {
     $n = $this->sectorWidth * $this->sectorHeight;
 

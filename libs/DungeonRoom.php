@@ -19,8 +19,6 @@ class DungeonRoom extends Room
 
   function createDefault()
   {
-    $this->clear();
-
     $n = $this->random->int2(0, $this->size() / 2);
     $this->spread('room-floor', rfunc('i2', 'actor'), $n);
 
@@ -51,27 +49,22 @@ class DungeonRoom extends Room
 
   function createWet()
   {
-    $this->clear();
   }
 
   function createDestruct()
   {
-    $this->clear();    
   }
 
   function createPit()
   {
-    $this->clear();
   }
 
   function createTreasure()
   {
-    $this->clear();
   }
 
   function createFortress()
   {
-    $this->clear();    
   }
 
 }

@@ -110,8 +110,18 @@ class Level extends Entity
       { 
         $sector = new Sector($this, $x, $y);
         $this->setSector($x, $y, $sector);
-        $sector->create($this->number, $this->getBiom($x, $y));
+        $sector->init($this->number, $this->getBiom($x, $y));
       }
+    }
+
+    $this->connect();
+
+    foreach ($this->sectors as $sector) {
+      if ($sector->connected) $sector->room->tunnel($sector->connected->room);
+    }
+
+    foreach ($this->sectors as $sector) {
+      $sector->create();
     }
   }
 
