@@ -5,13 +5,14 @@ class HomeController extends BaseController
 
 function indexAction()
 {
-  // $this->app->db->indexLevel(1);
-  // $room =  new DungeonRoom(1, 'dungeon');
-  // $room->setSize(8,8);
-  // $room->createDefault();
+  $this->app->db->indexLevel(1);
+  $room =  new DungeonRoom(1, 'dungeon');
+  $room->setSize(8,8);
+  $room->init();
+  $room->createDestruct();
 
-  // $room->draw();
-  // die('aaa');
+  $room->draw();
+  die('aaa');
 
   //$this->app->random->seed = 19;
 

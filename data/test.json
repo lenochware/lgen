@@ -140,21 +140,21 @@
 	},
 
 	"rusty-dagger": {
-		"render": {"char": "|", "color": "white" },
+		"render": {"char": "|", "color": "black" },
 		"family": ["item", "weapon"],
 		"lvl": [1, 3],
 		"name": "rusty-dagger"
 	},
 
 	"dirty-rag": {
-		"render": {"char": "|", "color": "white" },
+		"render": {"char": "|", "color": "black" },
 		"family": ["item", "armor"],
 		"lvl": [1, 3],
 		"name": "dirty-rag"
 	},
 
 	"short-sword": {
-		"render": {"char": "|", "color": "white" },
+		"render": {"char": "|", "color": "black" },
 		"family": ["item", "weapon"],
 		"lvl": [1, 5],
 		"name": "short sword",
@@ -162,21 +162,21 @@
 	},
 
 	"small-shield": {
-		"render": {"char": ")", "color": "white" },
+		"render": {"char": ")", "color": "black" },
 		"family": ["item", "armor"],
 		"lvl": [1, 5],		
 		"name": "small wooden shield"
 	},		
 
 	"leather-sandals": {
-		"render": {"char": ")", "color": "white" },
+		"render": {"char": ")", "color": "black" },
 		"family": ["item", "armor"],
 		"lvl": [1, 5],		
 		"name": "Pair of Leather Sandals"
 	},
 
 	"small-rock": {
-		"render": {"char": ")", "color": "white" },
+		"render": {"char": "~", "color": "black" },
 		"family": ["item", "useless"],
 		"lvl": [1, 5],		
 		"name": "small-rock"
@@ -191,7 +191,7 @@
 	},
 
 	"silver-coins": {
-		"render": {"char": "$", "color": "brown" },
+		"render": {"char": "$", "color": "gray" },
 		"family": ["item", "gold"],
 		"name": "copper coins",
 		"lvl": [1, 5],

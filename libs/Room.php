@@ -50,6 +50,11 @@ class Room extends Entity
   {
   }
 
+  function callCreate($name)
+  {
+    call_user_func([$this, 'create' . ucfirst($name)]);
+  }
+
   //zavolej nad vsemi tiles func - markov-chain
   function each($func)
   {

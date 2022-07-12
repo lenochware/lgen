@@ -13,8 +13,8 @@ class DungeonRoom extends Room
     {
       $this->type = $this->random->get(['destruct', 'pit', 'treasure', 'wet', 'fortress']);
     }
-    
-    call_user_func([$this, 'create' . ucfirst($this->type)]);
+
+    $this->callCreate($this->type);    
   }
 
   function createDefault()
@@ -33,31 +33,39 @@ class DungeonRoom extends Room
     }
 
 
-    if (rbet(xtr($this->lvl, [1, 10], [0.1, 0.5]) ))
-    {
-      $obj = dbget(rget('actor'));
+    // if (rbet(xtr($this->lvl, [1, 10], [0.1, 0.5]) ))
+    // {
+    //   $obj = dbget(rget('actor'));
 
-      $this->fill('room-floor', rfunc('', $obj['family'][1]));
-      //$this->fill('room-floor', rget('actor'));
-    }
+    //   $this->fill('room-floor', rfunc('', $obj['family'][1]));
+    //   //$this->fill('room-floor', rget('actor'));
+    // }
 
     $this->each([$this, 'onSpawn']);
   }
 
   function createWet()
   {
+    $this->fill('room-floor', 'water');
   }
 
   function createDestruct()
   {
+    $this->spread('room-floor', rfunc('', ['wall','small-rock']), rint(1,5));
+    $this->spread('room-wall', rfunc('', ['dirt','floor']), rint(1,5));
   }
 
   function createPit()
   {
+    $obj = dbget(rget('actor'));
+
+    $this->fill('room-floor', rfunc('', $obj['family'][1]));
+    //$this->fill('room-floor', rget('actor'));
   }
 
   function createTreasure()
   {
+    $this->spread('room-floor', rfunc('', ['copper-coins','silver-coins']), rint(1,5));
   }
 
   function createFortress()
