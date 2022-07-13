@@ -321,6 +321,38 @@
 		"desc": "You see nothing interesting."
 	},
 
+	"rubble": {
+		"render": {"char": ":", "color": "gray" },
+		"family": ["ground", "wall"],
+		"tags": ["hiding", "blocking", "diggable"],
+		"name": "rubble",
+		"desc": "Pile of rubble is blocking a way."
+	},
+
+	"rocks": {
+		"render": {"char": "^", "color": "gray" },
+		"family": ["ground", "wall"],
+		"tags": ["sticky"],
+		"name": "rocks",
+		"desc": "You see nothing interesting."
+	},
+
+	"earth-wall": {
+		"render": {"char": "#", "color": "brown" },
+		"family": ["ground", "wall"],
+		"tags": ["wall", "hiding", "opaque", "blocking", "diggable"],
+		"name": "earth wall",
+		"desc": "You see nothing interesting."
+	},
+
+	"tree": {
+		"render": {"char": "%", "color": "green" },
+		"family": ["ground", "wall"],
+		"tags": ["hiding", "hiding_mon", "blocking", "diggable"],
+		"name": "high tree",
+		"desc": "You see nothing interesting."
+	},
+
 	"water": {
 		"render": {"char": "~", "color": "blue" },
 		"family": ["ground", "water"],
@@ -379,6 +411,21 @@
 		"desc": "Blood stains on the floor looks suspicious."
 	},
 
+	"stairs-up": {
+		"render": {"char": "<", "color": "brown" },
+		"family": ["ground", "device", "door"],
+		"tags": ["exit"],
+		"name": "stairs up",
+		"desc": "You see nothing interesting."
+	},
+
+	"stairs-down": {
+		"render": {"char": ">", "color": "brown" },
+		"family": ["ground", "device", "door"],
+		"tags": ["exit"],
+		"name": "stairs down",
+		"desc": "You see nothing interesting."
+	},
 
 	"door": {
 		"render": {"char": "+", "color": "brown" },
