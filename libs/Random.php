@@ -48,6 +48,11 @@ function int2($a, $b = null)
   return $this->int($a, $this->int($a, $b));
 }
 
+function shuffle($list)
+{
+  usort($list, fn() => 0.5 - this.float());
+}
+
 function pick($list, $chances = null)
 {
   if ($chances) return $this->getc($list, $chances);

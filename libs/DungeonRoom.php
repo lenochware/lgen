@@ -64,7 +64,7 @@ class DungeonRoom extends Room
     $obj = dbget(rget('actor'));
 
     $this->fill('room-floor', rfunc('', $obj['family'][1]));
-    $this->spread('tunnel', rfunc('', ['blood-floor', 'bones']), rint(1,5));    
+    $this->spread('tunnel', rfunc('', ['blood-floor', 'bones']), rint(1,5));
     //$this->fill('room-floor', rget('actor'));
   }
 

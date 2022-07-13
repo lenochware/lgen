@@ -4,12 +4,6 @@ class Room extends Entity
 {
   protected $data = [];
 
-  public $x;
-  public $y;
-
-  public $width = 1;
-  public $height = 1;
-
   public $sectorWidth = 16;
   public $sectorHeight = 16;
 
@@ -116,7 +110,7 @@ class Room extends Entity
   // i pro level sectors? i pro libovolny rect nad levelem (celkove predvyplneni tiles)?
   function fill($where, $func)
   {
-    if (!is_callable($func)) {
+    if (is_string($func)) {
       $func = fn() => $func;
     }
 

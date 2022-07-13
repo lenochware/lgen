@@ -3,12 +3,6 @@
 class Sector extends Entity
 {
 	public $level;
-	protected $x;
-	protected $y;
-
-	protected $width;
-	protected $height;
-
 	public $room;
 	public $biom;
 	public $connected;

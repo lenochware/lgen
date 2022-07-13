@@ -1,11 +1,15 @@
 <?php 
 
-
 class Entity
 {
   protected $random;
   protected $app;
   protected $db;
+
+  public $x;
+  public $y;
+  public $width;
+  public $height;
 
   function __construct()
   {

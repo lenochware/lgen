@@ -4,9 +4,6 @@ class Level extends Entity
 {
   protected $number = 1;
 
-  protected $width = 5;
-  protected $height = 5;
-
   public $sectorWidth = 16;
   public $sectorHeight = 16;  
 
@@ -20,6 +17,9 @@ class Level extends Entity
     parent::__construct();
     $this->number = $number;
     $this->app->db->indexLevel($number);
+
+    $this->width = 5;
+    $this->height = 5;
   }
 
   function init()
