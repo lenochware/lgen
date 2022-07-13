@@ -47,12 +47,16 @@ class DungeonRoom extends Room
   function createWet()
   {
     $this->fill('room-floor', 'water');
+    $this->spread('room-floor', 'wall-moss', rint(1,5));
+    $this->spread('room-floor', rfunc('', ['wet-floor','floor']), rint(1,5));
+    $this->spread('tunnel', rfunc('', ['wet-floor']), rint(1,5));
   }
 
   function createDestruct()
   {
     $this->spread('room-floor', rfunc('', ['wall','small-rock']), rint(1,5));
     $this->spread('room-wall', rfunc('', ['dirt','floor']), rint(1,5));
+    $this->spread('tunnel', rfunc('', ['small-rock']), rint(1,5));
   }
 
   function createPit()
@@ -60,6 +64,7 @@ class DungeonRoom extends Room
     $obj = dbget(rget('actor'));
 
     $this->fill('room-floor', rfunc('', $obj['family'][1]));
+    $this->spread('tunnel', rfunc('', ['blood-floor', 'bones']), rint(1,5));    
     //$this->fill('room-floor', rget('actor'));
   }
 

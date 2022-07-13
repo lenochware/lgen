@@ -132,6 +132,9 @@
 // 	"name": ""
 // },
 
+// *** Items ***
+
+
 	"bones": {
 		"render": {"char": "~", "color": "gray" },
 		"family": ["item", "useless"],
@@ -319,7 +322,7 @@
 	},
 
 	"water": {
-		"render": {"char": "~", "color": "lightblue" },
+		"render": {"char": "~", "color": "blue" },
 		"family": ["ground", "water"],
 		"lvl": [3, 30],
 		"tags": ["hiding"],
@@ -361,12 +364,21 @@
 		"desc": "You see nothing interesting."
 	},
 
+	"wet-floor": {
+		"render": {"char": ".", "color": "blue" },
+		"family": ["ground", "floor"],
+		"lvl": [1, 50],
+		"name": "wet floor",
+		"desc": "You see nothing interesting."
+	},
+
 	"blood-floor": {
 		"render": {"char": ".", "color": "red" },
 		"family": ["ground", "floor"],
 		"name": "blood stains",
 		"desc": "Blood stains on the floor looks suspicious."
 	},
+
 
 	"door": {
 		"render": {"char": "+", "color": "brown" },
