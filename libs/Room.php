@@ -125,7 +125,7 @@ class Room extends Entity
 
   function spread($where, $func, $n)
   {
-    if (!is_callable($func)) {
+    if (is_string($func)) {
       $func = fn() => $func;
     }
     
