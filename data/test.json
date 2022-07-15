@@ -259,6 +259,12 @@
 
 // *** Meta ***
 
+	"none": {
+		"render": {"char": " ", "color": "black" },
+		"family": ["meta", "none"],
+		"name": "undefined"
+	},
+
 	"outside": {
 		"render": {"char": "#", "color": "gray" },
 		"family": ["meta", "wall"],

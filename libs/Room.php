@@ -91,11 +91,14 @@ class Room extends Entity
   function set($x, $y, $id, $rel = false)
   {
   	if ($id == 'none') return;
-  	
+
     if ($rel) {
       $x += $this->x;
       $y += $this->y;
     }
+
+  	if ($x < 0 or $y < 0 or $x >= $this->sectorWidth or $y >= $this->sectorHeight) return;
+
     $this->data[$y * $this->sectorWidth + $x][$this->getTypeId($id)] = $id;
   }
 
@@ -105,6 +108,8 @@ class Room extends Entity
       $x += $this->x;
       $y += $this->y;
     }
+
+  	if ($x < 0 or $y < 0 or $x >= $this->sectorWidth or $y >= $this->sectorHeight) return ['','','','none'];
 
     return $this->data[$y * $this->sectorWidth + $x];
   }
@@ -121,6 +126,7 @@ class Room extends Entity
 
     foreach ($found as $i) {
       $id = $func($this, $i);
+      if ($id == 'none') continue;
       $this->data[$i][$this->getTypeId($id)] = $id;
     }
   }
@@ -143,6 +149,7 @@ class Room extends Entity
 
     foreach($idx as $i) {
       $id = $func($this, $i);
+      if ($id == 'none') continue;
       $this->data[$i][$this->getTypeId($id)] = $id;
     }
   }

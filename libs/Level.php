@@ -147,7 +147,7 @@ class Level extends Entity
     $sx = floor($x / $this->sectorWidth);
     $sy = floor($y / $this->sectorHeight);
     $sector = $this->getSector($sx, $sy);
-    if (!$sector) return;
+    if (!$sector) return ['','','','none'];
 
     return $sector->room->get($x % $this->sectorWidth, $y % $this->sectorHeight);
   }
