@@ -2,64 +2,63 @@
 
 function rfunc($type, $list)
 {
-	global $app;
+    global $app;
 
-	if (!is_array($list)) {
-		$list = dblist($list);
-	}
-	
-	return $app->random->func($type, $list);
+    if (!is_array($list)) {
+        $list = dblist($list);
+    }
+    
+    return $app->random->func($type, $list);
 }
 
 function rget($list)
 {
-	global $app;
+    global $app;
 
-	if (!is_array($list)) {
-		$list = dblist($list);
-	}
+    if (!is_array($list)) {
+        $list = dblist($list);
+    }
 
-	return $app->random->get($list);
+    return $app->random->get($list);
 }
 
 function rint($a, $b = null)
 {
-	global $app;
-	return $app->random->int($a, $b);
+    global $app;
+    return $app->random->int($a, $b);
 }
 
 function rbet($p)
 {
-	global $app;
-	return $app->random->chance($p);
+    global $app;
+    return $app->random->chance($p);
 }
 
 function dblist($id)
 {
-	global $app;
-	return $app->db->list($id);
+    global $app;
+    return $app->db->list($id);
 }
 
 function dbget($id)
 {
-	global $app;
-	return $app->db->get($id);
+    global $app;
+    return $app->db->get($id);
 }
 
 function sign($x)
 {
-	return $x <=> 0;
+    return $x <=> 0;
 }
-
 
 function xtr($x, $from, $to)
 {
-	return lerp($to[0], $to[1], smoothstep($from[0], $from[1], $x));
+    return lerp($to[0], $to[1], smoothstep($from[0], $from[1], $x));
 }
 
 function lerp($a, $b, $t)
 {
-	return $a + $t * ($b - $a);
+    return $a + $t * ($b - $a);
 }
 
 function smoothstep ($min, $max, $x)
@@ -75,23 +74,17 @@ function smoothstep ($min, $max, $x)
 
 function vec_add($a, $b)
 {
-	foreach($a as $i => $it) { 
-		$a[$i] += $b[$i]; 
-	}
+    foreach($a as $i => $it) { 
+        $a[$i] += $b[$i]; 
+    }
 
-	return $a;
+    return $a;
 }
 
-// var seed = 1;
-// function random() {
-//     var x = Math.sin(seed++) * 10000;
-//     return x - Math.floor(x);
+// static clamp(x, a, b)
+// {
+//  return Math.max(a, Math.min(x, b));
 // }
-
-	// static clamp(x, a, b)
-	// {
-	// 	return Math.max(a, Math.min(x, b));
-	// }
 
 
  ?>
