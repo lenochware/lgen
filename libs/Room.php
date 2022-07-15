@@ -136,13 +136,19 @@ class Room extends Entity
       while(count($found)<$n) $found = array_merge($found, $found);
     }
 
-    shuffle($found);
+    $this->random->shuffle($found);
     $idx = array_slice($found, 0, $n);
 
     foreach($idx as $i) {
       $id = $func($this, $i);
       $this->data[$i][$this->getTypeId($id)] = $id;
     }
+  }
+
+  function pool($x, $y, $func, $size)
+  {
+    $p = new Painter($this->level, $this->sector->position());
+    $p->pool($x, $y, $func, $size);
   }
 
   function tunnel(Room $target)

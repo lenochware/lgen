@@ -18,8 +18,6 @@ $app->random = new Random;
 $app->db = new DungeonBase('data/test.json');
 $app->setLayout('tpl/website.tpl');
 
-$app->errorHandler->unregister();
-
 /* Nastaveni defaultniho controlleru. */
 if (!$app->controller) $app->controller = 'home';
 
