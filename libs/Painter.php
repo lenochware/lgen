@@ -35,8 +35,11 @@ class Painter extends Entity
 	  $end = $n? $this->width - rint(max($n-2,1), $n): $this->width;
 
 	  for($x = $start; $x < $end; $x++) {
-		  $id = $func($this->x + $x, $this->y + $y);
-		  $this->level->set($x + $this->x + $this->position[0], $y + $this->y + $this->position[1], $id);	  	
+	  	$xpos = $x + $this->x + $this->position[0];
+	  	$ypos = $y + $this->y + $this->position[1];
+
+		$id = $func($this->level, $xpos, $ypos);
+		$this->level->set($xpos, $ypos, $id);
 	  }
 	}
 
