@@ -146,16 +146,20 @@ class Level extends Entity
   {
     $sx = floor($x / $this->sectorWidth);
     $sy = floor($y / $this->sectorHeight);
-    $room = $this->getSector($sx, $sy)->room;
-    return $room->get($x % $this->sectorWidth, $y % $this->sectorHeight);
+    $sector = $this->getSector($sx, $sy);
+    if (!$sector) return;
+
+    return $sector->room->get($x % $this->sectorWidth, $y % $this->sectorHeight);
   }
 
   function set($x, $y, $id)
   {
     $sx = floor($x / $this->sectorWidth);
     $sy = floor($y / $this->sectorHeight);
-    $room = $this->getSector($sx, $sy)->room;
-    $room->set($x % $this->sectorWidth, $y % $this->sectorHeight, $id);
+    $sector = $this->getSector($sx, $sy);
+    if (!$sector) return;
+
+    $sector->room->set($x % $this->sectorWidth, $y % $this->sectorHeight, $id);
   }
 
 

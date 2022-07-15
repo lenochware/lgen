@@ -90,6 +90,8 @@ class Room extends Entity
 
   function set($x, $y, $id, $rel = false)
   {
+  	if ($id == 'none') return;
+  	
     if ($rel) {
       $x += $this->x;
       $y += $this->y;

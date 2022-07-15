@@ -24,7 +24,7 @@ class Painter extends Entity
     }
 
 	  $n = floor($this->width/2);
-	  for($i = 0; $i < $this->width; $i++) {
+	  for($i = 0; $i < $this->height; $i++) {
 	    $this->poolLine($i, abs($n - $i), $func);
 	  }
   }
@@ -35,7 +35,7 @@ class Painter extends Entity
 	  $end = $n? $this->width - rint(max($n-2,1), $n): $this->width;
 
 	  for($x = $start; $x < $end; $x++) {
-		  $id = $func($this, $x, $y);
+		  $id = $func($this->x + $x, $this->y + $y);
 		  $this->level->set($x + $this->x + $this->position[0], $y + $this->y + $this->position[1], $id);	  	
 	  }
 	}
