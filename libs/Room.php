@@ -160,14 +160,23 @@ class Room extends Entity
     $p->pool($x, $y, $func, $size);
   }
 
+  function pattern($pattern, $func)
+  {
+    $p = new Painter($this->level, $this->sector->position());
+    $p->copySize($this);
+    $p->pattern($pattern, $func);
+  }
+
   function tunnel(Room $target)
   {
     $tunnel = new Tunnel($this->level, $this, $target);
     $tunnel->create();
   }
 
-  function init()
+  function init($width, $height)
   {
+  	$this->setSize($width, $height);
+
     $n = $this->sectorWidth * $this->sectorHeight;
 
     for ($i = 0; $i < $n; $i++) { 

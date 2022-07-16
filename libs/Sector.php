@@ -23,8 +23,7 @@ class Sector extends Entity
   	$this->biom = $biom;
   	
     $room = $this->getRoom($lvl, $biom);
-    $room->setSize(rint([5,8]), rint([5,8]));
-    $room->init();
+    $room->init(rint([5,8]), rint([5,8]));
 
     $this->add($room);
   }

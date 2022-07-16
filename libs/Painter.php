@@ -12,6 +12,14 @@ class Painter extends Entity
     $this->position = $position;
   }
 
+  function copySize(Entity $e)
+  {
+    $this->x = $e->x;
+    $this->y = $e->y;
+    $this->width = $e->width;
+    $this->height = $e->height;
+  }
+
   function pool($x, $y, $func, $size)
   {     
     $this->x = $x;
@@ -42,6 +50,27 @@ class Painter extends Entity
       $this->level->set($xpos, $ypos, $id);
     }
   }
+
+  function pattern($pattern, $func)
+  {
+    $px = count($pattern[0]);
+    $py = count($pattern);
+
+    if (is_string($func)) {
+      $func = fn() => $func;
+    }    
+
+    for ($y = 0; $y < $this->height; $y++)
+      for($x = 0; $x < $this->width; $x++) {
+        $xpos = $x + $this->x + $this->position[0];
+        $ypos = $y + $this->y + $this->position[1];
+        
+        if ($pattern[$y % $py][$x % $px]) {
+          $id = $func($this->level, $xpos, $ypos);
+          $this->level->set($xpos, $ypos, $id);
+        }
+      }
+  }  
 }
 
 ?>

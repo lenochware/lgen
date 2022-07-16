@@ -5,31 +5,13 @@ class HomeController extends BaseController
 
 function indexAction()
 {
-  $this->app->db->indexLevel(1);
-  $room =  new DungeonRoom(1, 'dungeon');
-  $room->setSize(8,8);
-  $room->init();
-  $room->createDestruct();
-
-  $room->draw();
-  die('aaa');
-
-  //$this->app->random->seed = 19;
+  $this->app->random->seed = 1657871118;
 
   print "Seed: ".$this->app->random->seed . '<br>';
 
-
   $level = new Level(1);
-
   $level->create();
-
-  $r1 = $level->getSector(0,0)->room;
-  $r2 = $level->getSector(0,1)->room;
-
-  //$level->draw();
-
-  $r1->draw();
-  $r2->draw();
+  $level->draw();
 
   die('end.');
 }
@@ -37,11 +19,24 @@ function indexAction()
 
 function testAction()
 {
-  $db = $this->app->db;
-  $db->indexLevel(1);
-  dump($db->index);
+  $level = new Level(1);
 
+  $level->width = 2;
+  $level->height = 2;
+
+  $level->create();
+
+  $room =  new DungeonRoom(1, 'dungeon');
+  $room->init(8,8);
+  $level->getSector(0,0)->add($room);
+
+  $room->createTreasure();
+  $room->pattern([[0,1],[1,0]], 'water');
+
+
+  $level->draw();
 }
+
 
 
 }
