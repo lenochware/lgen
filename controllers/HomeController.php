@@ -12,8 +12,6 @@ function indexAction()
   $level = new Level(1);
   $level->create();
   $level->draw();
-
-  die('end.');
 }
 
 

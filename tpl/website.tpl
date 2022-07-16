@@ -2,6 +2,8 @@
 head HEAD scripts "css/website.css"
 string CONTENT
 string title
+link home lb "Home" route "home"
+link test lb "Room test" route "home/test"
 messages PRECONTENT
 ?>
 <!DOCTYPE html>
@@ -22,7 +24,9 @@ messages PRECONTENT
 
 
 <body>
+  {home} | {test}
   <div class="content">
+
     {PRECONTENT}{CONTENT}
   </div>
 </body>

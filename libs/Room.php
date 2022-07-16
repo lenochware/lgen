@@ -164,6 +164,7 @@ class Room extends Entity
   {
     $p = new Painter($this->level, $this->sector->position());
     $p->copySize($this);
+    $p->x++; $p->y++; $p->width -= 2; $p->height -= 2;
     $p->pattern($pattern, $func);
   }
 
@@ -173,15 +174,20 @@ class Room extends Entity
     $tunnel->create();
   }
 
+  function clear($tile)
+  {
+    $n = $this->sectorWidth * $this->sectorHeight;
+
+    for ($i = 0; $i < $n; $i++) { 
+      $this->data[$i] = $tile;
+    } 	
+  }
+
   function init($width, $height)
   {
   	$this->setSize($width, $height);
 
-    $n = $this->sectorWidth * $this->sectorHeight;
-
-    for ($i = 0; $i < $n; $i++) { 
-      $this->data[$i] = ['granite-wall', '', '', 'outside'];
-    }
+    $this->clear(['granite-wall', '', '', 'outside']);
 
     for ($y = 0; $y < $this->height; $y++) {
       for ($x = 0; $x < $this->width; $x++) {

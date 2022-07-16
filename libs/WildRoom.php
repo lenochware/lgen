@@ -19,6 +19,7 @@ class WildRoom extends Room
 
   function createForest()
   {
+  	//$this->clear(['floor', '', '', 'outside']);
   	$this->fill('granite-wall', 'floor');
   	$this->spread('outside', 'tree', 20);
   	$this->fill('room-floor', 'grass');
