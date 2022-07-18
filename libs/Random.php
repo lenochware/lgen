@@ -79,6 +79,27 @@ function getc($items, $chances)
   }
 }
 
+protected function pickList($index, $list)
+{
+  $index = (int)$index;
+  if (!$list) return 0;
+
+  if (isset($list[$index])) return $list[$index];
+
+  $keys = array_keys($list);
+  if ($index < $keys[0]) return $list[0];
+  if ($index > $keys[count($keys)-1]) return $list[count($keys)-1];
+
+  foreach($keys as $key) {
+    if ($key > $index) return $list[$key];
+  }
+}
+
+function pass($index, $list)
+{
+  return $this->chance($this->pickList($index, $list));
+}
+
 function func($type, $list /*, $chances = null*/)
 {
   if ($type == 'i2') {
