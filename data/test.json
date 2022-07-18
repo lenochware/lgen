@@ -35,6 +35,12 @@
 	"name": "Giant Red Frog"
 },
 
+"shark": {
+	"family": ["actor", "animal"],
+	"render": {"char": "l", "color": "cyan" },
+	"name": "Giant White Shark"
+},
+
 "mage": {
 	"family": ["actor", "humanoid"],
 	"render": {"char": "h", "color": "red" },
@@ -451,6 +457,11 @@
 	},
 
 	"lvl": [1,5]
+},
+
+"water-list": {
+	"family": ["group"],
+	"list": ["shark", "frog", "rusty-dagger", "copper-coins", "small-rock", "bones"]
 }
 
 

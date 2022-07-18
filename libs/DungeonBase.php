@@ -23,6 +23,11 @@ class DungeonBase implements \pclib\IService
 
   function list($id)
   {
+    $obj = $this->data[$id] ?: null;
+    if ($obj and $obj['list']) {
+      return $obj['list'];
+    }
+
     if (empty($this->index[$id])) {
       throw new Exception("Index '$id' not found.");
     };

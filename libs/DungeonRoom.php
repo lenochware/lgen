@@ -49,6 +49,7 @@ class DungeonRoom extends Room
     $this->fill('room-floor', 'water');
     $this->spread('room-floor', 'wall-moss', rint(1,5));
     $this->spread('room-floor', rfunc('', ['wet-floor','floor']), rint(1,5));
+    $this->spread('water', rfunc('', 'water-list'), rint(0,5));
     $this->spread('tunnel', rfunc('', ['wet-floor']), rint(1,5));
   }
 

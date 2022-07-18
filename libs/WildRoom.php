@@ -38,11 +38,11 @@ class WildRoom extends Room
   	//pool
     if ($this->random->pass($this->lvl, [1=>.1])) {
       $this->pool(rint(0,12), rint(0,12), $this->replaceOutsideFunc('water'), rint(5,15));
+      if (rbet(0.3)) $this->spread('outside', 'water', rint(0,5));
     }
 
-    $this->spread('floor', rfunc('i2', 'animal'), rint(0,4));
-    
-    // $this->spread('water', 'fish', 20);
+    $this->spread('floor', rfunc('i2', 'animal'), rint(0,4)); 
+    $this->spread('water', rfunc('', 'water-list'), rint(0,5));
   }
 
   function createSwamp()
