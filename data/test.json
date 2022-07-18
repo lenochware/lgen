@@ -357,6 +357,14 @@
 		"desc": "You see nothing interesting."
 	},
 
+	"sandstone": {
+		"render": {"char": "#", "color": "orange" },
+		"family": ["ground", "wall"],
+		"tags": ["wall", "hiding", "opaque", "blocking", "diggable"],
+		"name": "sandstone",
+		"desc": "You see nothing interesting."
+	},
+
 	"tree": {
 		"render": {"char": "%", "color": "green" },
 		"family": ["ground", "wall"],
