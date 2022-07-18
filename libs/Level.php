@@ -121,6 +121,8 @@ class Level extends Entity
     }
 
     foreach ($this->sectors as $sector) {
+      $doors = $sector->getConnected();
+      if ($doors) $sector->addTag(count($doors).'-door');
       $sector->create();
     }
   }
