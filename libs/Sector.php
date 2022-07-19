@@ -38,7 +38,6 @@ class Sector extends Entity
     return [$this->x * $this->width, $this->y * $this->height];
   }
 
-
   function add(Room $room)
   {
     $this->room = $room;

@@ -432,7 +432,7 @@
 	},
 
 	"stairs-up": {
-		"render": {"char": "<", "color": "brown" },
+		"render": {"char": "<", "color": "black" },
 		"family": ["ground", "device", "door"],
 		"tags": ["exit"],
 		"name": "stairs up",
@@ -440,7 +440,7 @@
 	},
 
 	"stairs-down": {
-		"render": {"char": ">", "color": "brown" },
+		"render": {"char": ">", "color": "black" },
 		"family": ["ground", "device", "door"],
 		"tags": ["exit"],
 		"name": "stairs down",

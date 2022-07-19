@@ -42,6 +42,13 @@ class Room extends Entity
 
   function create()
   {
+    $this->createStairs();
+  }
+
+  function createStairs()
+  {
+    if ($this->is('stairs-up')) $this->spread('room-floor', 'stairs-up', 1);
+    if ($this->is('stairs-down')) $this->spread('room-floor', 'stairs-down', 1);
   }
 
   function callCreate($name)

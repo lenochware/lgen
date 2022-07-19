@@ -5,6 +5,7 @@ class WildRoom extends Room
 
   function create()
   {
+  	parent::create();
     $this->type = $this->random->get(['desert', 'forest', /*'swamp',*/ 'rocks']);
     //$this->type = 'forest';
 

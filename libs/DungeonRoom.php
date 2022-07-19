@@ -5,6 +5,8 @@ class DungeonRoom extends Room
 
   function create()
   {
+  	parent::create();
+  	
     if ($this->random->chance(0.8))
     {
       $this->type = 'default';

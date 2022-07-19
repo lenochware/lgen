@@ -114,6 +114,7 @@ class Level extends Entity
       }
     }
 
+    $this->addStairs();
     $this->connect();
 
     foreach ($this->sectors as $sector) {
@@ -125,6 +126,14 @@ class Level extends Entity
       if ($doors) $sector->addTag(count($doors).'-door');
       $sector->create();
     }
+
+  }
+
+  function addStairs()
+  {
+	$n = count($this->sectors);
+    $this->sectors[rint(0,$n-1)]->room->addTag('stairs-up');
+    $this->sectors[rint(0,$n-1)]->room->addTag('stairs-down');  	
   }
 
 
