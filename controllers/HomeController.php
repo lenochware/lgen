@@ -2,18 +2,17 @@
 
 class HomeController extends BaseController
 {
-  protected $level;
 
 function indexAction()
 {
-  //$this->app->random->seed = 1658154042;
+  $this->app->random->seed = 1658154042;
 
   print "Seed: ".$this->app->random->seed . '<br>';
 
-  $this->level = new Level(1);
-  $this->level->create();
+  $level = new Level(1);
+  $level->create();
 
-  return $this->template('tpl/home/level.tpl', ['map' => $this->level->html()]);
+  return $this->template('tpl/home/level.tpl', ['map' => $level->html()]);
 }
 
 
@@ -39,7 +38,20 @@ function testAction()
 
 function infoAction($x, $y)
 {
-	return 'asadasasdasd';
+  $this->app->random->seed = 1658154042;
+
+  $level = new Level(1);
+  $level->create();
+
+  print "Seed: ".$this->app->random->seed . '<br>';
+
+  $level = new Level(1);
+  $level->create();
+
+  $sx = floor($x / $level->sectorWidth);
+  $sy = floor($y / $level->sectorHeight);
+  $sector = $level->getSector($sx, $sy);
+	return $sector->room->__toString();
 }
 
 }

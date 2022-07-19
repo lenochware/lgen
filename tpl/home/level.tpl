@@ -6,8 +6,10 @@ link test lb "Room test" route "home/test"
 ?>
 {home} | {test}
 
-<div class="map">{map}</div>
-<div class="info">info</div>
+<div class="flex">
+	<div class="map">{map}</div>
+	<div class="info">info</div>	
+</div>
 
 <script>
 function loadInfo(x,y)
