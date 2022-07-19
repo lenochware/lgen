@@ -219,7 +219,7 @@ protected function htmlTile($x, $y)
 
   $title .= ', '. $tile[3];
 
-  $click = "alert($x,$y);";
+  $click = "loadInfo($x,$y);";
 
   return paramStr('<span style="color:{color}" title="'.$title.'" onclick="'.$click.'">{char}</span>', $render);
 }

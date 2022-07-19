@@ -2,6 +2,7 @@
 
 class HomeController extends BaseController
 {
+  protected $level;
 
 function indexAction()
 {
@@ -9,10 +10,10 @@ function indexAction()
 
   print "Seed: ".$this->app->random->seed . '<br>';
 
-  $level = new Level(1);
-  $level->create();
-  
-  return $this->template('tpl/home/level.tpl', ['map' => $level->html()]);
+  $this->level = new Level(1);
+  $this->level->create();
+
+  return $this->template('tpl/home/level.tpl', ['map' => $this->level->html()]);
 }
 
 
@@ -36,7 +37,10 @@ function testAction()
   return $level->html();
 }
 
-
+function infoAction($x, $y)
+{
+	return 'asadasasdasd';
+}
 
 }
 
