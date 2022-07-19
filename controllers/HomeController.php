@@ -5,13 +5,14 @@ class HomeController extends BaseController
 
 function indexAction()
 {
-  $this->app->random->seed = 1657871118;
+  //$this->app->random->seed = 1658154042;
 
   print "Seed: ".$this->app->random->seed . '<br>';
 
   $level = new Level(1);
   $level->create();
-  $level->draw();
+  
+  return $this->template('tpl/home/level.tpl', ['map' => $level->html()]);
 }
 
 
@@ -32,7 +33,7 @@ function testAction()
   $room->pattern([[0,1],[1,0]], 'water');
 
 
-  $level->draw();
+  return $level->html();
 }
 
 

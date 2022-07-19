@@ -203,7 +203,7 @@ function drawBioms()
   print "</code>";	
 }
 
-protected function drawTile($x, $y)
+protected function htmlTile($x, $y)
 {
 	$tile = $this->get($x, $y);
   $title = '';
@@ -219,28 +219,26 @@ protected function drawTile($x, $y)
 
   $title .= ', '. $tile[3];
 
-  print paramStr('<span style="color:{color}" title="'.$title.'">{char}</span>', $render);
+  $click = "alert($x,$y);";
 
-  //print '<font color="orange">0</font>';
-
+  return paramStr('<span style="color:{color}" title="'.$title.'" onclick="'.$click.'">{char}</span>', $render);
 }
 
-function draw()
+function html()
 {
-	//$this->drawBioms();
+  //$this->drawBioms();
 
-  //print paramStr("Room {0}x{1} ({2})<br>", [$this->width, $this->height,$this->type]);
+  $s = '';
 
-  print "<code style=\"font-size:14px\">";
   for ($y=0; $y < $this->sectorHeight*$this->height; $y++) {
     for ($x=0; $x < $this->sectorWidth*$this->width; $x++) { 
-      $this->drawTile($x, $y);
+      $s .= $this->htmlTile($x, $y);
     }
 
-    print "<br>";
+    $s .= "<br>";
   }
-  print "</code>";	
 
+  return "<code style=\"font-size:14px\">$s</code>";	
 }
 
 }
