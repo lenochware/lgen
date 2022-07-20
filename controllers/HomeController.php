@@ -5,14 +5,21 @@ class HomeController extends BaseController
 
 function indexAction()
 {
-  $this->app->random->seed = 1658154042;
+  //$this->seed(1658154042);
+  $this->app->setSession('seed', $this->seed());
 
-  print "Seed: ".$this->app->random->seed . '<br>';
+  print "Seed: ". $this->seed() . '<br>';
 
   $level = new Level(1);
   $level->create();
 
   return $this->template('tpl/home/level.tpl', ['map' => $level->html()]);
+}
+
+function seed($value = null)
+{
+  if ($value) $this->app->random->seed = $value;
+  return $this->app->random->seed;
 }
 
 
@@ -38,12 +45,7 @@ function testAction()
 
 function infoAction($x, $y)
 {
-  $this->app->random->seed = 1658154042;
-
-  $level = new Level(1);
-  $level->create();
-
-  print "Seed: ".$this->app->random->seed . '<br>';
+  $this->seed($this->app->getSession('seed'));
 
   $level = new Level(1);
   $level->create();
@@ -51,7 +53,10 @@ function infoAction($x, $y)
   $sx = floor($x / $level->sectorWidth);
   $sy = floor($y / $level->sectorHeight);
   $sector = $level->getSector($sx, $sy);
-	return $sector->room->__toString();
+
+  $html = "Sector ($sx,$sy)<br>Room " .$sector->room->__toString();
+
+  return $html;
 }
 
 }

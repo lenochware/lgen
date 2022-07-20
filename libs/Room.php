@@ -47,8 +47,11 @@ class Room extends Entity
 
   function createStairs()
   {
-    if ($this->is('stairs-up')) $this->spread('room-floor', 'stairs-up', 1);
-    if ($this->is('stairs-down')) $this->spread('room-floor', 'stairs-down', 1);
+    $found = $this->find('room-floor');
+    $this->random->shuffle($found);
+
+    if ($this->is('stairs-up')) $this->put(array_pop($found), ['stairs', 'stairs-up']);
+    if ($this->is('stairs-down')) $this->put(array_pop($found), ['stairs', 'stairs-down']);
   }
 
   function callCreate($name)
@@ -157,6 +160,15 @@ class Room extends Entity
     foreach($idx as $i) {
       $id = $func($this, $i);
       if ($id == 'none') continue;
+      $this->data[$i][$this->getTypeId($id)] = $id;
+    }
+  }
+
+  function put($i, $tile)
+  {
+    if (!is_array($tile)) $tile = [$tile];
+    
+    foreach($tile as $id) {
       $this->data[$i][$this->getTypeId($id)] = $id;
     }
   }

@@ -288,6 +288,12 @@
 		"family": ["meta", "floor"],
 		"name": "room-floor"
 	},
+	
+	"stairs": {
+		"render": {"char": ".", "color": "gray" },
+		"family": ["meta", "floor"],
+		"name": "stairs"
+	},
 
 	"tunnel": {
 		"render": {"char": ".", "color": "black" },

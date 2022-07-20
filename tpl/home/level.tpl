@@ -8,7 +8,7 @@ link test lb "Room test" route "home/test"
 
 <div class="flex">
 	<div class="map">{map}</div>
-	<div class="info">info</div>	
+	<div class="info"></div>	
 </div>
 
 <script>
