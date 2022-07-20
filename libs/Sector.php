@@ -128,6 +128,16 @@ class Sector extends Entity
     return $room;
   }
 
+  function addTag($id)
+  {
+    $this->room->addTag($id);
+  }
+
+  function is($id)
+  {
+    return $this->room->is($id);
+  }
+
 }
 
 ?>
