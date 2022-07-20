@@ -65,7 +65,7 @@ class Sector extends Entity
     {
       $sec = $cur->level->getSector($x, $y);
       if (!$sec) return;
-      if ($sec->connected == $cur) return;
+      if ($sec->connected === $cur) return;
   
       $neighbours[] = $sec;
     };
