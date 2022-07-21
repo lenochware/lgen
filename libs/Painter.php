@@ -18,6 +18,7 @@ class Painter extends Entity
     $this->y = $e->y;
     $this->width = $e->width;
     $this->height = $e->height;
+    return $this;
   }
 
   function pool($x, $y, $func, $size)
@@ -70,7 +71,56 @@ class Painter extends Entity
           $this->level->set($xpos, $ypos, $id);
         }
       }
-  }  
+  }
+
+  /***/
+
+  function expand($x, $y)
+  {
+    $this->x -= $x;
+    $this->y -= $y;
+    $this->width += 2*$x;
+    $this->height += 2*$y;
+    return $this;    
+  }
+
+  function shrink($z)
+  {
+    return $this->expand(-$z, -$z);
+  }
+
+  function vline($x, $y, $len, $id)
+  {
+    $x = round($x * ($this->width - 1));
+    $y = round($y * ($this->height - 1));
+    $len = round($len * $this->height);
+
+    for($i = 0; $i < $len; $i++) {
+
+      $xpos = $x + $this->x + $this->position[0];
+      $ypos = $y + $this->y + $this->position[1];
+
+      //dump('aaa', $xpos, $ypos, $len, $id);
+
+      $this->level->set($xpos, $i + $ypos, $id);
+    }
+  }
+
+  function hline($y, $x, $len, $id)
+  {
+    $x = round($x * ($this->width - 1));
+    $y = round($y * ($this->height - 1));
+    $len = round($len * $this->width);
+
+    for($i = 0; $i < $len; $i++) {
+
+      $xpos = $x + $this->x + $this->position[0];
+      $ypos = $y + $this->y + $this->position[1];
+
+      $this->level->set($i + $xpos, $ypos, $id);
+    }
+
+  }
 }
 
 ?>

@@ -222,7 +222,7 @@
 	},
 
 	"apple": {
-		"render": {"char": ",", "color": "brown" },
+		"render": {"char": ",", "color": "red" },
 		"family": ["item", "food"],
 		"name": "an apple",
 		"lvl": [1, 5]
@@ -287,6 +287,16 @@
 		"render": {"char": ".", "color": "gray" },
 		"family": ["meta", "floor"],
 		"name": "room-floor"
+	},
+
+	"inner-wall": {
+		"render": {"char": "#", "color": "gray" },
+		"family": ["meta", "wall"],
+		"name": "inner wall",
+				"on-spawn": [
+			{"p": 1, "action": "replace", "id": "wall-moss" }
+		]
+
 	},
 	
 	"stairs": {
