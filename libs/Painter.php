@@ -47,7 +47,7 @@ class Painter extends Entity
       $xpos = $x + $this->x + $this->position[0];
       $ypos = $y + $this->y + $this->position[1];
 
-      $id = $func($this->level, $xpos, $ypos);
+      $id = $func($this->level->get($xpos, $ypos));
       $this->level->set($xpos, $ypos, $id);
     }
   }
@@ -67,7 +67,7 @@ class Painter extends Entity
         $ypos = $y + $this->y + $this->position[1];
         
         if ($pattern[$y % $py][$x % $px]) {
-          $id = $func($this->level, $xpos, $ypos);
+          $id = $func($this->level->get($xpos, $ypos));
           $this->level->set($xpos, $ypos, $id);
         }
       }

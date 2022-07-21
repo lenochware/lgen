@@ -14,9 +14,7 @@ class WildRoom extends Room
 
   protected function replaceOutsideFunc($id)
   {
-    $func = function($level, $x, $y) use($id) {
-      $tile = $level->get($x, $y);
-      if (!$tile) return 'none';
+    $func = function($tile) use($id) {
       if ($tile[3] == 'outside' or $tile[3] == 'tunnel') return $id;
       return 'none';
     };

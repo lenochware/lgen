@@ -136,7 +136,7 @@ class Room extends Entity
     if (!$found) return;
 
     foreach ($found as $i) {
-      $id = $func($this, $i);
+      $id = $func($this->data[$i]);
       if ($id == 'none') continue;
       $this->put($i, $id);
     }
@@ -159,7 +159,7 @@ class Room extends Entity
     $idx = array_slice($found, 0, $n);
 
     foreach($idx as $i) {
-      $id = $func($this, $i);
+      $id = $func($this->data[$i]);
       if ($id == 'none') continue;
       $this->put($i, $id);
     }
