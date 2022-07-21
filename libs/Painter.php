@@ -28,7 +28,7 @@ class Painter extends Entity
     $this->width = $size;
     $this->height = $size;
 
-    if (is_string($func)) {
+    if (is_string($func) or is_array($func)) {
       $func = fn() => $func;
     }
 
@@ -57,7 +57,7 @@ class Painter extends Entity
     $px = count($pattern[0]);
     $py = count($pattern);
 
-    if (is_string($func)) {
+    if (is_string($func) or is_array($func)) {
       $func = fn() => $func;
     }    
 
@@ -89,8 +89,12 @@ class Painter extends Entity
     return $this->expand(-$z, -$z);
   }
 
-  function vline($x, $y, $len, $id)
+  function vline($x, $y, $len, $func)
   {
+    if (is_string($func) or is_array($func)) {
+      $func = fn() => $func;
+    }
+
     $x = round($x * ($this->width - 1));
     $y = round($y * ($this->height - 1));
     $len = round($len * $this->height);
@@ -100,14 +104,17 @@ class Painter extends Entity
       $xpos = $x + $this->x + $this->position[0];
       $ypos = $y + $this->y + $this->position[1];
 
-      //dump('aaa', $xpos, $ypos, $len, $id);
-
+      $id = $func($this->level->get($xpos, $i + $ypos));
       $this->level->set($xpos, $i + $ypos, $id);
     }
   }
 
-  function hline($y, $x, $len, $id)
+  function hline($y, $x, $len, $func)
   {
+    if (is_string($func) or is_array($func)) {
+      $func = fn() => $func;
+    }
+
     $x = round($x * ($this->width - 1));
     $y = round($y * ($this->height - 1));
     $len = round($len * $this->width);
@@ -117,6 +124,7 @@ class Painter extends Entity
       $xpos = $x + $this->x + $this->position[0];
       $ypos = $y + $this->y + $this->position[1];
 
+      $id = $func($this->level->get($i + $xpos, $ypos));
       $this->level->set($i + $xpos, $ypos, $id);
     }
 

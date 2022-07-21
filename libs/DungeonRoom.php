@@ -16,6 +16,7 @@ class DungeonRoom extends Room
       $this->type = $this->random->get(['destruct', 'pit', 'treasure', 'wet', 'fortress']);
     }
 
+    $this->addTag($this->type);
     $this->callCreate($this->type);    
   }
 

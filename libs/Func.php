@@ -81,6 +81,11 @@ function vec_add($a, $b)
     return $a;
 }
 
+function replace_func($from, $to)
+{
+    return fn($tile) => in_array($from, $tile)? $to : 'none';
+}
+
 // static clamp(x, a, b)
 // {
 //  return Math.max(a, Math.min(x, b));

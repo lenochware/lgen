@@ -128,7 +128,7 @@ class Room extends Entity
   // i pro level sectors? i pro libovolny rect nad levelem (celkove predvyplneni tiles)?
   function fill($where, $func)
   {
-    if (is_string($func)) {
+    if (is_string($func) or is_array($func)) {
       $func = fn() => $func;
     }
 
@@ -144,7 +144,7 @@ class Room extends Entity
 
   function spread($where, $func, $n)
   {
-    if (is_string($func)) {
+    if (is_string($func) or is_array($func)) {
       $func = fn() => $func;
     }
     
