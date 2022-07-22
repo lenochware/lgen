@@ -132,6 +132,44 @@ class Painter extends Entity
       $this->level->set($i + $pos[0], $pos[1], $id);
     }
   }
+
+  function rect($x, $y, $sx, $sy, $func)
+  {
+    if (is_string($func) or is_array($func)) {
+      $func = fn() => $func;
+    }
+
+    $x0 = round(($x - $sx/2) * ($this->width - 1));
+    $y0 = round(($y - $sy/2) * ($this->height - 1));
+
+    $x1 = round(($x + $sx/2) * ($this->width - 1));
+    $y1 = round(($y + $sy/2) * ($this->height - 1));
+
+    for($i = $x0; $i <= $x1; $i++) {
+      
+      $pos = $this->getPos($x0 + $i, $y0);
+      $id = $func($this->level->get($pos[0], $pos[1]));
+      $this->level->set($pos[0], $pos[1], $id);
+
+      $pos = $this->getPos($x0 + $i, $y1);
+      $id = $func($this->level->get($pos[0], $pos[1]));
+      $this->level->set($pos[0], $pos[1], $id);
+    }   
+
+    for($i = $y0; $i <= $y1; $i++) {
+      
+      $pos = $this->getPos($x0, $y0 + $i);
+      $id = $func($this->level->get($pos[0], $pos[1]));
+      $this->level->set($pos[0], $pos[1], $id);
+
+      $pos = $this->getPos($x1, $y0 + $i);
+      $id = $func($this->level->get($pos[0], $pos[1]));
+      $this->level->set($pos[0], $pos[1], $id);
+    }
+  }
+
+
 }
+
 
 ?>

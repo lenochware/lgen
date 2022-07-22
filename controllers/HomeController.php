@@ -5,7 +5,7 @@ class HomeController extends BaseController
 
 function indexAction()
 {
-  //$this->seed(1658154042);
+  //$this->seed(1658326829);
   $this->app->setSession('seed', $this->seed());
 
   print "Seed: ". $this->seed() . '<br>';
@@ -25,7 +25,10 @@ function seed($value = null)
 
 function testAction()
 {
+  $this->seed(1658326829);
+
   $level = new Level(1);
+  print "Seed: ". $this->seed() . '<br>';
 
   $level->width = 2;
   $level->height = 2;
@@ -36,9 +39,16 @@ function testAction()
   $room->init(8,8);
   $level->getSector(0,0)->add($room);
 
-  $room->createTreasure();
-  $room->pattern([[0,1],[1,0]], 'water');
+  //$room->createTreasure();
+  //$room->pattern([[0,1],[1,0]], 'water');
 
+  $p = new Painter($level, $level->getSector(0,0)->position());
+  $p->copySize($room)->shrink(1);
+  $p->rect(0.5, 0.5, 1, 1, 'spider');
+
+  // $p->vline(0.5, 0, 1, ['inner-wall','wall-moss']);
+  // $p->hline(0.5, 0, 1, ['inner-wall','wall-moss']);
+  //$p->vline(0.75, 0, 1, replace_func('inner-wall', 'door'));  
 
   return $level->html();
 }
