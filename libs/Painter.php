@@ -107,10 +107,10 @@ class Painter extends Entity
 
     for($i = 0; $i < $len; $i++) {
 
-      $pos = $this->getPos($x, $y);
+      $pos = $this->getPos($x, $y + $i);
 
-      $id = $func($this->level->get($pos[0], $i + $pos[1]));
-      $this->level->set($pos[0], $i + $pos[1], $id);
+      $id = $func($this->level->get($pos[0], $pos[1]));
+      $this->level->set($pos[0], $pos[1], $id);
     }
   }
 
@@ -126,10 +126,10 @@ class Painter extends Entity
 
     for($i = 0; $i < $len; $i++) {
 
-      $pos = $this->getPos($x, $y);
+      $pos = $this->getPos($x + $i, $y);
 
-      $id = $func($this->level->get($i + $pos[0], $pos[1]));
-      $this->level->set($i + $pos[0], $pos[1], $id);
+      $id = $func($this->level->get($pos[0], $pos[1]));
+      $this->level->set($pos[0], $pos[1], $id);
     }
   }
 
