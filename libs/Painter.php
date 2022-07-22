@@ -145,26 +145,25 @@ class Painter extends Entity
     $x1 = round(($x + $sx/2) * ($this->width - 1));
     $y1 = round(($y + $sy/2) * ($this->height - 1));
 
+    list($x0, $y0) = $this->getPos($x0, $y0);
+    list($x1, $y1) = $this->getPos($x1, $y1);
+
     for($i = $x0; $i <= $x1; $i++) {
       
-      $pos = $this->getPos($x0 + $i, $y0);
-      $id = $func($this->level->get($pos[0], $pos[1]));
-      $this->level->set($pos[0], $pos[1], $id);
+      $id = $func($this->level->get($i, $y0));
+      $this->level->set($i, $y0, $id);
 
-      $pos = $this->getPos($x0 + $i, $y1);
-      $id = $func($this->level->get($pos[0], $pos[1]));
-      $this->level->set($pos[0], $pos[1], $id);
+      $id = $func($this->level->get($i, $y1));
+      $this->level->set($i, $y1, $id);
     }   
 
     for($i = $y0; $i <= $y1; $i++) {
       
-      $pos = $this->getPos($x0, $y0 + $i);
-      $id = $func($this->level->get($pos[0], $pos[1]));
-      $this->level->set($pos[0], $pos[1], $id);
+      $id = $func($this->level->get($x0, $i));
+      $this->level->set($x0, $i, $id);
 
-      $pos = $this->getPos($x1, $y0 + $i);
-      $id = $func($this->level->get($pos[0], $pos[1]));
-      $this->level->set($pos[0], $pos[1], $id);
+      $id = $func($this->level->get($x1, $i));
+      $this->level->set($x1, $i, $id);
     }
   }
 
