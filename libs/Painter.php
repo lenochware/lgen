@@ -21,6 +21,13 @@ class Painter extends Entity
     return $this;
   }
 
+  function getPos($x, $y)
+  {
+    $xpos = $x + $this->x + $this->position[0];
+    $ypos = $y + $this->y + $this->position[1];
+    return [$xpos, $ypos];
+  }
+
   function pool($x, $y, $func, $size)
   {     
     $this->x = $x;
@@ -43,12 +50,12 @@ class Painter extends Entity
     $start = $n? rint(max($n-2,1), $n) : 0;
     $end = $n? $this->width - rint(max($n-2,1), $n): $this->width;
 
-    for($x = $start; $x < $end; $x++) {
-      $xpos = $x + $this->x + $this->position[0];
-      $ypos = $y + $this->y + $this->position[1];
+    for($x = $start; $x < $end; $x++)
+    {
+      $pos = $this->getPos($x, $y);
 
-      $id = $func($this->level->get($xpos, $ypos));
-      $this->level->set($xpos, $ypos, $id);
+      $id = $func($this->level->get($pos[0], $pos[1]));
+      $this->level->set($pos[0], $pos[1], $id);
     }
   }
 
@@ -63,12 +70,11 @@ class Painter extends Entity
 
     for ($y = 0; $y < $this->height; $y++)
       for($x = 0; $x < $this->width; $x++) {
-        $xpos = $x + $this->x + $this->position[0];
-        $ypos = $y + $this->y + $this->position[1];
+        $pos = $this->getPos($x, $y);
         
         if ($pattern[$y % $py][$x % $px]) {
-          $id = $func($this->level->get($xpos, $ypos));
-          $this->level->set($xpos, $ypos, $id);
+          $id = $func($this->level->get($pos[0], $pos[1]));
+          $this->level->set($pos[0], $pos[1], $id);
         }
       }
   }
@@ -101,11 +107,10 @@ class Painter extends Entity
 
     for($i = 0; $i < $len; $i++) {
 
-      $xpos = $x + $this->x + $this->position[0];
-      $ypos = $y + $this->y + $this->position[1];
+      $pos = $this->getPos($x, $y);
 
-      $id = $func($this->level->get($xpos, $i + $ypos));
-      $this->level->set($xpos, $i + $ypos, $id);
+      $id = $func($this->level->get($pos[0], $i + $pos[1]));
+      $this->level->set($pos[0], $i + $pos[1], $id);
     }
   }
 
@@ -121,13 +126,11 @@ class Painter extends Entity
 
     for($i = 0; $i < $len; $i++) {
 
-      $xpos = $x + $this->x + $this->position[0];
-      $ypos = $y + $this->y + $this->position[1];
+      $pos = $this->getPos($x, $y);
 
-      $id = $func($this->level->get($i + $xpos, $ypos));
-      $this->level->set($i + $xpos, $ypos, $id);
+      $id = $func($this->level->get($i + $pos[0], $pos[1]));
+      $this->level->set($i + $pos[0], $pos[1], $id);
     }
-
   }
 }
 
