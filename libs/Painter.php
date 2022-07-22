@@ -21,7 +21,7 @@ class Painter extends Entity
     return $this;
   }
 
-  function getPos($x, $y)
+  protected function levelPos($x, $y)
   {
     $xpos = $x + $this->x + $this->position[0];
     $ypos = $y + $this->y + $this->position[1];
@@ -52,7 +52,7 @@ class Painter extends Entity
 
     for($x = $start; $x < $end; $x++)
     {
-      $pos = $this->getPos($x, $y);
+      $pos = $this->levelPos($x, $y);
 
       $id = $func($this->level->get($pos[0], $pos[1]));
       $this->level->set($pos[0], $pos[1], $id);
@@ -70,7 +70,7 @@ class Painter extends Entity
 
     for ($y = 0; $y < $this->height; $y++)
       for($x = 0; $x < $this->width; $x++) {
-        $pos = $this->getPos($x, $y);
+        $pos = $this->levelPos($x, $y);
         
         if ($pattern[$y % $py][$x % $px]) {
           $id = $func($this->level->get($pos[0], $pos[1]));
@@ -103,14 +103,14 @@ class Painter extends Entity
 
     $x = round($x * ($this->width - 1));
     $y = round($y * ($this->height - 1));
+
+    list($x, $y) = $this->levelPos($x, $y);
+
     $len = round($len * $this->height);
 
     for($i = 0; $i < $len; $i++) {
-
-      $pos = $this->getPos($x, $y + $i);
-
-      $id = $func($this->level->get($pos[0], $pos[1]));
-      $this->level->set($pos[0], $pos[1], $id);
+      $id = $func($this->level->get($x, $y + $i));
+      $this->level->set($x, $y + $i, $id);
     }
   }
 
@@ -122,14 +122,14 @@ class Painter extends Entity
 
     $x = round($x * ($this->width - 1));
     $y = round($y * ($this->height - 1));
+
+    list($x, $y) = $this->levelPos($x, $y);
+
     $len = round($len * $this->width);
 
     for($i = 0; $i < $len; $i++) {
-
-      $pos = $this->getPos($x + $i, $y);
-
-      $id = $func($this->level->get($pos[0], $pos[1]));
-      $this->level->set($pos[0], $pos[1], $id);
+      $id = $func($this->level->get($x + $i, $y));
+      $this->level->set($x + $i, $y, $id);
     }
   }
 
@@ -145,8 +145,8 @@ class Painter extends Entity
     $x1 = round(($x + $sx/2) * ($this->width - 1));
     $y1 = round(($y + $sy/2) * ($this->height - 1));
 
-    list($x0, $y0) = $this->getPos($x0, $y0);
-    list($x1, $y1) = $this->getPos($x1, $y1);
+    list($x0, $y0) = $this->levelPos($x0, $y0);
+    list($x1, $y1) = $this->levelPos($x1, $y1);
 
     for($i = $x0; $i <= $x1; $i++) {
       
@@ -167,8 +167,6 @@ class Painter extends Entity
     }
   }
 
-
 }
-
 
 ?>
