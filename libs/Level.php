@@ -65,6 +65,39 @@ class Level extends Entity
     $sector->room->set($x % $this->sectorWidth, $y % $this->sectorHeight, $id);
   }
 
+
+  function connect()
+  {
+    foreach($this->sectors as $sector) {
+      $sector->reset();
+    }
+
+    foreach($this->sectors as $sector) {
+      $sector->randomConnect();
+    }
+  }
+
+  function isConnected()
+  {
+    $visited = [];
+
+    $this->visit($visited, $this->getSector(0,0));
+
+    if (count($visited) == count($this->sectors)) return true;
+    else return false;
+
+  }
+
+  private function visit(&$visited, $sec)
+  {
+    if (in_array($sec, $visited)) return;
+    $visited[] = $sec;
+
+    foreach($sec->getConnected() as $next) {
+      $this->visit($visited, $next);
+    }
+  }
+
 protected function htmlTile($x, $y)
 {
 	$tile = $this->get($x, $y);
