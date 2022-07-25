@@ -167,6 +167,48 @@ class Painter extends Entity
     }
   }
 
+  function fill($x, $y, $sx, $sy, $func)
+  {
+    if (is_string($func) or is_array($func)) {
+      $func = fn() => $func;
+    }
+
+    $x0 = round(($x - $sx/2) * ($this->width - 1));
+    $y0 = round(($y - $sy/2) * ($this->height - 1));
+
+    $x1 = round(($x + $sx/2) * ($this->width - 1));
+    $y1 = round(($y + $sy/2) * ($this->height - 1));
+
+    list($x0, $y0) = $this->levelPos($x0, $y0);
+    list($x1, $y1) = $this->levelPos($x1, $y1);
+
+    for($i = $y0; $i <= $y1; $i++) {
+      for($j = $x0; $j <= $x1; $j++) {    
+        $id = $func($this->level->get($j, $i));
+        $this->level->set($j, $i, $id);
+      }
+    }
+  }
+
+  function points($positions, $func)
+  {
+    if (is_string($func) or is_array($func)) {
+      $func = fn() => $func;
+    }
+
+    foreach ($positions as $pos) {
+      $x = round($pos[0] * ($this->width - 1));
+      $y = round($pos[1] * ($this->height - 1));
+
+      list($x, $y) = $this->levelPos($x, $y);
+
+      $id = $func($this->level->get($x, $y));
+      $this->level->set($x, $y, $id);
+    }
+
+  }
+
+
 }
 
 ?>
