@@ -205,7 +205,6 @@ class Painter extends Entity
       $id = $func($this->level->get($x, $y));
       $this->level->set($x, $y, $id);
     }
-
   }
 
 

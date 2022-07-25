@@ -60,11 +60,13 @@ class Room extends Entity
   }
 
   //zavolej nad vsemi tiles func - markov-chain
-  function each($func)
+  function each($func, $where = null)
   {
     foreach ($this->data as $i => $tile) {
       $y = floor($i / $this->sectorWidth);
       $x = $i % $this->sectorWidth;
+
+      if ($where and $tile[$this->getTypeId($where)] != $where) continue;
 
       if (!empty($tile[0])) $func($this, $x, $y, $tile[0]);
       if (!empty($tile[1])) $func($this, $x, $y, $tile[1]);

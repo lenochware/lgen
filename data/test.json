@@ -295,6 +295,12 @@
 		"name": "inner wall"
 	},
 	
+	"tunnel-wall": {
+		"render": {"char": "#", "color": "gray" },
+		"family": ["meta", "wall"],
+		"name": "inner wall"
+	},
+
 	"stairs": {
 		"render": {"char": ".", "color": "gray" },
 		"family": ["meta", "floor"],
