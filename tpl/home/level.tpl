@@ -2,7 +2,8 @@
 string map
 string info
 link home lb "Home" route "home"
-link test lb "Room test" route "home/test"
+link test lb "Room test" route "home/room"
+link city lb "City" route "home/city"
 ?>
 <style>
   .info { 
@@ -13,7 +14,7 @@ link test lb "Room test" route "home/test"
   }
 </style>
 
-{home} | {test}
+{home} | {test} | {city}
 
 <div class="map">{map}</div>
 <div class="info"></div>  

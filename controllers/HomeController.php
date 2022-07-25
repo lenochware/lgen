@@ -10,20 +10,26 @@ function indexAction()
 
   print "Seed: ". $this->seed() . '<br>';
 
-  $level = new Level(1);
+  $level = new DefaultLevel(1);
   $level->create();
 
   return $this->template('tpl/home/level.tpl', ['map' => $level->html()]);
 }
 
-function seed($value = null)
+function cityAction()
 {
-  if ($value) $this->app->random->seed = $value;
-  return $this->app->random->seed;
+  //$this->seed(1658326829);
+  $this->app->setSession('seed', $this->seed());
+
+  print "Seed: ". $this->seed() . '<br>';
+
+  $level = new CityLevel();
+  $level->create();
+
+  return $this->template('tpl/home/level.tpl', ['map' => $level->html()]);
 }
 
-
-function testAction()
+function roomAction()
 {
   $this->seed(1658326829);
 
@@ -44,7 +50,16 @@ function testAction()
 
   $p = new Painter($level, $level->getSector(0,0)->position());
   $p->copySize($room)->shrink(1);
-  $p->rect(0.5, 0.5, 1, 1, 'spider');
+  //$p->rect(0.5, 0.5, 1, 1, 'spider');
+  $p->fill(0.5, 0.5, .2, .2, 'spider');
+  //$p->points([[0,0.5],[1,0.5],[0.5,1],[.5,0]], 'spider');
+
+  $p->x = $p->y = 0;
+  $p->width = $level->width * $level->sectorWidth;
+  $p->height = $level->height * $level->sectorHeight;
+
+  $p->rect(0.5, 0.5, .75, .75, 'tree');
+
 
   // $p->vline(0.5, 0, 1, ['inner-wall','wall-moss']);
   // $p->hline(0.5, 0, 1, ['inner-wall','wall-moss']);
@@ -57,7 +72,7 @@ function infoAction($x, $y)
 {
   $this->seed($this->app->getSession('seed'));
 
-  $level = new Level(1);
+  $level = new DefaultLevel(1);
   $level->create();
 
   $sx = floor($x / $level->sectorWidth);
@@ -68,6 +83,13 @@ function infoAction($x, $y)
 
   return $html;
 }
+
+function seed($value = null)
+{
+  if ($value) $this->app->random->seed = $value;
+  return $this->app->random->seed;
+}
+
 
 }
 
