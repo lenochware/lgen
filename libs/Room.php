@@ -207,32 +207,34 @@ class Room extends Entity
   function init($width, $height)
   {
   	$this->setSize($width, $height);
-
     $this->clear(['granite-wall', '', '', 'outside']);
+    $this->rect($width, $height, 'floor', 'wall');
+  }
 
-    for ($y = 0; $y < $this->height; $y++) {
-      for ($x = 0; $x < $this->width; $x++) {
+  function rect($width, $height, $floor, $wall)
+  {
+    for ($y = 0; $y < $height; $y++) {
+      for ($x = 0; $x < $width; $x++) {
         $this->set($x, $y, 'room-floor', true);
-        $this->set($x, $y, 'floor', true);
+        $this->set($x, $y, $floor, true);
       }
     }
 
-    for ($i = 0; $i < $this->width; $i++) {
-      $this->set($i, 0, 'wall', true);
-      $this->set($i, $this->height - 1, 'wall', true);
+    for ($i = 0; $i < $width; $i++) {
+      $this->set($i, 0, $wall, true);
+      $this->set($i, $height - 1, $wall, true);
 
       $this->set($i, 0, 'room-wall', true);
-      $this->set($i, $this->height - 1, 'room-wall', true);
+      $this->set($i, $height - 1, 'room-wall', true);
     }
 
-    for ($i = 0; $i < $this->height; $i++) {
-      $this->set(0, $i, 'wall', true);
-      $this->set($this->width - 1, $i, 'wall', true);
+    for ($i = 0; $i < $height; $i++) {
+      $this->set(0, $i, $wall, true);
+      $this->set($width - 1, $i, $wall, true);
 
       $this->set(0, $i, 'room-wall', true);
-      $this->set($this->width - 1, $i, 'room-wall', true);
-    }
-
+      $this->set($width - 1, $i, 'room-wall', true);
+    }    
   }
 
 protected function drawTile($tile)
