@@ -33,7 +33,7 @@ function roomAction()
 {
   $this->seed(1658326829);
 
-  $level = new Level(1);
+  $level = new DefaultLevel(1);
   print "Seed: ". $this->seed() . '<br>';
 
   $level->width = 2;
@@ -41,7 +41,7 @@ function roomAction()
 
   $level->create();
 
-  $room =  new DungeonRoom(1, 'dungeon');
+  $room =  new DungeonRoom(1);
   $room->init(8,8);
   $level->getSector(0,0)->add($room);
 

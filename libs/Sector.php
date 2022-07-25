@@ -121,9 +121,9 @@ class Sector extends Entity
 
   function getRoom($lvl, $biom)
   {
-    if ($biom == 'dungeon') $room = new DungeonRoom($lvl, $biom);
-    elseif ($biom == 'hell') $room = new HellRoom($lvl, $biom);
-    elseif (in_array($biom, ['forest', 'rocks', 'desert', 'water'])) $room = new WildRoom($lvl, $biom);
+    if ($biom == 'dungeon') $room = new DungeonRoom($lvl);
+    elseif ($biom == 'hell') $room = new HellRoom($lvl);
+    elseif (in_array($biom, ['forest', 'rocks', 'desert', 'water'])) $room = new WildRoom($lvl);
     else throw new Exception('Unknown biom.');
     return $room;
   }

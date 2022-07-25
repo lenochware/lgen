@@ -10,16 +10,14 @@ class Room extends Entity
   protected $sector;
   protected $level;
 
-  protected $biom;
   protected $lvl;
   protected $type;
 
   protected $pivotPos = [1,1];
 
-  function __construct($lvl, $biom)
+  function __construct($lvl)
   {
     parent::__construct();
-    $this->biom = $biom;
     $this->lvl = $lvl;
   }
 
