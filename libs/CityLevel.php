@@ -23,13 +23,13 @@ class CityLevel extends Level
         if ($x > 0 and $x < 4 and $y > 0 and $y < 4) {
           $room = new DungeonRoom(1);
           $room->init(5,5);
-          $room->createDefault();
-          $sector->add($room);
+          $room->createShop();
         }
         else {
-          $sector->add($this->getEmpty());
+          $room = $this->getEmpty();
         }
-        
+
+        $sector->add($room);
       }
     }
 
@@ -41,8 +41,6 @@ class CityLevel extends Level
     $p->rect(0.5, 0.5, .75, .75, 'tree');
 
     $this->addStairs();
-
-
   }
 
   function getEmpty()
@@ -55,8 +53,10 @@ class CityLevel extends Level
 
   function addStairs()
   {
-  	$n = count($this->sectors);
-    $this->sectors[rint(0,$n-1)]->room->addTag('stairs-down');  	
+    $i = rint(0, $this->width * $this->height - 1);
+    $room = $this->sectors[$i]->room;
+    $room->spread('floor', 'stairs-down', 1);
+
   }
 
 }

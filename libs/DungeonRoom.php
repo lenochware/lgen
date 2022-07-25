@@ -13,7 +13,7 @@ class DungeonRoom extends Room
 
     } else
     {
-      $this->type = $this->random->get(['destruct', 'pit', 'treasure', 'wet', 'fortress']);
+      $this->type = $this->random->get(['destruct', 'pit', 'treasure', 'wet']);
     }
 
     $this->addTag($this->type);
@@ -87,8 +87,9 @@ class DungeonRoom extends Room
     $this->spread('room-floor', rfunc('', ['copper-coins','silver-coins']), rint(1,5));
   }
 
-  function createFortress()
+  function createShop()
   {
+    $this->fill('outside', 'floor');
   }
 
 }
