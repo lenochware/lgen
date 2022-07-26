@@ -42,20 +42,8 @@ class DungeonRoom extends Room
     // }
 
     $this->each([$this, 'onSpawn']);
-    //$this->each([$this, 'tunnelWalls'], 'tunnel');
+    //$this->each(['Tunnel', 'createWalls'], 'tunnel');
   }
-
-
-  function tunnelWalls($obj, $x, $y, $id)
-  {
-    if ($id != 'tunnel') return;
-    foreach ([[-1,0],[1,0],[0,1],[0,-1]] as $pos) {
-      $tile = $obj->get($x + $pos[0], $y + $pos[1]);
-      if ($tile[3] == 'outside')
-        $obj->set($x + $pos[0], $y + $pos[1], ['tunnel-wall', 'wall-moss']);
-    }
-  }
-
 
   function createWet()
   {

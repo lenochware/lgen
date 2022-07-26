@@ -41,7 +41,8 @@ class CityLevel extends Level
     $p->width = $this->width * $this->sectorWidth;
     $p->height = $this->height * $this->sectorHeight;
 
-    $p->rect(0.5, 0.5, .75, .75, 'tree');
+    $p->rect(0.5, 0.5, .75, .75, 'wall');
+    $p->points([[.875,0.5]], 'door');
 
   }
 
