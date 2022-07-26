@@ -41,26 +41,26 @@ function roomAction()
 
   $level->create();
 
-  $room =  new DungeonRoom(1);
-  $room->init(8,8);
-  $level->getSector(0,0)->add($room);
+  foreach([[0,0],[0,1],[1,0],[1,1]] as $pos) {
+    $room =  new DungeonRoom(1);
+    $room->init(8,8);
+    $level->getSector($pos[0],$pos[1])->add($room);    
+  }
 
-  //$room->createTreasure();
-  //$room->pattern([[0,1],[1,0]], 'water');
+  $level->sectors[1]->room->pattern([[0,1],[1,0]], 'water');
 
-  $p = new Painter($level, $level->getSector(0,0)->position());
-  $p->copySize($room)->shrink(1);
-  //$p->rect(0.5, 0.5, 1, 1, 'spider');
+  $p = $this->painter($level, 0,0);
+  $p->copySize($level->sectors[0]->room)->shrink(1);
   $p->fill(0.5, 0.5, .2, .2, 'spider');
-  //$p->points([[0,0.5],[1,0.5],[0.5,1],[.5,0]], 'spider');
+  $p->points([[0,0],[0,1],[1,0],[1,1]], 'spider');
 
   $p->x = $p->y = 0;
   $p->width = $level->width * $level->sectorWidth;
   $p->height = $level->height * $level->sectorHeight;
-
   $p->rect(0.5, 0.5, .75, .75, 'tree');
 
 
+  // replace_func
   // $p->vline(0.5, 0, 1, ['inner-wall','wall-moss']);
   // $p->hline(0.5, 0, 1, ['inner-wall','wall-moss']);
   //$p->vline(0.75, 0, 1, replace_func('inner-wall', 'door'));  
@@ -88,6 +88,11 @@ function seed($value = null)
 {
   if ($value) $this->app->random->seed = $value;
   return $this->app->random->seed;
+}
+
+function painter($level, $x, $y)
+{
+  return new Painter($level, $level->getSector($x,$y)->position());
 }
 
 
