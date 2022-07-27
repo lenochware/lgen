@@ -237,72 +237,70 @@ class Room extends Entity
     }    
   }
 
-protected function drawTile($tile)
-{
-  $title = '';
-  
-  for($i = 0; $i < 3; $i++) {
-    $id = $tile[$i];
-    if (!$id) continue;
+  protected function drawTile($tile)
+  {
+    $title = '';
+    
+    for($i = 0; $i < 3; $i++) {
+      $id = $tile[$i];
+      if (!$id) continue;
+      $obj = $this->db->get($id);
+      if ($title) $title .= ', ';
+      $title .= $id;
+      $render = $obj['render'];
+    }
+
+    $title .= ', '. $tile[3];
+
+    print paramStr('<span style="color:{color}" title="'.$title.'">{char}</span>', $render);
+
+    //print '<font color="orange">0</font>';
+
+  }
+
+  function draw()
+  {
+    print paramStr("Room {0}x{1} ({2})<br>", [$this->width, $this->height,$this->type]);
+
+    print "<code style=\"font-size:24px\">";
+    for ($y=0; $y < $this->sectorHeight; $y++) {
+      for ($x=0; $x < $this->sectorWidth; $x++) { 
+        $this->drawTile($this->get($x, $y));
+      }
+
+      print "<br>";
+    }
+    print "</code>";
+  }
+
+  function find($id)
+  {
+    $found = [];
+    foreach ($this->data as $i => $tile) {
+      if ($this->data[$i][$this->getTypeId($id)] == $id) $found[] = $i;
+    }
+
+    return $found;
+  }
+
+  function onSpawn($room, $x, $y, $id)
+  {
     $obj = $this->db->get($id);
-    if ($title) $title .= ', ';
-    $title .= $id;
-    $render = $obj['render'];
-  }
+    if (!isset($obj['on-spawn'])) return;
 
-  $title .= ', '. $tile[3];
-
-  print paramStr('<span style="color:{color}" title="'.$title.'">{char}</span>', $render);
-
-  //print '<font color="orange">0</font>';
-
-}
-
-function draw()
-{
-  print paramStr("Room {0}x{1} ({2})<br>", [$this->width, $this->height,$this->type]);
-
-  print "<code style=\"font-size:24px\">";
-  for ($y=0; $y < $this->sectorHeight; $y++) {
-    for ($x=0; $x < $this->sectorWidth; $x++) { 
-      $this->drawTile($this->get($x, $y));
-    }
-
-    print "<br>";
-  }
-  print "</code>";
-}
-
-function find($id)
-{
-  $found = [];
-  foreach ($this->data as $i => $tile) {
-    if ($this->data[$i][$this->getTypeId($id)] == $id) $found[] = $i;
-  }
-
-  return $found;
-}
-
-function onSpawn($room, $x, $y, $id)
-{
-  $obj = $this->db->get($id);
-  if (!isset($obj['on-spawn'])) return;
-
-  foreach($obj['on-spawn'] as $action) {
-    $this->execute($action, $room, $x, $y, $id);
-  }
-}
-
-protected function execute($action, $room, $x, $y, $id)
-{
-  if ($action['action'] == 'replace') {
-     if ($this->random->chance($action['p'])) {
-      $room->set($x, $y, $action['id']);
+    foreach($obj['on-spawn'] as $action) {
+      $this->execute($action, $room, $x, $y, $id);
     }
   }
-}
 
-
+  protected function execute($action, $room, $x, $y, $id)
+  {
+    if ($action['action'] == 'replace') {
+       if ($this->random->chance($action['p'])) {
+        $room->set($x, $y, $action['id']);
+      }
+    }
+  }
 }
 
 ?>
