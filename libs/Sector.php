@@ -23,9 +23,9 @@ class Sector extends Entity
     $this->biom = $biom;
     
     $room = $this->getRoom($lvl, $biom);
+    $this->add($room);
     $room->init(rint([5,8]), rint([5,8]));
 
-    $this->add($room);
   }
 
   function create()

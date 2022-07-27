@@ -43,8 +43,8 @@ function roomAction()
 
   foreach([[0,0],[0,1],[1,0],[1,1]] as $pos) {
     $room =  new DungeonRoom(1);
-    $room->init(8,8);
     $level->getSector($pos[0],$pos[1])->add($room);    
+    $room->init(8,8);
   }
 
   $level->sectors[1]->room->pattern([[0,1],[1,0]], 'water');

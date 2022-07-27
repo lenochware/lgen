@@ -233,12 +233,12 @@ class Painter extends Entity
 
     $width = [];
     foreach($xcol as $i => $x) {
-      $width[] = ($i == count($xcol)-1)? $this->width - array_sum($width) : floor($x*$xj);
+      $width[] = ($i == count($xcol)-1)? $this->width - array_sum($width) : round($x*$xj);
     }
 
     $height = [];
     foreach($ycol as $i => $y) {
-      $height[] = ($i == count($ycol)-1)? $this->height - array_sum($height) : floor($y*$yj);
+      $height[] = ($i == count($ycol)-1)? $this->height - array_sum($height) : round($y*$yj);
     }
 
     $x = 0; $y = 0;
