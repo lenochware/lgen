@@ -190,6 +190,22 @@ class Painter extends Entity
     }
   }
 
+  function fillAbs($xs, $ys, $width, $height, $func)
+  {
+    if (is_string($func) or is_array($func)) {
+      $func = fn() => $func;
+    }
+
+    list($xs, $ys) = $this->levelPos($xs, $ys);
+
+    for($y = 0; $y < $height; $y++) {
+      for($x = 0; $x < $width; $x++) {
+        $id = $func($this->level->get($x + $xs, $y + $ys));
+        $this->level->set($x + $xs, $y + $ys, $id);
+      }
+    }
+  }
+
   function points($positions, $func)
   {
     if (is_string($func) or is_array($func)) {
@@ -205,6 +221,43 @@ class Painter extends Entity
       $id = $func($this->level->get($x, $y));
       $this->level->set($x, $y, $id);
     }
+  }
+
+  function grid($xcol, $ycol, $vis, $func)
+  {
+    $xsum = array_sum($xcol);
+    $ysum = array_sum($ycol);
+
+    $xj = $this->width / $xsum;
+    $yj = $this->height / $ysum;
+
+    $width = [];
+    foreach($xcol as $i => $x) {
+      $width[] = ($i == count($xcol)-1)? $this->width - array_sum($width) : floor($x*$xj);
+    }
+
+    $height = [];
+    foreach($ycol as $i => $y) {
+      $height[] = ($i == count($ycol)-1)? $this->height - array_sum($height) : floor($y*$yj);
+    }
+
+    $x = 0; $y = 0;
+
+    foreach($vis as $i => $visible) {
+      $xi = $i % count($xcol);
+      $yi = floor($i / count($xcol));
+
+      if ($visible) {
+        $this->fillAbs($x, $y, $width[$xi], $height[$yi], $func);
+      }
+
+      $x += $width[$xi];
+      if ($x >= $this->width) {
+        $y += $height[$yi];
+        $x = 0;
+      }
+    }
+
   }
 
 

@@ -58,6 +58,7 @@ function roomAction()
   $p->width = $level->width * $level->sectorWidth;
   $p->height = $level->height * $level->sectorHeight;
   $p->rect(0.5, 0.5, .75, .75, 'tree');
+  //$p->grid([2,6,2], [2,6,2], [1,1,0,1,1,1,0,1,1], 'mummy');
 
 
   // replace_func
