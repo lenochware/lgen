@@ -34,8 +34,6 @@ class Room extends Entity
 
     $this->x = rint(0, $this->sectorWidth - $width - 1);
     $this->y = rint(0, $this->sectorHeight - $height - 1);
-
-    $this->pivotPos = [rint(1 ,$width-2), rint(1 ,$height-2)];
   }
 
   function create()
@@ -80,8 +78,7 @@ class Room extends Entity
 
   function position()
   {
-    $pos = $this->sector->position();
-    return [$pos[0] + $this->x, $pos[1] + $this->y];
+    return $this->sector->position();
   }
 
   function pivot()
@@ -208,7 +205,28 @@ class Room extends Entity
   {
   	$this->setSize($width, $height);
     $this->clear(['granite-wall', '', '', 'outside']);
-    $this->rect($width, $height, 'floor', 'wall');
+    $this->paint();
+    $this->setPivot();
+  }
+
+  function paint()
+  {
+    $this->rect($this->width, $this->height, 'floor', 'wall');
+
+    //$this->pool(1,1, ['floor','room-floor'], 8);
+
+    // $p = new Painter($this->level, $this->sector->position());
+    // $p->copySize($this);
+    // //$p->grid([2,4,2], [2,4,2], [0,1,0,1,1,1,0,1,0], ['floor','room-floor']);
+    // $p->grid([2,2], [2,2], [1,0,1,1], ['floor','room-floor']);
+
+    // $this->each([$this, 'createWalls'], 'room-floor');
+  }
+
+  protected function setPivot()
+  {
+    $i = $this->random->get($this->find('room-floor'));
+    $this->pivotPos = [$i % $this->sectorWidth, floor($i / $this->sectorWidth)];    
   }
 
   function rect($width, $height, $floor, $wall)
