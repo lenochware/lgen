@@ -13,6 +13,8 @@ class Room extends Entity
   protected $lvl;
   protected $type;
 
+  protected $cache = [];
+
   protected $pivotPos = [1,1];
 
   function __construct($lvl)
@@ -293,10 +295,16 @@ class Room extends Entity
 
   function find($id)
   {
+    $cacheable = ['room-floor', 'room-wall', 'tunnel', 'outside'];
+
+    if (isset($this->cache[$id])) return $this->cache[$id];
+
     $found = [];
     foreach ($this->data as $i => $tile) {
       if ($this->data[$i][$this->getTypeId($id)] == $id) $found[] = $i;
     }
+
+    if (in_array($id, $cacheable)) $this->cache[$id] = $found;
 
     return $found;
   }
