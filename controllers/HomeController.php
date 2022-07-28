@@ -10,10 +10,14 @@ function indexAction()
 
   print "Seed: ". $this->seed() . '<br>';
 
+  $starttime = microtime(true);
+
   $level = new DefaultLevel(1);
   $level->create();
 
-  return $this->template('tpl/home/level.tpl', ['map' => $level->html()]);
+  $time = round((microtime(true) - $starttime)*1000,2);
+
+  return $this->template('tpl/home/level.tpl', ['map' => $level->html(), 'time' => $time]);
 }
 
 function cityAction()

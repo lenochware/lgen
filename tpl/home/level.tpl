@@ -17,7 +17,9 @@ link city lb "City" route "home/city"
 {home} | {test} | {city}
 
 <div class="map">{map}</div>
-<div class="info"></div>  
+<div class="info"></div> 
+
+Elapsed time: {time} ms 
 
 <script>
 function loadInfo(x,y)
