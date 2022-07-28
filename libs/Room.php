@@ -301,6 +301,18 @@ class Room extends Entity
       }
     }
   }
+
+  static function createWalls($room, $x, $y, $id)
+  {
+    foreach ([[-1,0],[1,0],[0,1],[0,-1]] as $pos) {
+      $tile = $room->get($x + $pos[0], $y + $pos[1]);
+      if ($tile[3] == 'outside' or $tile[3] == 'none') {
+        $room->set($x, $y, ['room-wall', 'wall']);
+        return;
+      }
+    }
+  }
+
 }
 
 ?>
