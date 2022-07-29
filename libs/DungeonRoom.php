@@ -77,7 +77,7 @@ class DungeonRoom extends Room
 
   function createShop()
   {
-    $this->fill('outside', 'floor');
+    $this->fill('outside', rfunc('i2', ['dirt','floor']));
     $p = new Painter($this->level, $this->sector->position());
     $p->copySize($this);
     $p->points([[0,0.5]], 'door');

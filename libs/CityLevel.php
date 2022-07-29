@@ -2,6 +2,9 @@
 
 class CityLevel extends Level
 {
+  protected $inside = [];
+  protected $outside = [];
+
   function __construct()
   {
     parent::__construct();
@@ -17,6 +20,13 @@ class CityLevel extends Level
     for ($x=0; $x < $this->width; $x++) { 
       for ($y=0; $y < $this->height; $y++)
       { 
+        if ($x == 0 or $y == 0 or $x == $this->width - 1 or $y == $this->height - 1) {
+          $this->outside[] = count($this->sectors);
+        }
+        else {
+          $this->inside[] = count($this->sectors);
+        }
+
         $sector = new Sector($this, $x, $y);
         $this->setSector($x, $y, $sector);
         $room = $this->getEmpty();
@@ -32,19 +42,13 @@ class CityLevel extends Level
 
   function addShops()
   {
-    for ($x=0; $x < $this->width; $x++) { 
-      for ($y=0; $y < $this->height; $y++)
-      { 
-        if ($x > 0 and $x < 4 and $y > 0 and $y < 4) {
-          if (rbet(0.5)) $this->addShop($x, $y);
-        }
-      }
+    foreach($this->inside as $i) {
+      if (rbet(0.5)) $this->addShop($this->sectors[$i]);
     }
   }
 
-  function addShop($x, $y)
+  function addShop($sector)
   {
-    $sector = $this->getSector($x, $y);
     $room = new DungeonRoom(1);
     $room->init(rint([5,8]), rint([5,8]));
     $sector->add($room);
@@ -58,7 +62,7 @@ class CityLevel extends Level
     $p->width = $this->width * $this->sectorWidth;
     $p->height = $this->height * $this->sectorHeight;
 
-    $p->rect(0.5, 0.5, .75, .75, 'wall');
+    $p->rect(0.5, 0.5, .75, .75, rfunc('i2',['wall', 'wall-moss']));
     $p->points([[.875,0.5]], 'door');   
   }
 
