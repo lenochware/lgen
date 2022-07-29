@@ -1,6 +1,7 @@
 <?elements
 string map
 string info
+string time
 link home lb "Home" route "home"
 link test lb "Room test" route "home/room"
 link city lb "City" route "home/city"
