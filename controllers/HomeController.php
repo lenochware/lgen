@@ -5,7 +5,7 @@ class HomeController extends BaseController
 
 function indexAction()
 {
-  //$this->seed(1658326829);
+  //$this->seed(1658993076);
   $this->app->setSession('seed', $this->seed());
 
   print "Seed: ". $this->seed() . '<br>';
@@ -22,7 +22,7 @@ function indexAction()
 
 function cityAction()
 {
-  //$this->seed(1658326829);
+  $this->seed(1659099490);
   $this->app->setSession('seed', $this->seed());
 
   print "Seed: ". $this->seed() . '<br>';

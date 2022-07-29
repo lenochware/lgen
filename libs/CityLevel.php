@@ -35,8 +35,8 @@ class CityLevel extends Level
     }
 
     $this->addStairs();
-    $this->addTownWalls();
     $this->addShops();
+    $this->addTownWalls();
 
   }
 
@@ -47,7 +47,7 @@ class CityLevel extends Level
     }
   }
 
-  function addShop($sector)
+  function addShop(Sector $sector)
   {
     $room = new DungeonRoom(1);
     $room->init(rint([5,8]), rint([5,8]));
@@ -57,13 +57,14 @@ class CityLevel extends Level
 
   function addTownWalls()
   {
-    $p = new Painter($this, $this->getSector(0,0)->position());
+    $p = new Painter($this, $this->getSector(1,1)->position());
     $p->x = $p->y = 0;
-    $p->width = $this->width * $this->sectorWidth;
-    $p->height = $this->height * $this->sectorHeight;
+    $p->width = ($this->width-2) * $this->sectorWidth;
+    $p->height = ($this->height-2) * $this->sectorHeight;
 
-    $p->rect(0.5, 0.5, .75, .75, rfunc('i2',['wall', 'wall-moss']));
-    $p->points([[.875,0.5]], 'door');   
+    $p->rect(0.5, 0.5, 1, 1, rfunc('i2',['wall', 'wall-moss']));
+    $p->fill(0.8, 0.8, .05, .05, 'tree');
+    $p->points([[1,0.5],[1,0.45],[1,0.57]], 'door');   
   }
 
   function getEmpty()
@@ -76,10 +77,22 @@ class CityLevel extends Level
 
   function addStairs()
   {
-    $i = rint(0, $this->width * $this->height - 1);
-    $room = $this->sectors[$i]->room;
+    $i = rget($this->outside);
+    $sector = $this->sectors[$i];
+
+    $p = $this->painter($sector);
+    $p->pattern([[0,0,1],[0,0,0]], 'wall');
+
+    $room = $sector->room;
     $room->spread('floor', 'stairs-down', 1);
 
+  }
+
+  protected function painter(Sector $sector)
+  {
+    $p = new Painter($this, $sector->position());
+    $p->copySize($sector);
+    return $p;
   }
 
 }
