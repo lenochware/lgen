@@ -2,9 +2,6 @@
 
 class CityLevel extends Level
 {
-  protected $inside = [];
-  protected $outside = [];
-
   function __construct()
   {
     parent::__construct();
@@ -17,38 +14,54 @@ class CityLevel extends Level
 
   function create()
   {
-    for ($x=0; $x < $this->width; $x++) { 
+    for ($x=0; $x < $this->width; $x++) {
       for ($y=0; $y < $this->height; $y++)
       { 
-        if ($x == 0 or $y == 0 or $x == $this->width - 1 or $y == $this->height - 1) {
-          $this->outside[] = count($this->sectors);
-        }
-        else {
-          $this->inside[] = count($this->sectors);
-        }
-
         $sector = new Sector($this, $x, $y);
         $this->setSector($x, $y, $sector);
         $room = $this->getEmpty();
         $sector->add($room);
+
+        if ($x==1 and $y==1) {
+          $this->addShop($sector);
+          continue;
+        }
+
+        if ($x==4 and $y==0) {
+          $this->addDungeonEntrace($sector);
+          continue;
+        }
+
+        if ($x==0 and $y==2 and rbet(0.3)) {
+          $this->addRiver($sector);
+          continue;
+        }
+
+        if ($this->isOutside($x, $y)) $this->addOutside($sector);
+        else $this->addInside($sector);
+
       }
     }
 
-    $this->addShops();
     $this->addTownWalls();
-
-    $this->addStairs($this->getSector(4,0));
-    $this->addRiver($this->getSector(0,2));
-    $this->addForest($this->getSector(0,3));
-    $this->addFountain($this->getSector(1,1));
-
   }
 
-  function addShops()
+  function isOutside($x, $y)
   {
-    foreach($this->inside as $i) {
-      if (rbet(0.5)) $this->addShop($this->sectors[$i]);
-    }
+    return ($x == 0 or $y == 0 or $x == $this->width - 1 or $y == $this->height - 1);
+  }
+
+  function addOutside($sector)
+  {
+    if (rbet(0.5)) return;
+    $this->addForest($sector);
+  }
+
+  function addInside($sector)
+  {
+    if (rbet(0.5)) return;
+    if (rbet(0.1)) { $this->addFountain($sector); return; }
+    $this->addShop($sector);
   }
 
   function addShop($sector)
@@ -78,7 +91,7 @@ class CityLevel extends Level
     return $empty;
   }
 
-  function addStairs($sector)
+  function addDungeonEntrace($sector)
   {
     $p = $this->painter($sector);
     $p->pattern([[0,0,1],[0,0,0]], 'wall');
