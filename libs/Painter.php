@@ -14,8 +14,15 @@ class Painter extends Entity
 
   function copySize(Entity $e)
   {
-    $this->x = $e->x;
-    $this->y = $e->y;
+    if ($e instanceof Sector) {
+      $this->x = 0;
+      $this->y = 0;
+    }
+    else {
+      $this->x = $e->x;
+      $this->y = $e->y;      
+    }
+
     $this->width = $e->width;
     $this->height = $e->height;
     return $this;
