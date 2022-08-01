@@ -8,10 +8,10 @@ class Entity
 
   protected $tags = [];
 
-  public $x;
-  public $y;
-  public $width;
-  public $height;
+  public $x = 0;
+  public $y = 0;
+  public $width = 1;
+  public $height = 1;
 
   function __construct()
   {

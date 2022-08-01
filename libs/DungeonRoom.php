@@ -17,7 +17,7 @@ class DungeonRoom extends Room
     }
 
     $this->addTag($this->type);
-    $this->callCreate($this->type);    
+    $this->callCreate($this->type);
 
     $this->each(['Tunnel', 'createWalls'], 'tunnel');
     $this->each([$this, 'onSpawn']);
