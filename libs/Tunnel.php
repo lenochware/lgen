@@ -85,7 +85,7 @@ class Tunnel extends Entity
     foreach ([[-1,0],[1,0],[0,1],[0,-1]] as $pos) {
       $tile = $room->get($x + $pos[0], $y + $pos[1]);
       if ($tile[3] == 'outside')
-        $room->set($x + $pos[0], $y + $pos[1], ['tunnel-wall', 'wall-moss']);
+        $room->set($x + $pos[0], $y + $pos[1], ['tunnel-wall', 'wall']);
     }
   }
 

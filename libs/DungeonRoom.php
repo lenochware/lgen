@@ -18,6 +18,9 @@ class DungeonRoom extends Room
 
     $this->addTag($this->type);
     $this->callCreate($this->type);    
+
+    $this->each(['Tunnel', 'createWalls'], 'tunnel');
+    $this->each([$this, 'onSpawn']);
   }
 
   function createDefault()
@@ -41,8 +44,6 @@ class DungeonRoom extends Room
     //   //$this->fill('room-floor', rget('actor'));
     // }
 
-    $this->each([$this, 'onSpawn']);
-    //$this->each(['Tunnel', 'createWalls'], 'tunnel');
   }
 
   function createWet()
