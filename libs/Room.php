@@ -60,9 +60,9 @@ class Room extends Entity
   //zavolej nad vsemi tiles func - markov-chain
   function each($func, $where = null)
   {
-    foreach ($this->data as $i => $tile) {
-      $y = floor($i / $this->sectorWidth);
-      $x = $i % $this->sectorWidth;
+    foreach ($this->data as $i => $tile)
+    {  
+      [$x, $y] = $this->pos($i);
 
       if ($where and $tile[$this->getTypeId($where)] != $where) continue;
 
@@ -71,6 +71,11 @@ class Room extends Entity
       if (!empty($tile[2])) $func($this, $x, $y, $tile[2]);
       if (!empty($tile[3])) $func($this, $x, $y, $tile[3]);
     }
+  }
+
+  function pos($i)
+  {
+    return [$i % $this->sectorWidth, floor($i / $this->sectorWidth)];
   }
 
   function size()
@@ -228,7 +233,7 @@ class Room extends Entity
   protected function setPivot()
   {
     $i = $this->random->get($this->find('room-floor'));
-    $this->pivotPos = [$i % $this->sectorWidth, floor($i / $this->sectorWidth)];    
+    $this->pivotPos = $this->pos($i);
   }
 
   function rect($width, $height, $floor, $wall)
