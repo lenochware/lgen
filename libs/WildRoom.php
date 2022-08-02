@@ -3,13 +3,10 @@
 class WildRoom extends Room
 {
 
-  function create()
+  function init()
   {
-  	parent::create();
-    $this->type = $this->random->get(['desert', 'forest', /*'swamp',*/ 'rocks']);
-    //$this->type = 'forest';
-
-    $this->callCreate($this->type);    
+    parent::init();
+    $this->type = 'forest';
   }
 
   protected function replaceOutsideFunc($id)
@@ -22,14 +19,14 @@ class WildRoom extends Room
     return $func;
   }
 
-  function createForest()
+  function populateForest()
   {
-  	//$this->clear(['floor', '', '', 'outside']);
-  	$this->fill('granite-wall', 'floor');
-  	$this->spread('outside', 'tree', 20);
-  	$this->spread('room-floor', rfunc('', ['mud','grass']), rint(0,10));
+    //$this->clear(['floor', '', '', 'outside']);
+    $this->fill('granite-wall', 'floor');
+    $this->spread('outside', 'tree', 20);
+    $this->spread('room-floor', rfunc('', ['mud','grass']), rint(0,10));
     
-  	//pool
+    //pool
     if ($this->random->pass($this->lvl, [1=>.1])) {
       $id = rbet(0.1)? 'mud' : 'water'; //'wet-floor'
       $this->pool(rint(0,12), rint(0,12), $this->replaceOutsideFunc($id), rint(5,15));
@@ -42,15 +39,15 @@ class WildRoom extends Room
 
   // function createSwamp()
   // {
-  // 	$this->fill('room-floor', 'grass');
+  //    $this->fill('room-floor', 'grass');
   // }
 
-  function createRocks()
+  function populateRocks()
   {
-  	$this->fill('room-floor', 'rocks');
+    $this->fill('room-floor', 'rocks');
   }
 
-  function createDesert()
+  function populateDesert()
   {
     $this->fill('room-floor', 'sandstone');
   }

@@ -79,6 +79,9 @@ class DefaultLevel extends Level
     foreach ($this->sectors as $sector) {
       $doors = $sector->getConnected();
       if ($doors) $sector->addTag(count($doors).'-door');
+      
+      $sector->room->each(['Tunnel', 'createWalls'], 'tunnel');
+
       $sector->create();
     }
 

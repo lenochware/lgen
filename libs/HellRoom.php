@@ -3,12 +3,13 @@
 class HellRoom extends Room
 {
 
-  function create()
+  function init()
   {
-  	$this->createDefault();
-  }
+    parent::init();
+    $this->type = 'default';
+  }	
 
-  function createDefault()
+  function populateDefault()
   {
     $this->fill('room-floor', 'grass');
   }

@@ -33,14 +33,24 @@ class Room extends Entity
   {
     $this->width = $width;
     $this->height = $height;
-
-    $this->x = rint(0, $this->sectorWidth - $width - 1);
-    $this->y = rint(0, $this->sectorHeight - $height - 1);
   }
 
-  function create()
+  function create($what)
   {
-    $this->createStairs();
+    if ($what == 'layout') {
+      if (method_exists($this, 'layout' . ucfirst($this->type)))
+        call_user_func([$this, 'layout' . ucfirst($this->type)]);
+      else
+        $this->rectangleLayout();
+    }
+
+    else if ($what == 'populate') {
+      $this->createStairs();
+      call_user_func([$this, 'populate' . ucfirst($this->type)]);
+      $this->each([$this, 'onSpawn']);
+    }
+
+    else throw new Exception('Unknown create command.');
   }
 
   function createStairs()
@@ -50,11 +60,6 @@ class Room extends Entity
 
     if ($this->is('stairs-up')) $this->put(array_pop($found), ['stairs', 'stairs-up']);
     if ($this->is('stairs-down')) $this->put(array_pop($found), ['stairs', 'stairs-down']);
-  }
-
-  function callCreate($name)
-  {
-    call_user_func([$this, 'create' . ucfirst($name)]);
   }
 
   //zavolej nad vsemi tiles func - markov-chain
@@ -208,27 +213,32 @@ class Room extends Entity
     } 	
   }
 
-  function init($width, $height)
+  function init()
   {
-  	$this->setSize($width, $height);
+    $this->width = rint(5,8);
+    $this->height = rint(5,8);
+    $this->x = rint(0, $this->sectorWidth - $this->width - 1);
+    $this->y = rint(0, $this->sectorHeight - $this->height - 1);
+  }
+
+  function rectangleLayout()
+  {
     $this->clear(['granite-wall', '', '', 'outside']);
-    $this->paint();
-    $this->setPivot();
-  }
-
-  function paint()
-  {
     $this->rect($this->width, $this->height, 'floor', 'wall');
-
-    //$this->pool(1,1, ['floor','room-floor'], 8);
-
-    // $p = new Painter($this->level, $this->sector->position());
-    // $p->copySize($this);
-    // //$p->grid([2,4,2], [2,4,2], [0,1,0,1,1,1,0,1,0], ['floor','room-floor']);
-    // $p->grid([2,2], [2,2], [1,0,1,1], ['floor','room-floor']);
-
-    // $this->each([$this, 'createWalls'], 'room-floor');
+    $this->setPivot();    
   }
+
+  // function paint()
+  // {
+  //   //$this->pool(1,1, ['floor','room-floor'], 8);
+
+  //   // $p = new Painter($this->level, $this->sector->position());
+  //   // $p->copySize($this);
+  //   // //$p->grid([2,4,2], [2,4,2], [0,1,0,1,1,1,0,1,0], ['floor','room-floor']);
+  //   // $p->grid([2,2], [2,2], [1,0,1,1], ['floor','room-floor']);
+
+  //   // $this->each([$this, 'createWalls'], 'room-floor');
+  // }
 
   protected function setPivot()
   {

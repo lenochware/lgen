@@ -2,11 +2,10 @@
 
 class DungeonRoom extends Room
 {
-
-  function create()
+  function init()
   {
-  	parent::create();
-  	
+    parent::init();
+
     if ($this->random->chance(0.8))
     {
       $this->type = 'default';
@@ -17,13 +16,9 @@ class DungeonRoom extends Room
     }
 
     $this->addTag($this->type);
-    $this->callCreate($this->type);
-
-    $this->each(['Tunnel', 'createWalls'], 'tunnel');
-    $this->each([$this, 'onSpawn']);
   }
 
-  function createDefault()
+  function populateDefault()
   {
     $n = $this->random->int2(0, $this->size() / 2);
     $this->spread('room-floor', rfunc('i2', 'actor'), $n);
@@ -46,7 +41,12 @@ class DungeonRoom extends Room
 
   }
 
-  function createWet()
+ // function layoutWet()
+ // {
+
+ // }
+
+  function populateWet()
   {
     $this->fill('room-floor', 'water');
     $this->spread('room-floor', 'wall-moss', rint(1,5));
@@ -55,14 +55,14 @@ class DungeonRoom extends Room
     $this->spread('tunnel', rfunc('', ['wet-floor']), rint(1,5));
   }
 
-  function createDestruct()
+  function populateDestruct()
   {
     $this->spread('room-floor', rfunc('', ['wall','small-rock']), rint(1,5));
     $this->spread('room-wall', rfunc('', ['dirt','floor']), rint(1,5));
     $this->spread('tunnel', rfunc('', ['small-rock']), rint(1,5));
   }
 
-  function createPit()
+  function populatePit()
   {
     $obj = dbget(rget('actor'));
 
@@ -71,13 +71,15 @@ class DungeonRoom extends Room
     //$this->fill('room-floor', rget('actor'));
   }
 
-  function createTreasure()
+  function populateTreasure()
   {
     $this->spread('room-floor', rfunc('', ['copper-coins','silver-coins']), rint(1,5));
   }
 
-  function createShop()
+  function populateShop()
   {
+    if (!$this->data) return $this->rectangleLayout();
+
     $this->fill('outside', rfunc('i2', ['dirt','floor']));
     $p = new Painter($this->level, $this->sector->position());
     $p->copySize($this);
