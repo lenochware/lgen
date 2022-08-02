@@ -22,7 +22,7 @@ function indexAction()
 
 function cityAction()
 {
-  $this->seed(1659099490);
+  //$this->seed(1659099490);
   $this->app->setSession('seed', $this->seed());
 
   print "Seed: ". $this->seed() . '<br>';
@@ -48,7 +48,8 @@ function roomAction()
   foreach([[0,0],[0,1],[1,0],[1,1]] as $pos) {
     $room =  new DungeonRoom(1);
     $level->getSector($pos[0],$pos[1])->add($room);    
-    $room->init(8,8);
+    $room->init();
+    $room->create('layout');
   }
 
   $level->sectors[1]->room->pattern([[0,1],[1,0]], 'water');

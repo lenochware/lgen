@@ -67,9 +67,10 @@ class CityLevel extends Level
   function addShop($sector)
   {
     $room = new DungeonRoom(1);
-    $room->init(rint([5,8]), rint([5,8]));
+    $room->init();
     $sector->add($room);
-    $room->createShop();
+    $room->create('layout');
+    $room->populateShop();
   }
 
   function addTownWalls()
