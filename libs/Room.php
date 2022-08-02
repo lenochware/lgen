@@ -60,6 +60,7 @@ class Room extends Entity
 
     if ($this->is('stairs-up')) $this->put(array_pop($found), ['stairs', 'stairs-up']);
     if ($this->is('stairs-down')) $this->put(array_pop($found), ['stairs', 'stairs-down']);
+    $this->cache['room-floor'] = null;
   }
 
   //zavolej nad vsemi tiles func - markov-chain

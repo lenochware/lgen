@@ -70,7 +70,10 @@ class DefaultLevel extends Level
     }
 
     $this->addStairs();
-    $this->connect();
+
+    while (!$this->isConnected()) {
+    	$this->connect();
+    }
 
     foreach ($this->sectors as $sector) {
       if ($sector->connected) $sector->room->tunnel($sector->connected->room);
@@ -89,7 +92,7 @@ class DefaultLevel extends Level
 
   function addStairs()
   {
-	  $n = count($this->sectors);
+	$n = count($this->sectors);
     $this->sectors[rint(0,$n-1)]->room->addTag('stairs-up');
     $this->sectors[rint(0,$n-1)]->room->addTag('stairs-down');  	
   }
