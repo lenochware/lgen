@@ -71,6 +71,14 @@ class DungeonRoom extends Room
     //$this->fill('room-floor', rget('actor'));
   }
 
+  // function layoutTreasure()
+  // {
+  //   $this->clear(['granite-wall', '', '', 'outside']);
+  //   $this->pool(1,1, ['floor','room-floor'], 8);
+  //   $this->each([$this, 'createWalls'], 'room-floor');
+  //   $this->setPivot();
+  // }
+
   function populateTreasure()
   {
     $this->spread('room-floor', rfunc('', ['copper-coins','silver-coins']), rint(1,5));
@@ -78,8 +86,6 @@ class DungeonRoom extends Room
 
   function populateShop()
   {
-    if (!$this->data) return $this->rectangleLayout();
-
     $this->fill('outside', rfunc('i2', ['dirt','floor']));
     $p = new Painter($this->level, $this->sector->position());
     $p->copySize($this);

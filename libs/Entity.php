@@ -21,6 +21,14 @@ class Entity
     $this->db = $pclib->app->db;
   }
 
+  function setSize($x, $y, $width, $height)
+  {
+    $this->x = $x;
+    $this->y = $y;
+    $this->width = $width;
+    $this->height = $height;
+  }
+  
   function addTag($id)
   {
   	$this->tags[$id] = 1;

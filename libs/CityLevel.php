@@ -87,7 +87,6 @@ class CityLevel extends Level
   function getEmpty()
   {
     $empty = new Room(1);
-    $empty->setSize(1,1);
     $empty->clear(['floor', '', '', 'outside']);
     return $empty;
   }

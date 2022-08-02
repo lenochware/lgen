@@ -29,12 +29,6 @@ class Room extends Entity
     $this->level = $sector->level;
   }
 
-  function setSize($width, $height)
-  {
-    $this->width = $width;
-    $this->height = $height;
-  }
-
   function create($what)
   {
     if ($what == 'layout') {
