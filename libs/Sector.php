@@ -105,7 +105,7 @@ class Sector extends Entity
 
   function isConnectedWith(Sector $sec)
   {
-    return ($sec->connected == $this or $this->connected == $sec);
+    return ($sec->connected === $this or $this->connected === $sec);
   }
 
   function strConnection()

@@ -90,7 +90,7 @@ class Level extends Entity
 
   private function visit(&$visited, $sec)
   {
-    if (in_array($sec, $visited)) return;
+    if (in_array($sec, $visited, true)) return;
     $visited[] = $sec;
 
     foreach($sec->getConnected() as $next) {
