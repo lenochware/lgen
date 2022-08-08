@@ -54,24 +54,66 @@ function roomAction()
 
   $level->sectors[1]->room->pattern([[0,1],[1,0]], 'water');
 
+  //pavouci v rozich
   $p = $this->painter($level, 0,0);
   $p->copySize($level->sectors[0]->room)->shrink(1);
   $p->fill(0.5, 0.5, .2, .2, 'spider');
   $p->points([[0,0],[0,1],[1,0],[1,1]], 'spider');
 
+  //obdelnik pres 3/4 levelu
   $p->x = $p->y = 0;
   $p->width = $level->width * $level->sectorWidth;
   $p->height = $level->height * $level->sectorHeight;
   $p->rect(0.5, 0.5, .75, .75, 'tree');
-  //$p->grid([2,6,2], [2,6,2], [1,1,0,1,1,1,0,1,1], 'mummy');
+  
+  //rozdeleni oblastni na tabulku rows x cols a bunky vyplneni 1 nebo 0
+  //$p->grid([2,6,2], [2,6,2], [0,1,0,1,1,1,0,1,0], 'mummy');
 
 
-  // replace_func
+  // //test replace_func - vykresli se jen pres inner-wall, ne jinde
   // $p->vline(0.5, 0, 1, ['inner-wall','wall-moss']);
   // $p->hline(0.5, 0, 1, ['inner-wall','wall-moss']);
-  //$p->vline(0.75, 0, 1, replace_func('inner-wall', 'door'));  
+  // $p->vline(0.25, 0, 1, replace_func('inner-wall', 'door'));
+
+  $sector = $level->getSector(1,1);
+  $this->paintSplitterRoom($level, $sector);
 
   return $level->html();
+}
+
+//Nekolik mistnosti tesne vedle sebe bez chodeb
+function paintSplitterRoom($level, $sector)
+{
+  $room = $sector->room;
+  $room->setSize(0,0,16,16);
+  $room->clear(['floor', '', '', 'room-floor']);
+
+  $p = $this->painter($level, 1,1);
+  $p->copySize($sector);
+
+  $p->vline(0.3,0,1,'wall');
+  $p->hline(0.6,0.3,1,'wall');
+
+  $p->hline(0.3,0,0.3,'wall');
+
+  $p->vline(0.3 + (1-0.3)/3*2,0.6,1,'wall');
+
+
+  //vytvori dvere na krizeni zdi
+  $doorFunc = function($room, $x, $y, $id)
+  {
+    $i = 0;
+    foreach ([[-1,0],[1,0],[0,1],[0,-1]] as $pos) {
+      $tile = $room->get($x + $pos[0], $y + $pos[1]);
+      if ($tile[0] == 'wall') $i++;
+    }
+
+    if ($i == 3)
+        $room->set($x, $y, 'door');
+
+  };
+
+  $room->each($doorFunc, 'wall');
 }
 
 function infoAction($x, $y)
