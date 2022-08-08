@@ -16,6 +16,7 @@ class Room extends Entity
   protected $cache = [];
 
   protected $pivotPos = [1,1];
+  protected $doors = [];
 
   function __construct($lvl)
   {
@@ -45,6 +46,11 @@ class Room extends Entity
     }
 
     else throw new Exception('Unknown create command.');
+  }
+
+  function addDoor($x, $y, Room $room)
+  {
+    $this->doors["$x,$y"] = $room;
   }
 
   function createStairs()

@@ -6,6 +6,8 @@ class Tunnel extends Entity
   protected $fin;
   protected $level;
 
+  public $useMidPoint = false;
+
   function __construct(Level $level, Room $start, Room $fin)
   {
     parent::__construct();
@@ -21,21 +23,24 @@ class Tunnel extends Entity
     $start = vec_add($this->start->position(), $this->start->pivot());
     $fin = vec_add($this->fin->position(), $this->fin->pivot());
 
-    $found = $this->start->find('outside');
-    $s = $this->start;
-    while(1) {
-      $pos = $this->start->pos(rget($found));
-      if ($pos[0] == $s->x or  $pos[1] == $s->y) continue;
-      if ($pos[0] == $s->x+$s->width-1 or  $pos[1] == $s->y+$s->height-1) continue;
-      break;
+    if ($this->useMidPoint) {
+	    $found = $this->start->find('outside');
+	    $s = $this->start;
+	    while(1) {
+	      $pos = $this->start->pos(rget($found));
+	      if ($pos[0] == $s->x or  $pos[1] == $s->y) continue;
+	      if ($pos[0] == $s->x+$s->width-1 or  $pos[1] == $s->y+$s->height-1) continue;
+	      break;
+	    }
+	    
+	    $mid = vec_add($this->start->position(), $pos);
+
+	    $this->line($start, $mid);
+	    $this->line($mid, $fin);    	
     }
-    
-    $mid = vec_add($this->start->position(), $pos);
-
-    $this->line($start, $mid);
-    $this->line($mid, $fin);
-
-    //$this->line($start, $fin);
+    else {
+        $this->line($start, $fin);
+    }
   }
 
   protected function line($a, $b)
@@ -76,6 +81,13 @@ class Tunnel extends Entity
 
     if (($prev[3] == 'room-floor' or $prev[3] == 'tunnel') and $tile[3] == 'room-wall') {
       $this->level->set($x, $y, 'door');
+
+      if ($prev[3] == 'room-floor') {
+      	$this->start->addDoor($x, $y, $this->fin);
+      }
+      else {
+      	$this->fin->addDoor($x, $y, $this->start);
+      }
     }
   }
 
