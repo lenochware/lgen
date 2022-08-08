@@ -72,7 +72,7 @@ class DefaultLevel extends Level
     $this->addStairs();
 
     while (!$this->isConnected()) {
-    	$this->connect();
+      $this->connect();
     }
 
     foreach ($this->sectors as $sector) {
@@ -106,7 +106,7 @@ class DefaultLevel extends Level
 
 protected function drawBiom($x, $y)
 {
-	$name = $this->getBiom($x, $y);
+    $name = $this->getBiom($x, $y);
 
   $t = [
     'dungeon' => 'd',
@@ -130,7 +130,7 @@ function drawBioms()
 
     print "<br>";
   }
-  print "</code>";	
+  print "</code>";  
 }
 
 }
