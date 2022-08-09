@@ -80,8 +80,12 @@ class DefaultLevel extends Level
     }
 
     foreach ($this->sectors as $sector) {
-      $doors = $sector->getConnected();
-      if ($doors) $sector->addTag(count($doors).'-door');
+      $nb = $sector->getConnected();
+      if ($nb) $sector->addTag(count($nb).'-door');
+
+      // if (count($nb) == 1) {
+      //   $this->setSecret($sector);
+      // }
       
       $sector->room->each(['Tunnel', 'createWalls'], 'tunnel');
 
@@ -92,9 +96,20 @@ class DefaultLevel extends Level
 
   function addStairs()
   {
-	$n = count($this->sectors);
+    $n = count($this->sectors);
     $this->sectors[rint(0,$n-1)]->room->addTag('stairs-up');
-    $this->sectors[rint(0,$n-1)]->room->addTag('stairs-down');  	
+    $this->sectors[rint(0,$n-1)]->room->addTag('stairs-down');      
+  }
+
+  function setSecret($sector)
+  {
+    $sector->addTag('secret');
+    $room = $sector->room;
+    foreach($room->doors as $door) {
+      foreach($door['room']->doors as $d) {
+        if ($d['room'] === $room) $this->set($d['x'], $d['y'], 'secret-door');
+      }
+    }
   }
 
 

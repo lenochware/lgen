@@ -16,7 +16,7 @@ class Room extends Entity
   protected $cache = [];
 
   protected $pivotPos = [1,1];
-  protected $doors = [];
+  public $doors = [];
 
   function __construct($lvl)
   {
@@ -50,7 +50,7 @@ class Room extends Entity
 
   function addDoor($x, $y, Room $room)
   {
-    $this->doors["$x,$y"] = $room;
+    $this->doors["$x,$y"] = ['x'=>$x, 'y'=>$y, 'room'=>$room];
   }
 
   function createStairs()

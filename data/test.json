@@ -472,6 +472,13 @@
 		"desc": "You see nothing interesting."
 	},
 
+	"secret-door": {
+		"render": {"char": "%", "color": "gray" },
+		"family": ["ground", "device", "door"],
+		"name": "secret door",
+		"desc": "You see nothing interesting."
+	},
+
 "level1": {
 	"family": ["group", "level"],
 	"bioms": {
