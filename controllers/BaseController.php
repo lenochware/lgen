@@ -50,6 +50,12 @@ public function outputJson(array $data)
   die(json_encode($data, JSON_UNESCAPED_UNICODE/*|JSON_PRETTY_PRINT*/));
 }
 
+function seed($value = null)
+{
+  if ($value) $this->app->random->seed = $value;
+  return $this->app->random->seed;
+}
+
 }
 
 ?>

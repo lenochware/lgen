@@ -132,12 +132,6 @@ function infoAction($x, $y)
   return $html;
 }
 
-function seed($value = null)
-{
-  if ($value) $this->app->random->seed = $value;
-  return $this->app->random->seed;
-}
-
 function painter($level, $x, $y)
 {
   return new Painter($level, $level->getSector($x,$y)->position());
