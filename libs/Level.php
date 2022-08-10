@@ -30,8 +30,8 @@ class Level extends Entity
 
   function addStairs()
   {
-  	$n = count($this->sectors);
-    $this->sectors[rint(0,$n-1)]->room->addTag('stairs-down');  	
+    $n = count($this->sectors);
+    $this->sectors[rint(0,$n-1)]->room->addTag('stairs-down');      
   }
 
   function setSector($x, $y, Sector $sector)
@@ -100,7 +100,7 @@ class Level extends Entity
 
 protected function htmlTile($x, $y)
 {
-	$tile = $this->get($x, $y);
+    $tile = $this->get($x, $y);
   $title = '';
   
   for($i = 0; $i < 3; $i++) {
@@ -133,7 +133,24 @@ function html()
     $s .= "<br>";
   }
 
-  return "<code style=\"font-size:14px\">$s</code>";	
+  return "<code style=\"font-size:14px\">$s</code>";    
+}
+
+function toArray()
+{
+  $data = [
+    'width' => $this->sectorWidth*$this->width,
+    'height' => $this->sectorHeight*$this->height,
+    'tiles' => [],
+  ];
+
+  for ($y=0; $y < $this->sectorHeight*$this->height; $y++) {
+    for ($x=0; $x < $this->sectorWidth*$this->width; $x++) { 
+      $data['tiles'][] = $this->get($x, $y);
+    }
+  }
+
+  return $data;
 }
 
 }
