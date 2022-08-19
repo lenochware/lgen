@@ -2,25 +2,15 @@
 
 class CityLevel extends Level
 {
-  function __construct()
-  {
-    parent::__construct();
-
-    $this->app->db->indexLevel($this->number);
-
-    $this->width = 5;
-    $this->height = 5;
-  }
-
   function create()
   {
+  	$this->init(5,5);
+
     for ($x=0; $x < $this->width; $x++) {
       for ($y=0; $y < $this->height; $y++)
       { 
-        $sector = new Sector($this, $x, $y);
-        $this->setSector($x, $y, $sector);
-        $room = $this->getEmpty();
-        $sector->add($room);
+        $sector = $this->getSector($x, $y);
+        $sector->room->clear(['floor', '', '', 'outside']);
 
         if ($x==1 and $y==1) {
           $this->addShop($sector);
@@ -66,11 +56,13 @@ class CityLevel extends Level
 
   function addShop($sector)
   {
-    $room = new DungeonRoom(1);
-    $room->init();
-    $sector->add($room);
-    $room->create('layout');
-    $room->populateShop();
+    $sector->room->init('shop');
+    $sector->room->rectangleLayout();
+    
+    $sector->room->fill('outside', rfunc('i2', ['dirt','floor']));
+    $p = new Painter($this, $sector->position());
+    $p->copySize($sector->room);
+    $p->points([[0,0.5]], 'door');
   }
 
   function addTownWalls()
@@ -82,13 +74,6 @@ class CityLevel extends Level
 
     $p->rect(0.5, 0.5, 1, 1, rfunc('i2',['wall', 'wall-moss']));
     $p->points([[1,0.5],[1,0.45],[1,0.57]], 'door');
-  }
-
-  function getEmpty()
-  {
-    $empty = new Room(1);
-    $empty->clear(['floor', '', '', 'outside']);
-    return $empty;
   }
 
   function addDungeonEntrace($sector)

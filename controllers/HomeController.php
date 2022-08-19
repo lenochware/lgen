@@ -27,7 +27,7 @@ function cityAction()
 
   print "Seed: ". $this->seed() . '<br>';
 
-  $level = new CityLevel();
+  $level = new CityLevel(1);
   $level->create();
 
   return $this->template('tpl/home/level.tpl', ['map' => $level->html()]);
@@ -46,10 +46,10 @@ function roomAction()
   $level->create();
 
   foreach([[0,0],[0,1],[1,0],[1,1]] as $pos) {
-    $room =  new DungeonRoom(1);
+    $room =  new Room(1);
     $level->getSector($pos[0],$pos[1])->add($room);    
-    $room->init();
-    $room->create('layout');
+    $room->init('default');
+    $room->rectangleLayout();
   }
 
   $level->sectors[1]->room->pattern([[0,1],[1,0]], 'water');
