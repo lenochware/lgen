@@ -243,7 +243,7 @@ class Room extends Entity
   //   // $this->each([$this, 'createWalls'], 'room-floor');
   // }
 
-  protected function setPivot()
+  function setPivot()
   {
     $i = $this->random->get($this->find('room-floor'));
     $this->pivotPos = $this->pos($i);

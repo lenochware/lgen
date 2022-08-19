@@ -10,29 +10,51 @@ class Level extends Entity
   public $sectors = [];
   public $config;
 
-  function create()
+
+  function __construct($number)
   {
-    for ($x=0; $x < $this->width; $x++) { 
-      for ($y=0; $y < $this->height; $y++)
+    parent::__construct();
+    $this->number = $number;
+    $this->app->db->indexLevel($number);
+
+    $id = $this->random->get($this->db->list('level'));
+    $this->config = $this->db->get($id);
+  }
+
+  function init($width, $height)
+  {
+    $this->width = $width;
+    $this->height = $height;
+
+    for ($x=0; $x < $width; $x++) { 
+      for ($y=0; $y < $height; $y++)
       { 
         $sector = new Sector($this, $x, $y);
         $this->setSector($x, $y, $sector);
-        $sector->init($this->number, 'dungeon');
       }
     }
+  }
 
-    $this->addStairs();
-
+  function tunnel()
+  {
     foreach ($this->sectors as $sector) {
-      $sector->create();
+      if ($sector->connected) $sector->room->tunnel($sector->connected->room);
+      
+      $nb = $sector->getConnected();
+      if ($nb) $sector->addTag(count($nb).'-door');
     }
   }
 
-  function addStairs()
+  function create()
   {
-    $n = count($this->sectors);
-    $this->sectors[rint(0,$n-1)]->room->addTag('stairs-down');      
+    throw new Exception('Method not implemented.');
   }
+
+  // function addStairs()
+  // {
+  //   $n = count($this->sectors);
+  //   $this->sectors[rint(0,$n-1)]->room->addTag('stairs-down');      
+  // }
 
   function setSector($x, $y, Sector $sector)
   {
@@ -66,7 +88,7 @@ class Level extends Entity
   }
 
 
-  function connect()
+  protected function connectSectors()
   {
     foreach($this->sectors as $sector) {
       $sector->reset();
@@ -77,7 +99,7 @@ class Level extends Entity
     }
   }
 
-  function isConnected()
+  protected function isConnected()
   {
     $visited = [];
 
@@ -85,7 +107,13 @@ class Level extends Entity
 
     if (count($visited) == count($this->sectors)) return true;
     else return false;
+  }
 
+  function connect()
+  {
+    while (!$this->isConnected()) {
+      $this->connectSectors();
+    }    
   }
 
   private function visit(&$visited, $sec)
@@ -134,6 +162,18 @@ function html()
   }
 
   return "<code style=\"font-size:14px\">$s</code>";    
+}
+
+function build(Room $room)
+{
+  $name = 'build'.ucfirst($room->type);
+  
+  if (!method_exists($this, $name)) {
+    $room->rectangleLayout();
+    return false;
+  }
+
+  call_user_func([$this, $name], $room);
 }
 
 function populate(Room $room)
