@@ -40,8 +40,10 @@ class DefaultLevel extends Level
 
     foreach ($this->sectors as $sector)
     {
+      $type = $this->random->get(['destruct', 'pit', 'treasure', 'wet']);
+
       $room = $sector->room;
-      $room->init();
+      $room->init($type);
       $room->rectangleLayout();
       /*
 
@@ -53,22 +55,25 @@ class DefaultLevel extends Level
 
     foreach ($this->sectors as $sector) {
       if ($sector->connected) $sector->room->tunnel($sector->connected->room);
+      
+      $nb = $sector->getConnected();
+      if ($nb) $sector->addTag(count($nb).'-door');
     }
 
     foreach ($this->sectors as $sector) {
-      $nb = $sector->getConnected();
-      if ($nb) $sector->addTag(count($nb).'-door');
-
-      
-      /* 
-
-        $this->populate($room); //vola metodu $this->pop{$room->type}
-
-       */
-      //$sector->create();
+      $this->populate($sector->room);
     }
 
   }
+
+  function populateWet($room)
+  {
+    $room->fill('room-floor', 'water');
+    $room->spread('room-floor', 'wall-moss', rint(1,5));
+    $room->spread('room-floor', rfunc('', ['wet-floor','floor']), rint(1,5));
+    $room->spread('water', rfunc('', 'water-list'), rint(0,2));
+    $room->spread('tunnel', rfunc('', ['wet-floor']), rint(1,5));
+  }  
 
 }
 

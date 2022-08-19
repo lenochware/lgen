@@ -136,6 +136,13 @@ function html()
   return "<code style=\"font-size:14px\">$s</code>";    
 }
 
+function populate(Room $room)
+{
+  $name = 'populate'.ucfirst($room->type);
+  if (!method_exists($this, $name)) return false;
+  call_user_func([$this, $name], $room);
+}
+
 function toArray()
 {
   $data = [

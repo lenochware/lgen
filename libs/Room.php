@@ -11,7 +11,7 @@ class Room extends Entity
   protected $level;
 
   protected $lvl;
-  protected $type;
+  public $type;
 
   protected $cache = [];
 
@@ -214,8 +214,10 @@ class Room extends Entity
     } 	
   }
 
-  function init()
+  function init($type)
   {
+  	$this->type = $type;
+  	$this->addTag($type);
     $this->width = rint(5,8);
     $this->height = rint(5,8);
     $this->x = rint(0, $this->sectorWidth - $this->width - 1);
