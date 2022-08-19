@@ -30,24 +30,6 @@ class Room extends Entity
     $this->level = $sector->level;
   }
 
-  function create($what)
-  {
-    if ($what == 'layout') {
-      if (method_exists($this, 'layout' . ucfirst($this->type)))
-        call_user_func([$this, 'layout' . ucfirst($this->type)]);
-      else
-        $this->rectangleLayout();
-    }
-
-    else if ($what == 'populate') {
-      $this->createStairs();
-      call_user_func([$this, 'populate' . ucfirst($this->type)]);
-      $this->each([$this, 'onSpawn']);
-    }
-
-    else throw new Exception('Unknown create command.');
-  }
-
   function addDoor($x, $y, Room $room)
   {
     $this->doors["$x,$y"] = ['x'=>$x, 'y'=>$y, 'room'=>$room];
