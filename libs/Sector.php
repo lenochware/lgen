@@ -4,7 +4,6 @@ class Sector extends Entity
 {
   public $level;
   public $room;
-  public $biom;
   public $connected;
 
   function __construct(Level $level, $x, $y)
@@ -16,17 +15,9 @@ class Sector extends Entity
     $this->x = $x;
     $this->y = $y;
     $this->reset();
-  }
 
-  function init($lvl, $biom)
-  {
-    $this->biom = $biom;
-    
-    $room = $this->getRoom($lvl, $biom);
-    $room->init();
+    $room = new Room(1);
     $this->add($room);
-    $room->create('layout');
-
   }
 
   function create()
@@ -118,15 +109,6 @@ class Sector extends Entity
       if ($px < 0) return 'L';
       if ($py > 0) return 'D';
       if ($py < 0) return 'U';
-  }
-
-  function getRoom($lvl, $biom)
-  {
-    if ($biom == 'dungeon') $room = new DungeonRoom($lvl);
-    elseif ($biom == 'hell') $room = new HellRoom($lvl);
-    elseif (in_array($biom, ['forest', 'rocks', 'desert', 'water'])) $room = new WildRoom($lvl);
-    else throw new Exception('Unknown biom.');
-    return $room;
   }
 
   function addTag($id)
