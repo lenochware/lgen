@@ -10,6 +10,8 @@ class Level extends Entity
   public $sectors = [];
   public $config;
 
+  protected $triggers = [];
+
 
   function __construct($number)
   {
@@ -50,11 +52,19 @@ class Level extends Entity
     throw new Exception('Method not implemented.');
   }
 
-  // function addStairs()
-  // {
-  //   $n = count($this->sectors);
-  //   $this->sectors[rint(0,$n-1)]->room->addTag('stairs-down');      
-  // }
+  function addExit($room, $exit)
+  {
+    $room->addTag($exit['tags']);
+
+    $found = $room->find('room-floor');
+    $this->random->shuffle($found);
+
+    //$this->put(array_pop($found), ['stairs', 'stairs-up']);
+    $room->put(array_pop($found), $exit['id']);
+    $room->cache['room-floor'] = null;
+
+    $this->triggers["$x,$y"] = $exit;
+  }
 
   function setSector($x, $y, Sector $sector)
   {
@@ -188,6 +198,7 @@ function toArray()
   $data = [
     'width' => $this->sectorWidth*$this->width,
     'height' => $this->sectorHeight*$this->height,
+    'triggers' => $this->triggers,
     'tiles' => [],
   ];
 

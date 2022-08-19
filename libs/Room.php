@@ -35,16 +35,6 @@ class Room extends Entity
     $this->doors["$x,$y"] = ['x'=>$x, 'y'=>$y, 'room'=>$room];
   }
 
-  function createStairs()
-  {
-    $found = $this->find('room-floor');
-    $this->random->shuffle($found);
-
-    if ($this->is('stairs-up')) $this->put(array_pop($found), ['stairs', 'stairs-up']);
-    if ($this->is('stairs-down')) $this->put(array_pop($found), ['stairs', 'stairs-down']);
-    $this->cache['room-floor'] = null;
-  }
-
   //zavolej nad vsemi tiles func - markov-chain
   function each($func, $where = null)
   {
