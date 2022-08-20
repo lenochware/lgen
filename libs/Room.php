@@ -81,6 +81,11 @@ class Room extends Entity
     return $this->pivotPos;
   }
 
+  function cacheClear($key)
+  {
+  	$this->cache[$key] = null;
+  }
+
   protected function getTypeId($id)
   {
     $types = ['ground' => 0, 'item' => 1, 'actor' => 2, 'meta' => 3];

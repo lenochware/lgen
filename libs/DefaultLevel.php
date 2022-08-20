@@ -19,6 +19,9 @@ class DefaultLevel extends Level
 
     $this->tunnel();
 
+    $this->addExit(rget($this->sectors)->room, ['stairs-up', 'city']);
+    $this->addExit(rget($this->sectors)->room, ['stairs-down', 'cellars-2']);
+
     foreach ($this->sectors as $sector) {
       $this->populate($sector->room);
     }

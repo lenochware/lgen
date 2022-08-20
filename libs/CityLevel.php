@@ -79,10 +79,10 @@ class CityLevel extends Level
   function addDungeonEntrace($sector)
   {
     $p = $this->painter($sector);
+    $p->fill(0,0,1,1,'room-floor');
     $p->pattern([[0,0,1],[0,0,0]], 'wall');
 
-    $room = $sector->room;
-    $room->spread('floor', 'stairs-down', 1);
+    $this->addExit($sector->room, ['stairs-down', 'cellars-1']);
   }
 
   function addRiver($sector)

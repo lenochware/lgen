@@ -301,10 +301,10 @@
 		"name": "inner wall"
 	},
 
-	"stairs": {
+	"exit": {
 		"render": {"char": ".", "color": "gray" },
 		"family": ["meta", "floor"],
-		"name": "stairs"
+		"name": "exit"
 	},
 
 	"tunnel": {

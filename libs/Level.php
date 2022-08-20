@@ -51,16 +51,21 @@ class Level extends Entity
     }
   }
 
-  function addExit($room, $exit)
+  function addExit($room, $param)
   {
-    $room->addTag($exit['tags']);
+    $exit = [
+      'id' => $param[0],
+      'target' => $param[1],
+      'type' => 'exit'
+    ];
 
-    $found = $room->find('room-floor');
-    $this->random->shuffle($found);
+    $room->addTag('exit');
 
-    //$this->put(array_pop($found), ['stairs', 'stairs-up']);
-    $room->put(array_pop($found), $exit['id']);
-    $room->cache['room-floor'] = null;
+    $i = rget($room->find('room-floor'));
+    $room->put($i, ['exit', $exit['id']]);
+    $room->cacheClear('room-floor');
+
+    [$x, $y] = vec_add($room->position(), $room->pos($i));
 
     $this->triggers["$x,$y"] = $exit;
   }
