@@ -12,7 +12,6 @@ class Level extends Entity
 
   protected $triggers = [];
 
-
   function __construct($number)
   {
     parent::__construct();
@@ -37,6 +36,11 @@ class Level extends Entity
     }
   }
 
+  function create()
+  {
+    throw new Exception('Method not implemented.');
+  }
+
   function tunnel()
   {
     foreach ($this->sectors as $sector) {
@@ -45,11 +49,6 @@ class Level extends Entity
       $nb = $sector->getConnected();
       if ($nb) $sector->addTag(count($nb).'-door');
     }
-  }
-
-  function create()
-  {
-    throw new Exception('Method not implemented.');
   }
 
   function addExit($room, $exit)

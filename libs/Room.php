@@ -24,6 +24,16 @@ class Room extends Entity
     $this->lvl = $lvl;
   }
 
+  function init($type)
+  {
+  	$this->type = $type;
+  	$this->addTag($type);
+    $this->width = rint(5,8);
+    $this->height = rint(5,8);
+    $this->x = rint(0, $this->sectorWidth - $this->width - 1);
+    $this->y = rint(0, $this->sectorHeight - $this->height - 1);
+  }
+
   function setSector(Sector $sector)
   {
     $this->sector = $sector;
@@ -184,16 +194,6 @@ class Room extends Entity
     for ($i = 0; $i < $n; $i++) { 
       $this->data[$i] = $tile;
     } 	
-  }
-
-  function init($type)
-  {
-  	$this->type = $type;
-  	$this->addTag($type);
-    $this->width = rint(5,8);
-    $this->height = rint(5,8);
-    $this->x = rint(0, $this->sectorWidth - $this->width - 1);
-    $this->y = rint(0, $this->sectorHeight - $this->height - 1);
   }
 
   function rectangleLayout()
