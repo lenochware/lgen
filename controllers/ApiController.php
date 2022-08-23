@@ -3,14 +3,19 @@
 class ApiController extends BaseController
 {
 
-function indexAction()
+function indexAction($id)
 {
   //$this->seed(1658993076);
   $this->app->setSession('seed', $this->seed());
 
-  $level = new DefaultLevel(1);
-  $level->create();
+  switch($id) {
+  	case 'city': $level = new CityLevel(1); break;
+  	case 'cellars-1': $level = new DefaultLevel(1); break;
+  	case 'cellars-2': $level = new DefaultLevel(2); break;
+  	default: throw new Exception('Level not found.');
+  }
 
+  $level->create();
   $this->outputJson($level->toArray());
 }
 
