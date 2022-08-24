@@ -10,7 +10,7 @@ class Level extends Entity
   public $sectors = [];
   public $config;
 
-  protected $triggers = [];
+  protected $exits = [];
 
   function __construct($number)
   {
@@ -55,7 +55,7 @@ class Level extends Entity
   {
     $exit = [
       'id' => $param[0],
-      'target' => $param[1],
+      'levelId' => $param[1],
       'type' => 'exit'
     ];
 
@@ -67,7 +67,9 @@ class Level extends Entity
 
     [$x, $y] = vec_add($room->position(), $room->pos($i));
 
-    $this->triggers["$x,$y"] = $exit;
+    $exit['pos'] = ['x' => $x, 'y' => $y];
+
+    $this->exits["$x,$y"] = $exit;
   }
 
   function setSector($x, $y, Sector $sector)
@@ -202,7 +204,7 @@ function toArray()
   $data = [
     'width' => $this->sectorWidth*$this->width,
     'height' => $this->sectorHeight*$this->height,
-    'triggers' => $this->triggers,
+    'exits' => $this->exits,
     'tiles' => [],
   ];
 
