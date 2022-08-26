@@ -10,8 +10,8 @@ function indexAction($id)
 
   switch($id) {
   	case 'city': $level = new CityLevel(1); break;
-  	case 'cellars-1': $level = new DefaultLevel(1); break;
-  	case 'cellars-2': $level = new DefaultLevel(2); break;
+  	case 'cellars-1': $level = new CellarsLevel(1); break;
+  	case 'cellars-2': $level = new CellarsLevel(2); break;
   	default: throw new Exception('Level not found.');
   }
 

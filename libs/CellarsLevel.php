@@ -1,6 +1,6 @@
 <?php 
 
-class DefaultLevel extends Level
+class CellarsLevel extends Level
 {
   function create()
   {
@@ -9,8 +9,7 @@ class DefaultLevel extends Level
 
     foreach ($this->sectors as $sector)
     {
-      //$biom = $this->random->get(['dungeon', 'forest', 'rocks', 'desert', 'water', 'hell']);
-      $type = $this->random->get(['destruct', 'pit', 'treasure', 'wet']);
+      $type = $this->random->get2(['empty', 'warehouse', 'wet', 'destruct']);
 
       $room = $sector->room;
       $room->init($type);
@@ -38,10 +37,11 @@ class DefaultLevel extends Level
 
   function populateWet($room)
   {
-    $room->fill('room-floor', 'water');
+    //$room->fill('room-floor', 'water');
     $room->spread('room-floor', 'wall-moss', rint(1,5));
-    $room->spread('room-floor', rfunc('', ['wet-floor','floor']), rint(1,5));
-    $room->spread('water', rfunc('', 'water-list'), rint(0,2));
+    $room->spread('room-floor', rfunc('', ['wet-floor','water']), rint(1,5));
+    $room->spread('room-floor', 'frog', rint(0,2));
+    //$room->spread('water', rfunc('', 'water-list'), rint(0,2));
     $room->spread('tunnel', rfunc('', ['wet-floor']), rint(1,5));
   }
 
@@ -50,20 +50,16 @@ class DefaultLevel extends Level
     $room->spread('room-floor', rfunc('', ['wall','small-rock']), rint(1,5));
     $room->spread('room-wall', rfunc('', ['dirt','floor']), rint(1,5));
     $room->spread('tunnel', rfunc('', ['small-rock']), rint(1,5));
+    $room->spread('room-floor', 'rat', rint(1,4));
   }
 
-  function populatePit($room)
+  function populateEmpty($room)
   {
-    $obj = dbget(rget('actor'));
-
-    $room->fill('room-floor', rfunc('', $obj['family'][1]));
-    $room->spread('tunnel', rfunc('', ['blood-floor', 'bones']), rint(1,5));
-    //$room->fill('room-floor', rget('actor'));
   }
 
-  function populateTreasure($room)
+  function populateWarehouse($room)
   {
-    $room->spread('room-floor', rfunc('', ['copper-coins','silver-coins']), rint(1,5));
+    $room->spread('room-floor', 'copper-coins', rint(0,4));
   }  
 
 }

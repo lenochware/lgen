@@ -12,7 +12,7 @@ function indexAction()
 
   $starttime = microtime(true);
 
-  $level = new DefaultLevel(1);
+  $level = new CellarsLevel(1);
   $level->create();
 
   $time = round((microtime(true) - $starttime)*1000,2);
@@ -37,7 +37,7 @@ function roomAction()
 {
   $this->seed(1658326829);
 
-  $level = new DefaultLevel(1);
+  $level = new CellarsLevel(1);
   print "Seed: ". $this->seed() . '<br>';
 
   $level->width = 2;
@@ -120,7 +120,7 @@ function infoAction($x, $y)
 {
   $this->seed($this->app->getSession('seed'));
 
-  $level = new DefaultLevel(1);
+  $level = new CellarsLevel(1);
   $level->create();
 
   $sx = floor($x / $level->sectorWidth);
