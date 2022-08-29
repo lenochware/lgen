@@ -75,7 +75,7 @@ class Level extends Entity
 
   function setSector($x, $y, Sector $sector)
   {
-    $this->sectors[$y * $this->height + $x] = $sector;
+    $this->sectors[$y * $this->width + $x] = $sector;
   }
 
   function getSector($x, $y)
