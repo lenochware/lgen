@@ -60,6 +60,7 @@ class Level extends Entity
     ];
 
     $room->addTag('exit');
+    $room->addTag($param[0]);
 
     $i = rget($room->find('room-floor'));
     $room->put($i, ['exit', $exit['id']]);

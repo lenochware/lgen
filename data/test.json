@@ -156,7 +156,7 @@
 	},
 
 	"dirty-rag": {
-		"render": {"char": "|", "color": "black" },
+		"render": {"char": "(", "color": "black" },
 		"family": ["item", "armor"],
 		"lvl": [1, 3],
 		"name": "dirty-rag"
@@ -250,14 +250,14 @@
 	},
 
 	"wooden-torch": {
-		"render": {"char": "~", "color": "yellow" },
+		"render": {"char": "~", "color": "orange" },
 		"family": ["item", "device"],
 		"lvl": [1, 5],
 		"name": "Scroll of phase door"
 	},
 
 	"arrows": {
-		"render": {"char": "?", "color": "brown" },
+		"render": {"char": "-", "color": "brown" },
 		"family": ["item", "ammo"],
 		"lvl": [1, 5],
 		"name": "x arrows"
