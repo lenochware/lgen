@@ -70,7 +70,7 @@
 		"name": "small wooden shield",
 		"desc": "Scratched round small woden shield with brass spice in center."
 	},		
-	"soft_leather_armor": {
+	"soft-leather-armor": {
 		"render": {"char": "(", "color": "brown" },
 		"tags": ["item", "wearable", "armor"],
 		"points": 10,
@@ -106,47 +106,58 @@
 	},
 
 	"cheese": {
+		"render": {"char": ",", "color": "orange" },
 		"tags": ["item", "food"]
 	},
 
 	"apple": {
+		"render": {"char": ",", "color": "red" },
 		"tags": ["item", "food"]
 	},
 
 	"light-cure": {
+		"render": {"char": "!", "color": "blue" },
 		"tags": ["item", "potion"]
 	},
 
 	"poison": {
+		"render": {"char": "!", "color": "green" },
 		"tags": ["item", "potion"]
 	},
 
 	"phase-scroll": {
+		"render": {"char": "?", "color": "brown" },
 		"tags": ["item", "scroll"]
 	},
 
 	"wooden-torch": {
+		"render": {"char": "~", "color": "brown" },
 		"tags": ["item", "device"]
 	},
 
 	"leather-sandals": {
+		"render": {"char": "(", "color": "brown" },
 		"tags": ["item", "wearable"]
 	},
 
 	"small-rock": {
-		"tags": ["item", "food"]
+		"render": {"char": "~", "color": "gray" },
+		"tags": ["item"]
 	},
 
 	"rusty-dagger": {
+		"render": {"char": "|", "color": "gray" },
 		"tags": ["item", "weapon"]
 	},
 
 	"dirty-rag": {
-		"tags": ["item", "wearable"]
+		"render": {"char": "(", "color": "gray" },
+		"tags": ["item", "wearable", "armor"]
 	},
 
 	"arrows": {
-		"tags": ["item", "food"]
+		"render": {"char": "-", "color": "brown" },
+		"tags": ["item", "weapon"]
 	}
 
 }

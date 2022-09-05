@@ -23,7 +23,8 @@ function templatesAction()
 
 function levelAction($id)
 {
-  //$this->seed(1658993076);
+  $id = 'cellars-1'; //testing
+
   $this->app->setSession('seed', $this->seed());
 
   switch($id) {
@@ -36,21 +37,6 @@ function levelAction($id)
   $level->create();
   $this->outputJson($level->toArray());
 }
-
-// function cityAction()
-// {
-//   //$this->seed(1659099490);
-//   $this->app->setSession('seed', $this->seed());
-
-//   print "Seed: ". $this->seed() . '<br>';
-
-//   $level = new CityLevel();
-//   $level->create();
-
-//   return $this->template('tpl/home/level.tpl', ['map' => $level->html()]);
-// }
-
-
 
 }
 
