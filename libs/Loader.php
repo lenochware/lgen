@@ -34,6 +34,12 @@ class Loader
 
 	protected function loadJsonFile($path)
 	{
+		$default = [
+			'render' => ['char' => '?', 'color' => 'pink'], 
+			'desc' => 'You see nothing interesting.', 
+			'tags' => [],
+		];
+
 		$s = $this->removeComments(file_get_contents($path));
 		$this->json = json_decode($s, true);
 
@@ -44,7 +50,11 @@ class Loader
 
 		foreach ($this->json as $k => $obj) {
 			if (!is_array($obj)) continue;
+
+			$this->json[$k] += $default;			
+
 			$this->json[$k]['id'] = $k;
+			if (!isset($obj['name'])) $this->json[$k]['name'] = $k;
 			
 			// if ($this->json[$k]['tags']) {
 			// 	$this->json[$k]['tags_lookup'] = $this->getLookup($this->json[$k]['tags']);
