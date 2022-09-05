@@ -12,7 +12,7 @@ function indexAction()
 
   $starttime = microtime(true);
 
-  $level = new CellarsLevel(1);
+  $level = new CellarsLevel(2);
   $level->create();
 
   $time = round((microtime(true) - $starttime)*1000,2);

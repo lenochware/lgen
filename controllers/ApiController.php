@@ -2,8 +2,26 @@
 
 class ApiController extends BaseController
 {
+  protected $loader;
 
-function indexAction($id)
+function __construct($app) {
+  parent::__construct($app);
+  $this->loader = new Loader('data');
+}
+
+function objectsAction()
+{
+  $objects = $this->loader->loadObjects();
+  $this->outputJson($objects);
+}
+
+function templatesAction()
+{
+  $templates = $this->loader->loadTemplates();
+  $this->outputJson($templates);  
+}
+
+function levelAction($id)
 {
   //$this->seed(1658993076);
   $this->app->setSession('seed', $this->seed());
@@ -19,18 +37,18 @@ function indexAction($id)
   $this->outputJson($level->toArray());
 }
 
-function cityAction()
-{
-  //$this->seed(1659099490);
-  $this->app->setSession('seed', $this->seed());
+// function cityAction()
+// {
+//   //$this->seed(1659099490);
+//   $this->app->setSession('seed', $this->seed());
 
-  print "Seed: ". $this->seed() . '<br>';
+//   print "Seed: ". $this->seed() . '<br>';
 
-  $level = new CityLevel();
-  $level->create();
+//   $level = new CityLevel();
+//   $level->create();
 
-  return $this->template('tpl/home/level.tpl', ['map' => $level->html()]);
-}
+//   return $this->template('tpl/home/level.tpl', ['map' => $level->html()]);
+// }
 
 
 

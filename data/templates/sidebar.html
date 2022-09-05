@@ -1,0 +1,20 @@
+<div class="player-info">
+	<span class="command" data-key="i">
+		<%= player.params.name %><br>
+		Level: <%= player.lvl %> <%= _templ.meterSimple(player.xp, player.nextXp) %><br>
+		Health: <%= player.health %> <%= _templ.meter("meter-health", player.health, player.maxHealth) %><br>
+		<% var wpn = player.inventory.getWeapon(); %>
+		In hand: <%= wpn? wpn.name().indef().capitalize() : '---' %><br>
+		Armor: <%= player.armor %><br>
+		Gold: <%= player.gold %><br>
+	</span>	
+	<div class="conditions">
+	<% for (let cond of player.getConditions()) { %>
+		<span class="condition-<%= cond %>"><%= cond %></span><br>
+	<% } %>	
+	</div>
+</div>
+<hr>
+<div id="object-info"></div>
+
+<div style="position:absolute; bottom: 0; width:100%"><b><%= player.level %></b></div>

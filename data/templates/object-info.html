@@ -1,0 +1,16 @@
+<span class="link tile-info" data-pos="<%= item.pos.x %>,<%= item.pos.y %>">
+	<%= item.name().indef().capitalize() %></span><br>
+
+<% if (item.is('actor')) { %>
+	<%= _templ.meter("meter-health", item.health, item.maxHealth) %>
+<% } %>
+
+<div class="conditions">
+<% for (let cond of conditions) { %>
+	<span class="condition-<%= cond %>"><%= cond %></span>
+<% } %>
+</div>
+
+<% for (let cmd of commands) { %>
+<div class="command ui-button" data-key="<%= cmd.key %>" data-pos="<%= item.pos.x %>,<%= item.pos.y %>"><%= cmd.label %></div> 
+<% } %>

@@ -1,0 +1,28 @@
+<% var c = player.inventory.getContent(); %>
+<%= player.params.name %> inventory
+<table width="100%">
+	<tr>
+		<td valign="top">
+			Equipment:<br>
+			<% for (let it of c.body) { %>
+
+			<%= it.key %>) <%= it.keyName %>: 
+				<span class="<%= it.cssClass %> command" data-key="<%= it.key %>"><%= it.name %></span><br>
+
+			<% } %>
+		</td>
+		<td valign="top">
+			In backpack:<br>
+			<% for (let it of c.backpack) { %>
+
+			<%= it.key %>) <span class="<%= it.cssClass %> command" data-key="<%= it.key %>"><%= it.name %></span><br>
+
+			<% } %>			
+		</td>
+	</tr>
+</table>
+
+You have <%= player.gold %> gold coins.<br>
+
+Press [a-z, 0-9] to examine item.
+

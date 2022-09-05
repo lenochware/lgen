@@ -4,12 +4,11 @@ class CellarsLevel extends Level
 {
   function create()
   {
-    if ($this->number == 2)
-      $this->init(rint(2,7),rint(2,7));
-    else
-      $this->init(5,5);
+    $this->init(5,5);
 
     $this->connect();
+
+  if ($this->number > 1 /* and rbet(.5)*/) $this->addTag('big-rooms');
 
     foreach ($this->sectors as $sector)
     {

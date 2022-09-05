@@ -1,0 +1,29 @@
+<style>
+.new-game {
+	text-align: center;
+}	
+
+.new-game div { padding: 10px; }
+</style>
+
+<div class="new-game">
+	<h2>Choose world</h2>
+	<div id="worlds-list"></div>
+
+	<h2>Choose your hero</h2>
+	<div id="heros-list"></div>
+
+	<div>Rename hero: <input type="text" name="player"></div>
+
+	<div><button class="command" data-key="s">Start Game</button></div>
+</div>
+<script>
+	$(document).ready(init);
+
+	function init()
+	{
+		$('#worlds-list').load('loader.php?id=game/worlds-list');
+		$('#heros-list').load('loader.php?id=game/heros-list');
+	}
+</script>
+
