@@ -2,6 +2,11 @@
 
 class CellarsLevel extends Level
 {
+  function __construct($number)
+  {
+    parent::__construct('cellars', $number);
+  }
+  
   function create()
   {
     $this->init(5,5);

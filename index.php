@@ -15,7 +15,7 @@ $app = new PCApp('lgen');
 $pclib->autoloader->addDirectory('libs');
 
 $app->random = new Random;
-$app->db = new DungeonBase('data/test.json');
+$app->db = new DungeonBase('data');
 $app->setLayout('tpl/website.tpl');
 
 /* Nastaveni defaultniho controlleru. */

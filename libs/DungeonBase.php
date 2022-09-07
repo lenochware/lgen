@@ -40,9 +40,11 @@ class DungeonBase implements \pclib\IService
     return preg_replace('/\/\/.*/', '', $s);
   }
 
-  function load($path)
+  function load($dir)
   {
-    $this->data = json_decode($this->removeComments(file_get_contents($path)),true);
+    $loader = new Loader($dir);
+    $objects = $loader->loadObjects();
+    $this->data = array_merge($objects['tiles'], $objects['items'], $objects['actors'], $objects['levels']);
   }
 
   //BIOMY ??

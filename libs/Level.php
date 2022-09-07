@@ -2,6 +2,7 @@
 
 class Level extends Entity
 {
+  protected $id = '';
   protected $number = 1;
 
   public $sectorWidth = 16;
@@ -12,14 +13,13 @@ class Level extends Entity
 
   protected $exits = [];
 
-  function __construct($number)
+  function __construct($id, $number)
   {
     parent::__construct();
+    $this->id = $id;
     $this->number = $number;
     $this->app->db->indexLevel($number);
-
-    $id = $this->random->get($this->db->list('level'));
-    $this->config = $this->db->get($id);
+    $this->config = $this->db->get($this->id.'-'.$this->number);
   }
 
   function init($width, $height)
