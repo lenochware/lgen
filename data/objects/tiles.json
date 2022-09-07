@@ -1,5 +1,6 @@
 {
 	"null": {
+		"family": ["ground", "wall"],
 		"render": {"char": " ", "color": "black" },
 		"tags": ["wall", "inpenetrable", "opaque", "blocking"],
 		"name": "unknown grid",
@@ -7,6 +8,7 @@
 	},
 
 	"none": {
+		"family": ["ground", "wall"],
 		"render": {"char": " ", "color": "black" },
 		"tags": ["wall", "inpenetrable", "opaque", "blocking"],
 		"name": "unknown grid",
@@ -14,6 +16,7 @@
 	},
 
 	"wall": {
+		"family": ["ground", "wall"],
 		"render": {"char": "#", "color": "gray" },
 		"tags": ["wall", "hiding", "opaque", "blocking"],
 		"name": "stone wall",
@@ -21,6 +24,7 @@
 	},
 
 	"granite-wall": {
+		"family": ["ground", "wall"],
 		"render": {"char": "#", "color": "gray" },
 		"tags": ["wall", "hiding", "opaque", "blocking"],
 		"name": "stone wall",
@@ -28,6 +32,7 @@
 	},
 
 	"wall-moss": {
+		"family": ["ground", "wall"],
 		"render": {"char": "#", "color": "green" },
 		"tags": ["wall", "hiding", "opaque", "blocking"],
 		"name": "stone wall",
@@ -35,6 +40,7 @@
 	},
 
 	"fake_wall": {
+		"family": ["ground", "floor"],
 		"render": {"char": "#", "color": "gray" },
 		"tags": ["hiding", "opaque"],
 		"name": "fake wall",
@@ -42,6 +48,7 @@
 	},
 
 	"invisible_wall": {
+		"family": ["ground", "wall"],
 		"render": {"char": ".", "color": "gray" },
 		"tags": ["wall", "blocking"],
 		"name": "invisible wall",
@@ -50,6 +57,7 @@
 
 
 	"rubble": {
+		"family": ["ground", "wall"],
 		"render": {"char": ":", "color": "gray" },
 		"tags": ["hiding", "blocking", "diggable"],
 		"name": "rubble",
@@ -57,6 +65,7 @@
 	},
 
 	"water": {
+		"family": ["ground", "floor"],
 		"render": {"char": "~", "color": "light-blue" },
 		"tags": ["water", "hiding", "sticky"],
 		"name": "deep water",
@@ -65,6 +74,7 @@
 	},
 
 	"shallow_water": {
+		"family": ["ground", "floor"],
 		"render": {"char": "~", "color": "light-blue" },
 		"tags": ["water", "hiding", "floor"],
 		"name": "shallow water",
@@ -72,6 +82,7 @@
 	},
 
 	"mud": {
+		"family": ["ground", "floor"],
 		"render": {"char": ".", "color": "brown" },
 		"tags": ["floor"],
 		"name": "mud",
@@ -79,6 +90,7 @@
 	},
 
 	"dirt": {
+		"family": ["ground", "floor"],
 		"render": {"char": ".", "color": "brown" },
 		"tags": ["floor"],
 		"name": "mud",
@@ -86,6 +98,7 @@
 	},
 
 	"rocks": {
+		"family": ["ground", "wall"],
 		"render": {"char": "^", "color": "gray" },
 		"tags": ["sticky"],
 		"name": "rocks",
@@ -93,6 +106,7 @@
 	},
 
 	"earth_wall": {
+		"family": ["ground", "wall"],
 		"render": {"char": "#", "color": "brown" },
 		"tags": ["wall", "hiding", "opaque", "blocking", "diggable"],
 		"name": "earth wall",
@@ -100,6 +114,7 @@
 	},
 
 	"grass": {
+		"family": ["ground", "floor"],
 		"render": {"char": ";", "color": "dark-green" },
 		"tags": ["hiding", "hiding_mon","floor"],
 		"name": "high grass",
@@ -107,6 +122,7 @@
 	},
 
 	"tree": {
+		"family": ["ground", "wall"],
 		"render": {"char": "%", "color": "green" },
 		"tags": ["hiding", "hiding_mon", "blocking", "diggable"],
 		"name": "high tree",
@@ -114,6 +130,7 @@
 	},
 
 	"floor": {
+		"family": ["ground", "floor"],
 		"render": {"char": ".", "color": "gray" },
 		"tags": ["floor"],
 		"name": "stone floor",
@@ -121,6 +138,7 @@
 	},
 
 	"blood-floor": {
+		"family": ["ground", "floor"],
 		"render": {"char": ".", "color": "red" },
 		"tags": ["floor"],
 		"name": "blood stains",
@@ -128,6 +146,7 @@
 	},
 
 	"blood_floor": {
+		"family": ["ground", "floor"],
 		"render": {"char": ".", "color": "red" },
 		"tags": ["floor"],
 		"name": "blood stains",
@@ -135,6 +154,7 @@
 	},
 
 	"wet-floor": {
+		"family": ["ground", "floor"],
 		"render": {"char": ".", "color": "blue" },
 		"tags": ["floor"],
 		"name": "wet floor",
@@ -142,6 +162,7 @@
 	},
 
 	"stairs-up": {
+		"family": ["ground", "device"],
 		"render": {"char": "<", "color": "white" },
 		"tags": ["exit"],
 		"name": "stairs up",
@@ -149,6 +170,7 @@
 	},
 
 	"stairs-down": {
+		"family": ["ground", "device"],
 		"render": {"char": ">", "color": "white" },
 		"tags": ["exit"],
 		"name": "stairs down",
@@ -156,6 +178,7 @@
 	},
 
 	"door": {
+		"family": ["ground", "device"],
 		"render": {"char": "+", "color": "brown" },
 		"tags": ["hiding", "door", "opaque", "blocking"],
 		"name": "wooden door",
@@ -163,6 +186,7 @@
 	},
 
 	"secret-door": {
+		"family": ["ground", "wall"],
 		"render": {"char": "%", "color": "gray" },
 		"family": ["ground", "device", "door"],
 		"tags": ["door"],
@@ -171,9 +195,68 @@
 	},
 
 	"open_door": {
+		"family": ["ground", "device"],
 		"render": {"char": "`", "color": "brown" },
 		"tags": ["door", "open"],
 		"name": "open wooden door",
 		"desc": "You see nothing interesting."
-	}
+	},
+
+// *** Meta ***
+
+	"none": {
+		"family": ["meta", "wall"],
+		"render": {"char": " ", "color": "black" },
+		"family": ["meta", "none"],
+		"name": "undefined"
+	},
+
+	"outside": {
+		"family": ["meta", "wall"],
+		"render": {"char": "#", "color": "gray" },
+		"family": ["meta", "wall"],
+		"name": "outside"
+	},
+
+	"room-wall": {
+		"family": ["meta", "wall"],
+		"render": {"char": "#", "color": "black" },
+		"family": ["meta", "wall"],
+		"name": "room-wall"
+	},
+
+	"room-floor": {
+		"family": ["meta", "floor"],
+		"render": {"char": ".", "color": "gray" },
+		"family": ["meta", "floor"],
+		"name": "room-floor"
+	},
+
+	"inner-wall": {
+		"family": ["meta", "wall"],
+		"render": {"char": "#", "color": "gray" },
+		"family": ["meta", "wall"],
+		"name": "inner wall"
+	},
+
+	"tunnel-wall": {
+		"family": ["meta", "wall"],
+		"render": {"char": "#", "color": "gray" },
+		"family": ["meta", "wall"],
+		"name": "inner wall"
+	},
+
+	"exit": {
+		"family": ["meta", "wall"],
+		"render": {"char": ".", "color": "gray" },
+		"family": ["meta", "floor"],
+		"name": "exit"
+	},
+
+	"tunnel": {
+		"family": ["meta", "wall"],
+		"render": {"char": ".", "color": "black" },
+		"family": ["meta", "floor"],
+		"name": "tunnel"
+	}	
 }

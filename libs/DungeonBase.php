@@ -55,7 +55,7 @@ class DungeonBase implements \pclib\IService
     $this->index = [];
     foreach($this->data as $id => $obj) {
       if (empty($obj['lvl'])) continue;
-      if ($lvl < $obj['lvl'][0] or $lvl > $obj['lvl'][1]) continue;
+      if ($lvl-2 > $obj['lvl'] or $lvl+2 < $obj['lvl']) continue;
       $this->index[$obj['family'][1]][] = $id;
       $this->index[$obj['family'][0]][] = $id;
     }
@@ -71,7 +71,7 @@ class DungeonBase implements \pclib\IService
 
   protected function rarity($id)
   {
-    $x = $this->lvl - $this->get($id)['lvl'][0];
+    $x = $this->lvl - $this->get($id)['lvl'];
     return $x > 2? $x-2 : 2-$x;
   }
 

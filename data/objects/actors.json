@@ -1,5 +1,6 @@
 {
 	"player": {
+		"family": ["actor", "player"],
 		"lvl": 1,
 		"xp": 0,
 		"gold": 0,
@@ -16,6 +17,7 @@
 	},
 
 	"ghost": {
+		"family": ["actor", "ghost"],
 		"lvl": 1,
 		"xp": 3,
 		"tags": ["actor", "ghost", "flying", "neutral", "moving-random", "awake"],
@@ -28,6 +30,7 @@
 	},
 
 	"rat": {
+		"family": ["actor", "pest"],
 		"lvl": 1,
 		"xp": 3,
 		"tags": ["actor", "rat", "fast", "aggresive"],
@@ -41,6 +44,7 @@
 	},
 
 	"frog": {
+		"family": ["actor", "animal"],
 		"lvl": 1,
 		"xp": 3,
 		"tags": ["actor", "frog"],
@@ -51,10 +55,11 @@
 		"drop": ["none", "corpse"],
 		"name": "giant frog",
 		"desc": ""
-},
+	},
 
-"shark": {
-		"lvl": 1,
+	"shark": {
+		"family": ["actor", "animal"],
+		"lvl": 2,
 		"xp": 3,
 		"tags": ["actor", "fish"],
 		"render": {"char": "l", "color": "cyan" },
@@ -62,10 +67,11 @@
 		"attacks": ["bite"],
 		"name": "Giant White Shark",
 		"desc": ""
-},
+	},
 
-"mage": {
-		"lvl": 1,
+	"mage": {
+		"family": ["actor", "humanoid"],
+		"lvl": 3,
 		"xp": 3,
 		"tags": ["actor", "humanoid", "fast", "smart"],
 		"render": {"char": "h", "color": "red" },
@@ -73,52 +79,67 @@
 		"attacks": ["hit"],
 		"name": "mage",
 		"desc": ""
-},
+	},
 
+	"spider": {
+		"family": ["actor", "pest"],
+		"lvl": 2,
+		"xp": 3,	
+		"tags": ["actor", "pest", "spider"],
+		"render": {"char": "S", "color": "blue" },
+		"name": "Giant spider",
+		"desc": ""
+	},
 
-"spider": {
-	"lvl": 1,
-	"xp": 3,	
-	"tags": ["actor", "pest", "spider"],
-	"render": {"char": "S", "color": "blue" },
-	"name": "Giant spider",
-	"desc": ""
-},
+	"kobold": {
+		"family": ["actor", "humanoid"],
+		"lvl": 2,
+		"tags": ["actor", "bipod"],
+		"render": {"char": "k", "color": "green" },
+		"health": 20,
+		"attacks": ["hit"],
+		"name": "kobold",
+		"desc": ""
+	},
 
-"kobold": {
-	"tags": ["actor", "bipod"],
-	"render": {"char": "k", "color": "green" },
-	"health": 20,
-	"attacks": ["hit"],
-	"name": "kobold",
-	"desc": ""
-},
+	"scorpion": {
+		"family": ["actor", "pest"],
+		"lvl": 2,
+		"render": {"char": "K", "color": "black" }
+	},
 
-"scorpion": {
+	"wild-dog": {
+		"family": ["actor", "animal"],
+		"lvl": 2,
+		"render": {"char": "C", "color": "black" }
+	},
 
-},
+	"wolf": {
+		"family": ["actor", "animal"],
+		"lvl": 3,
+		"render": {"char": "C", "color": "brown" }
+	},
 
-"wild-dog": {
+	"mummy": {
+		"family": ["actor", "humanoid"],
+		"lvl": 3,
+		"render": {"char": "h", "color": "yellow" }
+	},
 
-},
+	"golem": {
+		"family": ["actor", "humanoid"],
+		"lvl": 4,
+		"render": {"char": "g", "color": "black" }
+	},
 
-"wolf": {
-
-},
-
-"mummy": {
-
-},
-
-"golem": {
-
-},
-
-"dragon": {
-
-},
+	"dragon": {
+		"family": ["actor", "dragon"],
+		"lvl": 4,
+		"render": {"char": "d", "color": "green" }
+	},
 
 	"worm": {
+		"family": ["actor", "pest"],
 		"lvl": 1,
 		"xp": 6,
 		"tags": ["actor", "worm"],
@@ -131,6 +152,7 @@
 	},
 
 	"centipede": {
+		"family": ["actor", "pest"],
 		"lvl": 1,
 		"xp": 6,
 		"tags": ["actor", "worm"],
@@ -143,10 +165,11 @@
 },
 
 	"skeleton": {
+		"family": ["actor", "humanoid"],
 		"lvl": 2,
 		"xp": 10,
 		"tags": ["actor", "skeleton", "fast", "swimmer", "fearless"],
-		"render": {"char": "S", "color": "white" },
+		"render": {"char": "h", "color": "white" },
 		"health": 20,
 		"attacks": ["hit"],
 		"corpse": "skull",
@@ -156,6 +179,7 @@
 	},
 
 	"wall_monster": {
+		"family": ["actor", "monster"],
 		"lvl": 2,
 		"xp": 10,
 		"tags": ["actor", "wall_monster", "unmovable"],
@@ -169,6 +193,7 @@
 	},
 
 	"white-snake": {
+		"family": ["actor", "animal"],
 		"lvl": 1,
 		"xp": 6,
 		"tags": ["actor", "neutral", "moving-random", "awake", "slow", "swimmer"],
@@ -183,6 +208,7 @@
 	},
 
 	"snake": {
+		"family": ["actor", "animal"],
 		"lvl": 1,
 		"xp": 6,
 		"tags": ["actor", "neutral", "moving-random", "awake", "slow", "swimmer"],
@@ -201,5 +227,4 @@
 		"attacks": ["bite", "poison-bite"],
 		"attack-chances": [3,1]
 	}
-
 }

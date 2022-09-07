@@ -1,5 +1,6 @@
 {
 	"corpse": {
+		"family": ["item", "useless"],
 		"render": {"char": "~", "color": "gray" },
 		"tags": ["item", "useless"],
 		"name": "corpse",
@@ -7,6 +8,7 @@
 	},
 
 	"bones": {
+		"family": ["item", "useless"],
 		"render": {"char": "~", "color": "gray" },
 		"tags": ["item", "useless"],
 		"name": "corpse",
@@ -14,6 +16,7 @@
 	},
 
 	"slime": {
+		"family": ["item", "useless"],
 		"render": {"char": "~", "color": "green" },
 		"tags": ["item"],
 		"name": "green slime",
@@ -21,6 +24,7 @@
 	},
 
 	"dust": {
+		"family": ["item", "useless"],
 		"render": {"char": "~", "color": "gray" },
 		"tags": ["item", "useless"],
 		"name": "dust",
@@ -28,6 +32,7 @@
 	},
 
 	"rock": {
+		"family": ["item", "food"],
 		"render": {"char": "~", "color": "gray" },
 		"tags": ["item"],
 		"name": "rock",
@@ -35,12 +40,14 @@
 	},
 
 	"rusty-dagger": {
+		"family": ["item", "weapon"],
 		"render": {"char": "|", "color": "gray" },
 		"tags": ["item", "wearable", "weapon", "light"],
 		"name": "rusty dagger",
 		"desc": "Small dagger looks somewhat damaged by water."
 	},
 	"wooden_club": {
+		"family": ["item", "weapon"],
 		"render": {"char": "/", "color": "brown" },
 		"tags": ["item", "wearable", "weapon", "heavy"],
 		"name": "wooden club",
@@ -49,12 +56,14 @@
 		"desc": "Big heavy club probably from oak wood."
 	},
 	"broken_sword": {
+		"family": ["item", "weapon"],
 		"render": {"char": "|", "color": "gray" },
 		"tags": ["item", "wearable", "weapon", "sword"],
 		"name": "broken sword",
 		"desc": "Long sword, unfortunatelly its blade is broken few inches above handle."
 	},
 	"short-sword": {
+		"family": ["item", "weapon"],
 		"render": {"char": "|", "color": "white" },
 		"tags": ["item", "wearable", "weapon", "sword"],
 		"attacks": ["slash", "hack", "cut"],
@@ -63,6 +72,7 @@
 		"desc": "It is indeed quite short, just a few inches longer than a dagger."
 	},
 	"small-shield": {
+		"family": ["item", "armor"],
 		"render": {"char": ")", "color": "white" },
 		"tags": ["item", "wearable", "shield"],
 		"attacks": ["none", "block"],
@@ -71,6 +81,7 @@
 		"desc": "Scratched round small woden shield with brass spice in center."
 	},		
 	"soft-leather-armor": {
+		"family": ["item", "armor"],
 		"render": {"char": "(", "color": "brown" },
 		"tags": ["item", "wearable", "armor"],
 		"points": 10,
@@ -78,6 +89,7 @@
 		"desc": "Kind of basic armor."
 	},		
 	"copper-coins": {
+		"family": ["item", "gold"],
 		"render": {"char": "$", "color": "brown" },
 		"tags": ["item", "gold"],
 		"name": "copper coins",
@@ -85,13 +97,15 @@
 	},
 	
 	"silver-coins": {
-	"render": {"char": "$", "color": "brown" },
+	"family": ["item", "gold"],
+		"render": {"char": "$", "color": "brown" },
 	"tags": ["item", "gold"],
 	"name": "copper coins",
 	"desc": "A pile of {0} copper coins."
 },
 
 	"old-bread": {
+		"family": ["item", "food"],
 		"render": {"char": ",", "color": "brown" },
 		"tags": ["item", "food"],
 		"name": "piece of bread",
@@ -99,6 +113,7 @@
 	},
 
 	"fish_food": {
+		"family": ["item", "food"],
 		"render": {"char": ",", "color": "blue" },
 		"tags": ["item", "food"],
 		"name": "small blue fish",
@@ -106,56 +121,67 @@
 	},
 
 	"cheese": {
+		"family": ["item", "food"],
 		"render": {"char": ",", "color": "orange" },
 		"tags": ["item", "food"]
 	},
 
 	"apple": {
+		"family": ["item", "food"],
 		"render": {"char": ",", "color": "red" },
 		"tags": ["item", "food"]
 	},
 
 	"light-cure": {
+		"family": ["item", "potion"],
 		"render": {"char": "!", "color": "blue" },
 		"tags": ["item", "potion"]
 	},
 
 	"poison": {
+		"family": ["item", "potion"],
 		"render": {"char": "!", "color": "green" },
 		"tags": ["item", "potion"]
 	},
 
 	"phase-scroll": {
+		"family": ["item", "scroll"],
 		"render": {"char": "?", "color": "brown" },
 		"tags": ["item", "scroll"]
 	},
 
 	"wooden-torch": {
+		"family": ["item", "weapon"],
 		"render": {"char": "~", "color": "brown" },
 		"tags": ["item", "device"]
 	},
 
 	"leather-sandals": {
+		"family": ["item", "armor"],
 		"render": {"char": "(", "color": "brown" },
 		"tags": ["item", "wearable"]
 	},
 
 	"small-rock": {
+		"family": ["item", "food"],
 		"render": {"char": "~", "color": "gray" },
 		"tags": ["item"]
 	},
 
 	"rusty-dagger": {
+		"family": ["item", "weapon"],
 		"render": {"char": "|", "color": "gray" },
 		"tags": ["item", "weapon"]
 	},
 
 	"dirty-rag": {
+		"family": ["item", "armor"],
 		"render": {"char": "(", "color": "gray" },
 		"tags": ["item", "wearable", "armor"]
 	},
 
 	"arrows": {
+		"family": ["item", "ammo"],
 		"render": {"char": "-", "color": "brown" },
 		"tags": ["item", "weapon"]
 	}
