@@ -104,7 +104,6 @@ class Level extends Entity
     $sector->room->set($x % $this->sectorWidth, $y % $this->sectorHeight, $id);
   }
 
-
   protected function connectSectors()
   {
     foreach($this->sectors as $sector) {

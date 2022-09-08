@@ -46,7 +46,7 @@
 		"name": "rusty dagger",
 		"desc": "Small dagger looks somewhat damaged by water."
 	},
-	"wooden_club": {
+	"wooden-club": {
 		"family": ["item", "weapon"],
 		"render": {"char": "/", "color": "brown" },
 		"tags": ["item", "wearable", "weapon", "heavy"],
@@ -55,7 +55,7 @@
 		"attack-chances": [5,1],
 		"desc": "Big heavy club probably from oak wood."
 	},
-	"broken_sword": {
+	"broken-sword": {
 		"family": ["item", "weapon"],
 		"render": {"char": "|", "color": "gray" },
 		"tags": ["item", "wearable", "weapon", "sword"],
@@ -97,11 +97,11 @@
 	},
 	
 	"silver-coins": {
-	"family": ["item", "gold"],
+		"family": ["item", "gold"],
 		"render": {"char": "$", "color": "brown" },
-	"tags": ["item", "gold"],
-	"name": "copper coins",
-	"desc": "A pile of {0} copper coins."
+		"tags": ["item", "gold"],
+		"name": "copper coins",
+		"desc": "A pile of {0} copper coins."
 },
 
 	"old-bread": {
@@ -112,7 +112,7 @@
 		"desc": "A piece of bread."
 	},
 
-	"fish_food": {
+	"fish-food": {
 		"family": ["item", "food"],
 		"render": {"char": ",", "color": "blue" },
 		"tags": ["item", "food"],
@@ -166,12 +166,6 @@
 		"family": ["item", "food"],
 		"render": {"char": "~", "color": "gray" },
 		"tags": ["item"]
-	},
-
-	"rusty-dagger": {
-		"family": ["item", "weapon"],
-		"render": {"char": "|", "color": "gray" },
-		"tags": ["item", "weapon"]
 	},
 
 	"dirty-rag": {

@@ -203,7 +203,7 @@ class Room extends Entity
 
   function rectangleLayout()
   {
-    $this->clear(['granite-wall', '', '', 'outside']);
+    $this->clear(['wall', '', '', 'outside']);
     $this->rect($this->width, $this->height, 'floor', 'wall');
     $this->setPivot();    
   }

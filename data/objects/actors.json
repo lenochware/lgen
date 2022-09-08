@@ -178,11 +178,11 @@
 		"desc": "Skeleton with sword and shield is moving to you."
 	},
 
-	"wall_monster": {
+	"wall-monster": {
 		"family": ["actor", "monster"],
 		"lvl": 2,
 		"xp": 10,
-		"tags": ["actor", "wall_monster", "unmovable"],
+		"tags": ["actor", "wall-monster", "unmovable"],
 		"render": {"char": "m", "color": "brown" },
 		"health": 20,
 		"attacks": ["hit"],
@@ -222,7 +222,7 @@
 		"desc": "Great yellow snake is moving slowly on the floor."
 	},
 
-	"poisonous_snake": {
+	"poisonous-snake": {
 		"extends": "snake",
 		"attacks": ["bite", "poison-bite"],
 		"attack-chances": [3,1]

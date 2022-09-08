@@ -7,23 +7,7 @@
 		"desc": "You see nothing."
 	},
 
-	"none": {
-		"family": ["ground", "wall"],
-		"render": {"char": " ", "color": "black" },
-		"tags": ["wall", "inpenetrable", "opaque", "blocking"],
-		"name": "unknown grid",
-		"desc": "You see nothing."
-	},
-
 	"wall": {
-		"family": ["ground", "wall"],
-		"render": {"char": "#", "color": "gray" },
-		"tags": ["wall", "hiding", "opaque", "blocking"],
-		"name": "stone wall",
-		"desc": "You see nothing interesting."
-	},
-
-	"granite-wall": {
 		"family": ["ground", "wall"],
 		"render": {"char": "#", "color": "gray" },
 		"tags": ["wall", "hiding", "opaque", "blocking"],
@@ -39,7 +23,7 @@
 		"desc": "You see nothing interesting."
 	},
 
-	"fake_wall": {
+	"wall-fake": {
 		"family": ["ground", "floor"],
 		"render": {"char": "#", "color": "gray" },
 		"tags": ["hiding", "opaque"],
@@ -47,7 +31,7 @@
 		"desc": "It looks like a wall but it is only image created by wizzard."
 	},
 
-	"invisible_wall": {
+	"wall-invisible": {
 		"family": ["ground", "wall"],
 		"render": {"char": ".", "color": "gray" },
 		"tags": ["wall", "blocking"],
@@ -66,7 +50,7 @@
 
 	"water": {
 		"family": ["ground", "floor"],
-		"render": {"char": "~", "color": "light-blue" },
+		"render": {"char": "~", "color": "blue" },
 		"tags": ["water", "hiding", "sticky"],
 		"name": "deep water",
 		"attacks": ["drowning"],
@@ -75,7 +59,7 @@
 
 	"shallow_water": {
 		"family": ["ground", "floor"],
-		"render": {"char": "~", "color": "light-blue" },
+		"render": {"char": "~", "color": "lightblue" },
 		"tags": ["water", "hiding", "floor"],
 		"name": "shallow water",
 		"desc": "You see nothing interesting."
@@ -186,9 +170,8 @@
 	},
 
 	"secret-door": {
-		"family": ["ground", "wall"],
-		"render": {"char": "%", "color": "gray" },
 		"family": ["ground", "device", "door"],
+		"render": {"char": "%", "color": "gray" },
 		"tags": ["door"],
 		"name": "secret door",
 		"desc": "You see nothing interesting."
@@ -207,56 +190,48 @@
 	"none": {
 		"family": ["meta", "wall"],
 		"render": {"char": " ", "color": "black" },
-		"family": ["meta", "none"],
 		"name": "undefined"
 	},
 
 	"outside": {
 		"family": ["meta", "wall"],
 		"render": {"char": "#", "color": "gray" },
-		"family": ["meta", "wall"],
 		"name": "outside"
 	},
 
 	"room-wall": {
 		"family": ["meta", "wall"],
 		"render": {"char": "#", "color": "black" },
-		"family": ["meta", "wall"],
 		"name": "room-wall"
 	},
 
 	"room-floor": {
 		"family": ["meta", "floor"],
 		"render": {"char": ".", "color": "gray" },
-		"family": ["meta", "floor"],
 		"name": "room-floor"
 	},
 
 	"inner-wall": {
 		"family": ["meta", "wall"],
 		"render": {"char": "#", "color": "gray" },
-		"family": ["meta", "wall"],
 		"name": "inner wall"
 	},
 
 	"tunnel-wall": {
 		"family": ["meta", "wall"],
 		"render": {"char": "#", "color": "gray" },
-		"family": ["meta", "wall"],
 		"name": "inner wall"
 	},
 
 	"exit": {
 		"family": ["meta", "wall"],
 		"render": {"char": ".", "color": "gray" },
-		"family": ["meta", "floor"],
 		"name": "exit"
 	},
 
 	"tunnel": {
 		"family": ["meta", "wall"],
 		"render": {"char": ".", "color": "black" },
-		"family": ["meta", "floor"],
 		"name": "tunnel"
 	}	
 }
