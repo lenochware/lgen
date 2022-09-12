@@ -11,13 +11,21 @@ class CellarsLevel extends Level
   {
     $this->init(5,5);
 
+    switch ($this->number)  {
+      case 1: $types = ['empty', 5, 'wet', 5, 'destruct', 2, 'warehouse', 1]; break;
+      case 2: $types = [ 'destruct', 5, 'warehouse', 1]; break;
+      case 3: $types = [ 'destruct', 5, 'big', 5, 'warehouse', 1]; break;
+      default:
+        $types = ['empty', 5, 'wet', 5, 'destruct', 2, 'warehouse', 1];
+    }
+
     $this->connect();
 
-  if ($this->number > 1 /* and rbet(.5)*/) $this->addTag('big-rooms');
+    //if ($this->number > 1 /* and rbet(.5)*/) $this->addTag('big-rooms');
 
     foreach ($this->sectors as $sector)
     {
-      $type = $this->random->get2(['empty', 'wet', 'destruct', 'warehouse']);
+      $type = $this->random->pick($types);
 
       $room = $sector->room;
       $room->init($type);
@@ -29,7 +37,15 @@ class CellarsLevel extends Level
     $this->addExits();
     
     foreach ($this->sectors as $sector) {
-      if ($sector->is('stairs-down') and rbet(.5)) $sector->room->type = 'stairs';
+
+      $sector->room->spread('room-floor', 'water', rint(1,5));
+      $sector->room->spread('tunnel', 'water', rint(1,5));
+
+      if ($sector->is('exit')) {
+        $this->populate($sector->room, 'exit');
+        continue;
+      }
+
       $this->populate($sector->room);
     }
 
@@ -54,6 +70,13 @@ class CellarsLevel extends Level
   //   $room->setPivot();    
   // }
 
+  function populateExit($room)
+  {
+    if ($room->is('stairs-down') and rbet(.5)) {
+      $room->fill('room-floor', 'rubble');
+    }
+  }  
+
   function populateWet($room)
   {
     $room->spread('room-floor', 'wall-moss', rint(1,5));
@@ -64,13 +87,6 @@ class CellarsLevel extends Level
     if (rbet(.5))
       $room->spread('water', rfunc('', ['rusty-dagger', 'copper-coins', 'dirty-rag']), rint(1,3));
 
-  }
-
-  function populateStairs($room)
-  {
-    $room->fill('room-floor', 'wet-floor');
-    $room->spread('room-floor', 'frog', rint(0,2));
-    $room->spread('room-floor', rfunc('', ['poison','light-cure']), rint(0,2));
   }
 
   function populateDestruct($room)

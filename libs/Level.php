@@ -192,9 +192,9 @@ function build(Room $room)
   call_user_func([$this, $name], $room);
 }
 
-function populate(Room $room)
+function populate(Room $room, $type = null)
 {
-  $name = 'populate'.ucfirst($room->type);
+  $name = 'populate'.ucfirst($type ?: $room->type);
   if (!method_exists($this, $name)) return false;
   call_user_func([$this, $name], $room);
 }
