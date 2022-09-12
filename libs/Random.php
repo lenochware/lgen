@@ -68,8 +68,8 @@ function pick($list, $chances = null)
   $count = count($list);
 
   for ($i = 0; $i < $count; $i += 2) { 
-    $chances[] = $list[$i];
-    $items[] = $list[$i+1];
+    $items[] = $list[$i];
+    $chances[] = $list[$i+1];
   }
 
   return $this->getc($items, $chances);

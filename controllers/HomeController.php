@@ -3,6 +3,13 @@
 class HomeController extends BaseController
 {
 
+function newLevel()
+{
+  $level = new CellarsLevel(2);
+  $level->create();
+  return $level;  
+}  
+
 function indexAction()
 {
   //$this->seed(1658993076);
@@ -12,8 +19,7 @@ function indexAction()
 
   $starttime = microtime(true);
 
-  $level = new CellarsLevel(2);
-  $level->create();
+  $level = $this->newLevel();
 
   $time = round((microtime(true) - $starttime)*1000,2);
 
@@ -120,8 +126,7 @@ function infoAction($x, $y)
 {
   $this->seed($this->app->getSession('seed'));
 
-  $level = new CellarsLevel(1);
-  $level->create();
+  $level = $this->newLevel();
 
   $sx = floor($x / $level->sectorWidth);
   $sy = floor($y / $level->sectorHeight);
