@@ -24,6 +24,7 @@ class CellarsLevel extends Level
     if ($this->number == 3) {
       $room = rget($this->sectors)->room;
       $room->addTag('boss');
+      $room->type = 'boss';
     };
 
   }
@@ -35,10 +36,10 @@ class CellarsLevel extends Level
 
     foreach ($this->sectors as $sector)
     {
-      $type = $this->random->pick($this->config['room-types']);
-
       $room = $sector->room;
+      $type = empty($room->type)? $this->random->pick($this->config['room-types']) : null;
       $room->init($type);
+
       $this->build($room);
     }
 
@@ -52,12 +53,7 @@ class CellarsLevel extends Level
         $sector->room->spread('room-floor', 'water', rint(1,5));
         $sector->room->spread('tunnel', 'water', rint(1,5));  
       }
-
-      if ($sector->is('exit')) {
-        $this->populate($sector->room, 'exit');
-        continue;
-      }
-
+ 
       $this->populate($sector->room);
     }
 
@@ -87,6 +83,16 @@ class CellarsLevel extends Level
     if ($room->is('stairs-down') and rbet(.5)) {
       $room->fill('room-floor', 'rubble');
     }
+  }  
+
+  function buildBoss(Room $room)
+  {
+    $room->setSize(0,0,16,16);
+    $room->rectangleLayout();
+  }
+
+  function populateBoss($room)
+  {
   }  
 
   function populateWet($room)

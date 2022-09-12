@@ -59,6 +59,7 @@ class Level extends Entity
       'type' => 'exit'
     ];
 
+    $room->type = 'exit';
     $room->addTag('exit');
     $room->addTag($param[0]);
 
