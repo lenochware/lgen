@@ -147,7 +147,7 @@
 
 	"stairs-up": {
 		"family": ["ground", "device"],
-		"render": {"char": "<", "color": "white" },
+		"render": {"char": "<", "color": "gray" },
 		"tags": ["exit"],
 		"name": "stairs up",
 		"desc": "You see nothing interesting."
@@ -155,7 +155,7 @@
 
 	"stairs-down": {
 		"family": ["ground", "device"],
-		"render": {"char": ">", "color": "white" },
+		"render": {"char": ">", "color": "gray" },
 		"tags": ["exit"],
 		"name": "stairs down",
 		"desc": "You see nothing interesting."
