@@ -23,20 +23,29 @@ function templatesAction()
 
 function levelAction($id)
 {
-  $id = 'cellars-1'; //testing
-
-  $this->app->setSession('seed', $this->seed());
-
-  switch($id) {
-  	case 'city': $level = new CityLevel(1); break;
-  	case 'cellars-1': $level = new CellarsLevel(1); break;
-  	case 'cellars-2': $level = new CellarsLevel(2); break;
-  	default: throw new Exception('Level not found.');
-  }
-
-  $level->create();
+  $level = $this->newLevel();
   $this->outputJson($level->toArray());
 }
+
+function newLevel()
+{
+  $seed = $this->app->getSession('seed');
+  $this->seed($seed);
+
+  $form = new pclib\Form('tpl/home/level.tpl', 'level-form');
+  [$name, $number] = explode('-', $form->values['level'] ?: 'cellars-1');
+
+  if ($name == 'cellars')
+    $level = new CellarsLevel($number);
+  elseif ($name == 'city')  
+    $level = new CityLevel('city', $number);
+  else
+    throw new Exception('Unknown level.');
+  
+  $level->create();
+  return $level;  
+}
+
 
 }
 

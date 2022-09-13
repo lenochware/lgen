@@ -48,6 +48,11 @@ function updateAction()
   $this->app->redirect('home');
 }
 
+function playAction()
+{
+  $this->app->redirect(['url' => '../js/styx']);
+}
+
 function roomAction()
 {
   $this->seed(1658326829);
