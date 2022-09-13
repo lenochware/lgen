@@ -12,10 +12,7 @@ function newLevel()
 
 function indexAction()
 {
-  //$this->seed(1658993076);
   $this->app->setSession('seed', $this->seed());
-
-  print "Seed: ". $this->seed() . '<br>';
 
   $starttime = microtime(true);
 
@@ -23,7 +20,9 @@ function indexAction()
 
   $time = round((microtime(true) - $starttime)*1000,2);
 
-  return $this->template('tpl/home/level.tpl', ['map' => $level->html(), 'time' => $time]);
+  $form = new pclib\Form('tpl/home/level.tpl');
+  $form->values = ['map' => $level->html(), 'time' => $time, 'current_seed' => $this->seed()];
+  return $form;
 }
 
 function cityAction()
