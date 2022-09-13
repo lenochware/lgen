@@ -1,5 +1,5 @@
 <?elements
-class form action "home"
+class form route "home"
 string map
 string info
 string time
@@ -7,7 +7,7 @@ string current_seed
 link home lb "Home" route "home"
 link test lb "Room test" route "home/room"
 link play lb "Play" route "home/play"
-select level list "1,city,2,cellars-1,3,cellars-2,4,cellars-3"
+select level list "city-1,city,cellars-1,cellars-1,cellars-2,cellars-2,cellars-3,cellars-3"
 input seed hint "Nastavit seed"
 button update lb "Nastavit"
 ?>

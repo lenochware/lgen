@@ -3,16 +3,34 @@
 class HomeController extends BaseController
 {
 
+protected $form;
+
+function init()
+{
+  parent::init();
+  $this->form = new pclib\Form('tpl/home/level.tpl', 'level-form');
+}
+
 function newLevel()
 {
-  $level = new CellarsLevel(2);
+  [$name, $number] = explode('-', $this->form->values['level'] ?: 'cellars-1');
+
+  if ($name == 'cellars')
+    $level = new CellarsLevel($number);
+  elseif ($name == 'city')  
+    $level = new CityLevel('city', $number);
+  else
+    throw new Exception('Unknown level.');
+  
   $level->create();
   return $level;  
 }  
 
 function indexAction()
 {
-  $this->app->setSession('seed', $this->seed());
+  $seed = $this->form->values['seed'] ?: $this->seed();
+  $this->seed($seed);
+  $this->app->setSession('seed', $seed);
 
   $starttime = microtime(true);
 
@@ -20,22 +38,14 @@ function indexAction()
 
   $time = round((microtime(true) - $starttime)*1000,2);
 
-  $form = new pclib\Form('tpl/home/level.tpl');
-  $form->values = ['map' => $level->html(), 'time' => $time, 'current_seed' => $this->seed()];
-  return $form;
+  $this->form->values += ['map' => $level->html(), 'time' => $time, 'current_seed' => $seed];
+  return $this->form;
 }
 
-function cityAction()
+function updateAction()
 {
-  //$this->seed(1659099490);
-  $this->app->setSession('seed', $this->seed());
-
-  print "Seed: ". $this->seed() . '<br>';
-
-  $level = new CityLevel(1);
-  $level->create();
-
-  return $this->template('tpl/home/level.tpl', ['map' => $level->html()]);
+  $this->form->saveSession();
+  $this->app->redirect('home');
 }
 
 function roomAction()

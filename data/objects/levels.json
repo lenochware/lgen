@@ -1,5 +1,5 @@
 {
-	"city": {
+	"city-1": {
 		"name": "The Town",
 		"type": "regular",
 		"base-tile": "earth_wall",
