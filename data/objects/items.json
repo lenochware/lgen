@@ -135,13 +135,13 @@
 	"light-cure": {
 		"family": ["item", "potion"],
 		"render": {"char": "!", "color": "blue" },
-		"tags": ["item", "potion"]
+		"tags": ["item", "drink"]
 	},
 
 	"poison": {
 		"family": ["item", "potion"],
 		"render": {"char": "!", "color": "green" },
-		"tags": ["item", "potion"]
+		"tags": ["item", "drink"]
 	},
 
 	"phase-scroll": {

@@ -61,7 +61,7 @@ class CellarsLevel extends Level
 
   function addExits()
   {
-    $ex = ['city', 'cellars-1', 'cellars-2', 'cellars-3'];
+    $ex = ['city-1', 'cellars-1', 'cellars-2', 'cellars-3'];
 
     $prev = $ex[$this->number-1] ?? '';
     $next = $ex[$this->number+1] ?? '';
