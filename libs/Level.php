@@ -203,6 +203,7 @@ function populate(Room $room, $type = null)
 function toArray()
 {
   $data = [
+    'id' => $this->id.'-'.$this->number,
     'width' => $this->sectorWidth*$this->width,
     'height' => $this->sectorHeight*$this->height,
     'exits' => $this->exits,

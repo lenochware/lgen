@@ -23,17 +23,23 @@ function templatesAction()
 
 function levelAction($id)
 {
-  $level = $this->newLevel();
+  if ($id == 'debug') {
+    $seed = $this->app->getSession('seed');
+    $this->seed($seed);
+
+    $form = new pclib\Form('tpl/home/level.tpl', 'level-form');
+    $id = $form->values['level'];
+  }
+
+  if (!$id) $id = 'cellars-1';
+
+  $level = $this->newLevel($id);
   $this->outputJson($level->toArray());
 }
 
-function newLevel()
+function newLevel($id)
 {
-  $seed = $this->app->getSession('seed');
-  $this->seed($seed);
-
-  $form = new pclib\Form('tpl/home/level.tpl', 'level-form');
-  [$name, $number] = explode('-', $form->values['level'] ?: 'cellars-1');
+  [$name, $number] = explode('-', $id);
 
   if ($name == 'cellars')
     $level = new CellarsLevel($number);
