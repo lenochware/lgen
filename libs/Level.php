@@ -207,6 +207,7 @@ function toArray()
     'width' => $this->sectorWidth*$this->width,
     'height' => $this->sectorHeight*$this->height,
     'exits' => $this->exits,
+    'player-pos' => [],
     'tiles' => [],
   ];
 

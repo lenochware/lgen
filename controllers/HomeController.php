@@ -45,6 +45,7 @@ function indexAction()
 function updateAction()
 {
   $this->form->saveSession();
+  $this->app->deleteSession('selected');
   $this->app->redirect('home');
 }
 
@@ -138,6 +139,8 @@ function paintSplitterRoom($level, $sector)
 
 function infoAction($x, $y)
 {
+  $this->app->setSession('selected', ['x' => (int)$x, 'y' => (int)$y]);
+
   $this->seed($this->app->getSession('seed'));
 
   $level = $this->newLevel();

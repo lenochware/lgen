@@ -34,7 +34,12 @@ function levelAction($id)
   if (!$id) $id = 'cellars-1';
 
   $level = $this->newLevel($id);
-  $this->outputJson($level->toArray());
+  $json = $level->toArray();
+
+  $selected = $this->app->getSession('selected');
+  if ($selected) $json['player-pos'] = $selected;
+
+  $this->outputJson($json);
 }
 
 function newLevel($id)
