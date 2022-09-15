@@ -92,6 +92,20 @@ class Loader
     return $world;
   }
 
+  function save($id)
+  {
+	$path = $this->dir."/saved/".pcl_ident($id).".json";
+	file_put_contents($path, $_POST['data']);
+  }
+
+  function load($id)
+  {
+	$path = $this->dir."/saved/".pcl_ident($id).".json";
+	if (!file_exists($path)) return null;
+
+	return json_decode(file_get_contents($path), true);
+  }
+
 	function extendObject($id, $parentId, $level = 1)
 	{
 		if (isset($this->json[$parentId]['extends']) and $level < 50) {

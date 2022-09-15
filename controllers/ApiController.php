@@ -42,6 +42,18 @@ function levelAction($id)
   $this->outputJson($json);
 }
 
+function saveAction($id)
+{
+  $this->loader->save($id);
+	$this->outputJson(['status' => 'ok']);
+}
+
+function loadAction($id)
+{
+  $json = $this->loader->load($id);
+  $this->outputJson($json);
+}
+
 function newLevel($id)
 {
   [$name, $number] = explode('-', $id);
