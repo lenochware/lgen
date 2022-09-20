@@ -27,7 +27,7 @@ function levelAction($id)
     $seed = $this->app->getSession('seed');
     $this->seed($seed);
 
-    $form = new pclib\Form('tpl/home/level.tpl', 'level-form');
+    $form = new pclib\Form('tpl/editor/level.tpl', 'level-form');
     $id = $form->values['level'];
   }
 

@@ -13,6 +13,7 @@ session_start();
 $app = new PCApp('lgen');
 
 $pclib->autoloader->addDirectory('libs');
+$pclib->autoloader->addDirectory('levels');
 
 $app->random = new Random;
 $app->db = new DungeonBase('data');
