@@ -19,7 +19,7 @@ $app->db = new DungeonBase('data');
 $app->setLayout('tpl/website.tpl');
 
 /* Nastaveni defaultniho controlleru. */
-if (!$app->controller) $app->controller = 'home';
+if (!$app->controller) $app->controller = 'editor';
 
 $app->run();
 $app->out();

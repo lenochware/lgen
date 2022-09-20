@@ -1,6 +1,6 @@
 <?php 
 
-class HomeController extends BaseController
+class EditorController extends BaseController
 {
 
 protected $form;
@@ -8,7 +8,7 @@ protected $form;
 function init()
 {
   parent::init();
-  $this->form = new pclib\Form('tpl/home/level.tpl', 'level-form');
+  $this->form = new pclib\Form('tpl/editor/level.tpl', 'level-form');
 }
 
 function newLevel()
@@ -46,7 +46,7 @@ function updateAction()
 {
   $this->form->saveSession();
   $this->app->deleteSession('selected');
-  $this->app->redirect('home');
+  $this->app->redirect('editor');
 }
 
 function playAction()

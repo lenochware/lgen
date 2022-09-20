@@ -1,7 +1,7 @@
 {
 	"null": {
 		"family": ["ground", "wall"],
-		"render": {"char": " ", "color": "black" },
+		"render": {"char": "█", "color": "brown" },
 		"tags": ["wall", "inpenetrable", "opaque", "blocking"],
 		"name": "unknown grid",
 		"desc": "You see nothing."
@@ -19,7 +19,7 @@
 		"family": ["ground", "wall"],
 		"render": {"char": "#", "color": "green" },
 		"tags": ["wall", "hiding", "opaque", "blocking"],
-		"name": "stone wall",
+		"name": "stone wall covered with moss",
 		"desc": "You see nothing interesting."
 	},
 
