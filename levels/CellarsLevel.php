@@ -82,6 +82,7 @@ class CellarsLevel extends Level
   {
     if ($room->is('stairs-down') and rbet(.5)) {
       $room->fill('room-floor', 'rubble');
+      $room->spread('rubble', rfunc('', ['copper-coins', 'rat', 'dirty-rag']), rint(0,3)); //hidden in rubble
     }
   }  
 
