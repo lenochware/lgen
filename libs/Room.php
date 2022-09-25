@@ -24,6 +24,7 @@ class Room extends Entity
     $this->lvl = $lvl;
   }
 
+  /** Init room (w x h) and position in sector. */
   function init($type)
   {
   	if ($type) $this->type = $type;
@@ -45,7 +46,11 @@ class Room extends Entity
     $this->doors["$x,$y"] = ['x'=>$x, 'y'=>$y, 'room'=>$room];
   }
 
-  //zavolej nad vsemi tiles func - markov-chain
+  /**
+   * Call $func for each object on $where positions.
+   * @param string $where object-id such as 'door' or 'room-floor'
+   * @param callable $func function(this, x, y, id)
+   */
   function each($func, $where = null)
   {
     foreach ($this->data as $i => $tile)
@@ -61,6 +66,7 @@ class Room extends Entity
     }
   }
 
+  /** Convert (int) pos in sector to [x,y]. */
   function pos($i)
   {
     return [$i % $this->sectorWidth, floor($i / $this->sectorWidth)];
@@ -86,6 +92,7 @@ class Room extends Entity
   	$this->cache[$key] = null;
   }
 
+  /** Convert type-id to tile-index. */
   protected function getTypeId($id)
   {
     $types = ['ground' => 0, 'item' => 1, 'actor' => 2, 'meta' => 3];
@@ -95,6 +102,12 @@ class Room extends Entity
     return $types[$x];
   }
 
+  /**
+   * Set (x,y) tile ('none' is ignored).
+   * @param bool $rel if true, pos is relative to room, not to sector
+   * @param string|array $id object-id(s) to be put
+   * @return array $tile
+   */  
   function set($x, $y, $id, $rel = false)
   {
   	if ($id == 'none') return;
@@ -106,10 +119,14 @@ class Room extends Entity
 
   	if ($x < 0 or $y < 0 or $x >= $this->sectorWidth or $y >= $this->sectorHeight) return;
 
-    //$this->data[$y * $this->sectorWidth + $x][$this->getTypeId($id)] = $id;
     $this->put($y * $this->sectorWidth + $x, $id);
   }
 
+  /**
+   * Get (x,y) tile.
+   * @param bool $rel if true, pos is relative to room, not to sector
+   * @return array $tile
+   */
   function get($x, $y, $rel = false)
   {
     if ($rel) {
@@ -122,7 +139,12 @@ class Room extends Entity
     return $this->data[$y * $this->sectorWidth + $x];
   }
 
-  // i pro level sectors? i pro libovolny rect nad levelem (celkove predvyplneni tiles)?
+  /**
+   * Fill $func objects on $where positions in sector.
+   * @param string $where object-id such as 'door' or 'room-floor'
+   * @param string|array|callable $func object-id(s) or function returning object-id(s) to be put ('none' is ignored)
+   * @return array $idx filled positions (int) in sector
+   */
   function fill($where, $func)
   {
     if (is_string($func) or is_array($func)) {
@@ -137,8 +159,17 @@ class Room extends Entity
       if ($id == 'none') continue;
       $this->put($i, $id);
     }
+
+    return $found;
   }
 
+  /**
+   * Spread randomly $n objects on $where positions in sector.
+   * @param string $where object-id such as 'door' or 'room-floor'
+   * @param string|array|callable $func object-id(s) or function returning object-id(s) to be put ('none' is ignored)
+   * @param int $n number of objects
+   * @return array $idx filled positions (int) in sector
+   */
   function spread($where, $func, $n)
   {
     if (is_string($func) or is_array($func)) {
@@ -160,8 +191,15 @@ class Room extends Entity
       if ($id == 'none') continue;
       $this->put($i, $id);
     }
+
+    return $idx;
   }
 
+  /**
+   * Set tile at position $i.
+   * @param int $i position in sector
+   * @param string|array $tile object-id(s) to be put
+   */
   function put($i, $tile)
   {
     if (is_string($tile)) {
@@ -208,24 +246,13 @@ class Room extends Entity
     $this->setPivot();    
   }
 
-  // function paint()
-  // {
-  //   //$this->pool(1,1, ['floor','room-floor'], 8);
-
-  //   // $p = new Painter($this->level, $this->sector->position());
-  //   // $p->copySize($this);
-  //   // //$p->grid([2,4,2], [2,4,2], [0,1,0,1,1,1,0,1,0], ['floor','room-floor']);
-  //   // $p->grid([2,2], [2,2], [1,0,1,1], ['floor','room-floor']);
-
-  //   // $this->each([$this, 'createWalls'], 'room-floor');
-  // }
-
   function setPivot()
   {
     $i = $this->random->get($this->find('room-floor'));
     $this->pivotPos = $this->pos($i);
   }
 
+  /** Draw (w x h) room rectangle layout with wall-id around, filled with floor-id */
   function rect($width, $height, $floor, $wall)
   {
     for ($y = 0; $y < $height; $y++) {
@@ -268,9 +295,6 @@ class Room extends Entity
     $title .= ', '. $tile[3];
 
     print paramStr('<span style="color:{color}" title="'.$title.'">{char}</span>', $render);
-
-    //print '<font color="orange">0</font>';
-
   }
 
   function draw()
@@ -288,6 +312,11 @@ class Room extends Entity
     print "</code>";
   }
 
+  /**
+   * Find all occurences of $id in sector.
+   * @param string $id object-id such as 'door' or 'room-floor'
+   * @return array $found positions (int) in sector
+   */
   function find($id)
   {
     $cacheable = ['room-floor', 'room-wall', 'tunnel', 'outside'];
@@ -323,6 +352,7 @@ class Room extends Entity
     }
   }
 
+  /** Draw wall between room-floor and outside. Use as each() callback. */
   static function createWalls($room, $x, $y, $id)
   {
     foreach ([[-1,0],[1,0],[0,1],[0,-1]] as $pos) {
