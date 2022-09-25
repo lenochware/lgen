@@ -13,6 +13,8 @@ class Level extends Entity
 
   protected $exits = [];
 
+  protected $objectPresets = [];
+
   function __construct($id, $number)
   {
     parent::__construct();
@@ -197,7 +199,13 @@ function populate(Room $room, $type = null)
 {
   $name = 'populate'.ucfirst($type ?: $room->type);
   if (!method_exists($this, $name)) return false;
+  $this->objectPresets = [];
   call_user_func([$this, $name], $room);
+}
+
+function preset($id, $data)
+{
+  $this->objectPresets[$id] = $data;
 }
 
 function toArray()

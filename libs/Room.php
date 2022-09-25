@@ -18,6 +18,8 @@ class Room extends Entity
   protected $pivotPos = [1,1];
   public $doors = [];
 
+  protected $objects = [];
+
   function __construct($lvl)
   {
     parent::__construct();
@@ -203,10 +205,15 @@ class Room extends Entity
   function put($i, $tile)
   {
     if (is_string($tile)) {
-      $this->data[$i][$this->getTypeId($tile)] = $tile;
+      $id = $tile;
+      $this->data[$i][$this->getTypeId($id)] = $id;
     }
     else foreach($tile as $id) {
       $this->data[$i][$this->getTypeId($id)] = $id;
+    }
+
+    if (isset($this->level->presets[$id])) {
+      $this->objects[$i] = $this->level->presets[$id];
     }
   }
 

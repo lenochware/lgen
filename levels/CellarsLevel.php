@@ -94,6 +94,16 @@ class CellarsLevel extends Level
 
   function populateBoss($room)
   {
+    $i = $room->spread('room-floor', 'rat-spawner', 1);
+
+    //musely by se s levelem nacist bud vsechny objects nebo jen tyto modifikovane
+    $this->preset('rat-trigger', ['click' => ['rat-spawner', $i[0]] /* identifikace objektu - id, pos? /pos je room-pos!/ */ ]); 
+    //chtelo by to nastaveni jednorazove, tj. platne pro nasledujici spready, ale po zmene se uz vytvorene nezmeni - tj.
+    //kopie tohoto nastaveni pro individualni objekty.
+
+    // takze z nejakeho db->modified by se to kopirovalo do level->objects[id-instance]?
+
+    $room->spread('door', 'rat-trigger', 3);
   }  
 
   function populateWet($room)
