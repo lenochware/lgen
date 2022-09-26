@@ -203,6 +203,7 @@ function populate(Room $room, $type = null)
   call_user_func([$this, $name], $room);
 }
 
+//umoznit obj jako funkci? (generovani variability objektu stejneho typu.)
 function preset($id, $obj)
 {
   $this->objectPresets[$id] = $obj;
@@ -222,12 +223,17 @@ function toArray()
     'exits' => $this->exits,
     'player-pos' => [],
     'tiles' => [],
+    'objects' => [],
   ];
 
   for ($y=0; $y < $this->sectorHeight*$this->height; $y++) {
     for ($x=0; $x < $this->sectorWidth*$this->width; $x++) { 
       $data['tiles'][] = $this->get($x, $y);
     }
+  }
+
+  foreach($this->sectors as $sector) {
+    $data['objects'] += $sector->room->getObjects();
   }
 
   return $data;

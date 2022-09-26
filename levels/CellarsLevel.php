@@ -84,6 +84,7 @@ class CellarsLevel extends Level
       $this->preset('rubble', ['spawn' => 'rat']);
       $i = $room->spread('room-floor', 'rubble', 1);
       $this->preset('trigger', ['click' => ['rubble', $i[0]] /* identifikace objektu - id, pos? /pos je room-pos!/ */ ]);   
+      //$this->preset('trigger', ['click' => ['rubble', $this->levelPos($i[0])]]);   
       $room->spread('door', 'trigger', 3);
     }
     

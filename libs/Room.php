@@ -286,6 +286,20 @@ class Room extends Entity
     }    
   }
 
+  function getObjects()
+  {
+    $objs = [];
+
+    $ps = $this->sector->position();
+
+    foreach($this->objects as $i => $obj) {
+      $p = $this->pos($i);
+      $objs[($ps[1] + $p[1])*$this->sectorWidth + $ps[0] + $p[0]] = $obj;
+    }
+
+    return $objs;
+  }
+
   protected function drawTile($tile)
   {
     $title = '';
