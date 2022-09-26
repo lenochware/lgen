@@ -203,9 +203,14 @@ function populate(Room $room, $type = null)
   call_user_func([$this, $name], $room);
 }
 
-function preset($id, $data)
+function preset($id, $obj)
 {
-  $this->objectPresets[$id] = $data;
+  $this->objectPresets[$id] = $obj;
+}
+
+function getPresets()
+{
+  return $this->objectPresets;
 }
 
 function toArray()

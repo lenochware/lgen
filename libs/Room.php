@@ -204,16 +204,16 @@ class Room extends Entity
    */
   function put($i, $tile)
   {
+    $param = $this->level->getPresets();
+
     if (is_string($tile)) {
       $id = $tile;
       $this->data[$i][$this->getTypeId($id)] = $id;
+      if (isset($param[$id])) $this->setParams($i, $id, $param[$id]);
     }
     else foreach($tile as $id) {
       $this->data[$i][$this->getTypeId($id)] = $id;
-    }
-
-    if (isset($this->level->presets[$id])) {
-      $this->objects[$i] = $this->level->presets[$id];
+      if (isset($param[$id])) $this->setParams($i, $id, $param[$id]);
     }
   }
 
@@ -357,6 +357,12 @@ class Room extends Entity
         $room->set($x, $y, $action['id']);
       }
     }
+  }
+
+  protected function setParams($i, $id, $params)
+  {
+    if (!isset($this->objects[$i])) $this->objects[$i] = [];
+    $this->objects[$i][$this->getTypeId($id)] = $params;
   }
 
   /** Draw wall between room-floor and outside. Use as each() callback. */

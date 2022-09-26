@@ -6,7 +6,6 @@ class DungeonBase implements \pclib\IService
   protected $data;
   public $index;
   protected $lvl;
-  protected $modified = [];
 
   function __construct($path)
   {
@@ -30,8 +29,16 @@ class DungeonBase implements \pclib\IService
   function set($id, $obj)
   {
     $this->data[$id] = $obj;
-    $this->modified[$id] = 1;
-  }  
+  }
+
+  // function add($id, $obj = [])
+  // {
+  //   if ($obj['extends']) {
+  //     $obj = array_merge($this->get($obj['extends']), $obj);      
+  //   }
+
+  //   $this->set($id, $obj);
+  // }
 
   function list($id)
   {

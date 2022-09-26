@@ -233,5 +233,11 @@
 		"family": ["meta", "wall"],
 		"render": {"char": ".", "color": "black" },
 		"name": "tunnel"
+	},
+
+	"trigger": {
+		"family": ["meta", "floor"],
+		"render": {"char": ".", "color": "black" },
+		"name": "trigger"
 	}	
 }

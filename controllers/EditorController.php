@@ -61,14 +61,11 @@ function roomAction()
   $level = new CellarsLevel(1);
   print "Seed: ". $this->seed() . '<br>';
 
-  $level->width = 2;
-  $level->height = 2;
-
   $level->create();
 
   foreach([[0,0],[0,1],[1,0],[1,1]] as $pos) {
     $room =  new Room(1);
-    $level->getSector($pos[0],$pos[1])->add($room);    
+    $level->getSector($pos[0],$pos[1])->add($room);
     $room->init('default');
     $room->rectangleLayout();
   }

@@ -80,6 +80,13 @@ class CellarsLevel extends Level
 
   function populateExit($room)
   {
+    if ($room->is('stairs-up')) {
+      $this->preset('rubble', ['spawn' => 'rat']);
+      $i = $room->spread('room-floor', 'rubble', 1);
+      $this->preset('trigger', ['click' => ['rubble', $i[0]] /* identifikace objektu - id, pos? /pos je room-pos!/ */ ]);   
+      $room->spread('door', 'trigger', 3);
+    }
+    
     if ($room->is('stairs-down') and rbet(.5)) {
       $room->fill('room-floor', 'rubble');
       $room->spread('rubble', rfunc('', ['copper-coins', 'rat', 'dirty-rag']), rint(0,3)); //hidden in rubble
@@ -94,16 +101,6 @@ class CellarsLevel extends Level
 
   function populateBoss($room)
   {
-    $i = $room->spread('room-floor', 'rat-spawner', 1);
-
-    //musely by se s levelem nacist bud vsechny objects nebo jen tyto modifikovane
-    $this->preset('rat-trigger', ['click' => ['rat-spawner', $i[0]] /* identifikace objektu - id, pos? /pos je room-pos!/ */ ]); 
-    //chtelo by to nastaveni jednorazove, tj. platne pro nasledujici spready, ale po zmene se uz vytvorene nezmeni - tj.
-    //kopie tohoto nastaveni pro individualni objekty.
-
-    // takze z nejakeho db->modified by se to kopirovalo do level->objects[id-instance]?
-
-    $room->spread('door', 'rat-trigger', 3);
   }  
 
   function populateWet($room)
