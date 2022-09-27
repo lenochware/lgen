@@ -147,7 +147,8 @@ class Level extends Entity
 
 protected function htmlTile($x, $y)
 {
-    $tile = $this->get($x, $y);
+  $tile = $this->get($x, $y);
+  
   $title = '';
   
   for($i = 0; $i < 3; $i++) {
@@ -160,10 +161,14 @@ protected function htmlTile($x, $y)
   }
 
   $title .= ', '. $tile[3];
+  $title .= " ($x,$y)";
 
-  $click = "loadInfo($x,$y);";
+  $render['id'] = "$x,$y";
+  $render['title'] = $title;
 
-  return paramStr('<span style="color:{color}" title="'.$title.'" onclick="'.$click.'">{char}</span>', $render);
+  //$click = "loadInfo($x,$y);";
+
+  return paramStr('<span id="{id}" class="tile" style="color:{color}" title="{title}">{char}</span>', $render);
 }
 
 function html()
@@ -204,7 +209,7 @@ function populate(Room $room, $type = null)
 }
 
 //umoznit obj jako funkci? (generovani variability objektu stejneho typu.)
-function preset($id, $obj)
+function params($id, $obj)
 {
   $this->objectPresets[$id] = $obj;
 }

@@ -29,8 +29,16 @@ button update lb "Nastavit"
 Elapsed time: {time} ms 
 
 <script>
-function loadInfo(x,y)
+function loadInfo()
 {
+  const [x, y] = this.id.split(',');
   $(".info").load("?r=editor/info&x="+x+'&y='+y);
 }
+
+function init()
+{
+  $('.tile').on('click', loadInfo);
+}
+
+$(document).ready(init);
 </script>
