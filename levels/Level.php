@@ -209,7 +209,7 @@ function populate(Room $room, $type = null)
 }
 
 //umoznit obj jako funkci? (generovani variability objektu stejneho typu.)
-function params($id, $obj)
+function preset($id, $obj)
 {
   $this->objectPresets[$id] = $obj;
 }

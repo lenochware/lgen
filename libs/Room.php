@@ -288,16 +288,7 @@ class Room extends Entity
 
   function getObjects()
   {
-    $objs = [];
-
-    $ps = $this->sector->position();
-
-    foreach($this->objects as $i => $obj) {
-      $p = $this->pos($i);
-      $objs[($ps[1] + $p[1])*$this->sectorWidth + $ps[0] + $p[0]] = $obj;
-    }
-
-    return $objs;
+    return $this->objects;
   }
 
   protected function drawTile($tile)
@@ -375,8 +366,16 @@ class Room extends Entity
 
   protected function setParams($i, $id, $params)
   {
-    if (!isset($this->objects[$i])) $this->objects[$i] = [];
-    $this->objects[$i][$this->getTypeId($id)] = $params;
+    $pos = $this->levelPos($i);
+    if (!isset($this->objects[$pos])) $this->objects[$pos] = [];
+    $this->objects[$pos][$this->getTypeId($id)] = $params;
+  }
+
+  function levelPos($i)
+  {
+    $ps = $this->sector->position();
+    $p = $this->pos($i);
+    return ($ps[0] + $p[0]) . ',' . ($ps[1] + $p[1]);
   }
 
   /** Draw wall between room-floor and outside. Use as each() callback. */
