@@ -83,7 +83,7 @@ class CellarsLevel extends Level
     if ($room->is('stairs-up')) {
       $this->preset('rubble', ['spawn' => 'rat']);
       $i = $room->spread('room-floor', 'rubble', 1);
-      $this->preset('trigger', ['click' => ['rubble', $room->levelPos($i[0])] ]);   
+      $this->preset('trigger', ['click' => $room->levelPos($i[0]) ]);   
       $room->spread('door', 'trigger', 3);
     }
     

@@ -366,7 +366,7 @@ class Room extends Entity
 
   protected function setParams($i, $id, $params)
   {
-    $pos = $this->levelPos($i);
+    $pos = implode(',', $this->levelPos($i));
     if (!isset($this->objects[$pos])) $this->objects[$pos] = [];
     $this->objects[$pos][$this->getTypeId($id)] = $params;
   }
@@ -375,7 +375,7 @@ class Room extends Entity
   {
     $ps = $this->sector->position();
     $p = $this->pos($i);
-    return ($ps[0] + $p[0]) . ',' . ($ps[1] + $p[1]);
+    return ['x' => $ps[0] + $p[0], 'y' => $ps[1] + $p[1]];
   }
 
   /** Draw wall between room-floor and outside. Use as each() callback. */
