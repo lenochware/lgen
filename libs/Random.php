@@ -110,8 +110,8 @@ function pass($index, $list)
   return $this->chance($this->pickList($index, $list));
 }
 
-/** Return callback for random selection. put(x, $y, func('',['wall','wall-moss'])) */
-function func($type, $list /*, $chances = null*/)
+/** Return callback for random selection. put(x, $y, func(['wall','wall-moss'])) */
+function func($list, $type = '')
 {
   if ($type == 'i2') {
     return fn() => $this->get2($list);

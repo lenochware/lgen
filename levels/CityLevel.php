@@ -59,7 +59,7 @@ class CityLevel extends Level
     $sector->room->init('shop');
     $sector->room->rectangleLayout();
     
-    $sector->room->fill('outside', rfunc('i2', ['dirt','floor']));
+    $sector->room->fill('outside', rfunc(['dirt','floor'], 'i2'));
     $p = new Painter($this, $sector->position());
     $p->copySize($sector->room);
     $p->points([[0,0.5]], 'door');
@@ -72,7 +72,7 @@ class CityLevel extends Level
     $p->width = ($this->width-2) * $this->sectorWidth;
     $p->height = ($this->height-2) * $this->sectorHeight;
 
-    $p->rect(0.5, 0.5, 1, 1, rfunc('i2',['wall', 'wall-moss']));
+    $p->rect(0.5, 0.5, 1, 1, rfunc(['wall', 'wall-moss'], 'i2'));
     $p->points([[1,0.5],[1,0.45],[1,0.57]], 'door');
   }
 
