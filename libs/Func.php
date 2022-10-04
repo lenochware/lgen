@@ -1,6 +1,6 @@
 <?php 
 
-function rfunc($type, $list)
+function rfunc($list, $type = '')
 {
     global $app;
 
@@ -8,7 +8,7 @@ function rfunc($type, $list)
         $list = dblist($list);
     }
     
-    return $app->random->func($type, $list);
+    return $app->random->func($list, $type);
 }
 
 function rget($list)

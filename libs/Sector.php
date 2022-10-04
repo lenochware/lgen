@@ -20,11 +20,6 @@ class Sector extends Entity
     $this->add($room);
   }
 
-  function create()
-  {
-    $this->room->create('populate');
-  }
-
   function position()
   {
     return [$this->x * $this->width, $this->y * $this->height];
@@ -97,18 +92,6 @@ class Sector extends Entity
   function isConnectedWith(Sector $sec)
   {
     return ($sec->connected === $this or $this->connected === $sec);
-  }
-
-  function strConnection()
-  {
-      if (!$this->connected) return 'none';
-      $px = $this->connected->x - $this->x;
-      $py = $this->connected->y - $this->y;
-
-      if ($px > 0) return 'R';
-      if ($px < 0) return 'L';
-      if ($py > 0) return 'D';
-      if ($py < 0) return 'U';
   }
 
   function addTag($id)

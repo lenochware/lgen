@@ -6,7 +6,7 @@ class Level extends Entity
   protected $number = 1;
 
   public $sectorWidth = 16;
-  public $sectorHeight = 16;  
+  public $sectorHeight = 16;
 
   public $sectors = [];
   public $config;
@@ -43,6 +43,7 @@ class Level extends Entity
     throw new Exception('Method not implemented.');
   }
 
+  /** Dig tunnels between rooms. */
   function tunnel()
   {
     foreach ($this->sectors as $sector) {
@@ -53,7 +54,12 @@ class Level extends Entity
     }
   }
 
-  function addExit($room, $param)
+  /**
+   * Add exit at random floor in $room.
+   * @param Room $room
+   * @param array $param [tile-id, level-id]
+   */
+  function addExit(Room $room, $param)
   {
     $exit = [
       'id' => $param[0],
