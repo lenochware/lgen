@@ -6,7 +6,7 @@ string time
 string current_seed
 link editor lb "Editor" route "editor"
 link test lb "Room test" route "editor/room"
-link play lb "Play" route "editor/play" popup "1400x800"
+link play lb "Play" route "editor/play"
 select level list "city-1,city,cellars-1,cellars-1,cellars-2,cellars-2,cellars-3,cellars-3"
 input seed hint "Nastavit seed"
 button update lb "Nastavit"
@@ -32,6 +32,8 @@ Elapsed time: {time} ms
 function loadInfo()
 {
   const [x, y] = this.id.split(',');
+  $('.tile.selected').removeClass('selected');
+  $(this).addClass('selected');
   $(".info").load("?r=editor/info&x="+x+'&y='+y);
 }
 

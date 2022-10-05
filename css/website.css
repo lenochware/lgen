@@ -91,3 +91,11 @@ label.required:before {
 .flex {
   display: flex;
 }
+
+.tile {
+  cursor: pointer;
+}
+
+.tile.selected {
+  background-color: lime;
+}
