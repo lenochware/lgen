@@ -2,7 +2,7 @@
 	<span class="command" data-key="i">
 		<%= player.params.name %><br>
 		Level: <%= player.lvl %> <%= _templ.meterSimple(player.xp, player.nextXp) %><br>
-		Health: <%= player.health %> <%= _templ.meter("meter-health", player.health, player.maxHealth) %><br>
+		Health: <%= player.health %> <%= _templ.meter("meter-health", player.health, player.healthMax) %><br>
 		<% var wpn = player.inventory.getWeapon(); %>
 		In hand: <%= wpn? wpn.name().indef().capitalize() : '---' %><br>
 		Armor: <%= player.armor %><br>

@@ -2,7 +2,7 @@
 	<%= item.name().indef().capitalize() %></span><br>
 
 <% if (item.is('actor')) { %>
-	<%= _templ.meter("meter-health", item.health, item.maxHealth) %>
+	<%= _templ.meter("meter-health", item.health, item.healthMax) %>
 <% } %>
 
 <div class="conditions">

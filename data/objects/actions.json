@@ -60,6 +60,11 @@
 		"points": 1
 	},
 
+	"hungry": {
+		"tags": ["damage"],
+		"points": 2
+	},
+
 	"hit": {
 		"tags": ["attack"],
 		"points": 1

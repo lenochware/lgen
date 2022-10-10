@@ -108,6 +108,7 @@
 		"family": ["item", "food"],
 		"render": {"char": ",", "color": "brown" },
 		"tags": ["item", "food"],
+		"points": 80,
 		"name": "piece of bread",
 		"desc": "A piece of bread."
 	},
@@ -116,6 +117,7 @@
 		"family": ["item", "food"],
 		"render": {"char": ",", "color": "blue" },
 		"tags": ["item", "food"],
+		"points": 250,
 		"name": "small blue fish",
 		"desc": "Small fish with blue scales. Looks quite tasty."
 	},
@@ -123,13 +125,15 @@
 	"cheese": {
 		"family": ["item", "food"],
 		"render": {"char": ",", "color": "orange" },
-		"tags": ["item", "food"]
+		"tags": ["item", "food"],
+		"points": 350
 	},
 
 	"apple": {
 		"family": ["item", "food"],
 		"render": {"char": ",", "color": "red" },
-		"tags": ["item", "food"]
+		"tags": ["item", "food"],
+		"points": 50
 	},
 
 	"light-cure": {
