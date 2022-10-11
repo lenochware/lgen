@@ -1,0 +1,14 @@
+Dungeon base
+<table width="100%">
+	<tr>
+		<td valign="top">
+			<% for (const id in db.tiles) {
+				const it = db.tiles[id];
+				 %>
+				<span class="command" data-id="<%= id %>"><%= it.name %></span><br>
+
+			<% } %>
+		</td>
+	</tr>
+</table>
+

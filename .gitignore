@@ -4,6 +4,6 @@
 /images/*
 /temp/*
 /vendor/*
-/data/*
+/data/saved/*
 
 *.bak

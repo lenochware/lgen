@@ -77,7 +77,7 @@
 		"family": ["ground", "floor"],
 		"render": {"char": ".", "color": "brown" },
 		"tags": ["floor"],
-		"name": "mud",
+		"name": "dirt",
 		"desc": "You see nothing interesting."
 	},
 
@@ -214,13 +214,13 @@
 	"inner-wall": {
 		"family": ["meta", "wall"],
 		"render": {"char": "#", "color": "gray" },
-		"name": "inner wall"
+		"name": "inner-wall"
 	},
 
 	"tunnel-wall": {
 		"family": ["meta", "wall"],
 		"render": {"char": "#", "color": "gray" },
-		"name": "inner wall"
+		"name": "tunnel-wall"
 	},
 
 	"exit": {
