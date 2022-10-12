@@ -1,14 +1,27 @@
-Dungeon base
-<table width="100%">
-	<tr>
-		<td valign="top">
-			<% for (const id in db.tiles) {
-				const it = db.tiles[id];
-				 %>
-				<span class="command" data-id="<%= id %>"><%= it.name %></span><br>
+<div style="position: fixed; color:red">Dungeon base</div>
+<div id="tiles" style="margin-top: 20px">
+	<% for (const id in db.tiles) {
+		const it = db.tiles[id];
+		 %>
+		<span class="command" data-id="<%= id %>"><%= it.name %></span><br>
 
-			<% } %>
-		</td>
-	</tr>
-</table>
+	<% } %>
+</div>
 
+<div id="actors">
+	<% for (const id in db.actors) {
+		const it = db.actors[id];
+		 %>
+		<span class="command" data-id="<%= id %>"><%= it.name %></span><br>
+
+	<% } %>
+</div>
+
+<div id="items">
+	<% for (const id in db.items) {
+		const it = db.items[id];
+		 %>
+		<span class="command" data-id="<%= id %>"><%= it.name %></span><br>
+
+	<% } %>
+</div>
