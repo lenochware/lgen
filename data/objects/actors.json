@@ -160,8 +160,8 @@
 		"health": 25,
 		"attacks": ["bite"],
 		"corpse": "strange slime",
-		"name": "huge worm",
-		"desc": "Huge worm with giant mouth filled with teeth."
+		"name": "Giant centipede",
+		"desc": "Giant centipede"
 },
 
 	"skeleton": {
@@ -197,14 +197,14 @@
 		"lvl": 1,
 		"xp": 6,
 		"tags": ["actor", "neutral", "moving-random", "awake", "slow", "swimmer"],
-		"render": {"char": "J", "color": "yellow" },
+		"render": {"char": "J", "color": "white" },
 		"health": 10,
 		"attacks": ["bite"],
-		"name": "great yellow snake",
+		"name": "great white snake",
 		"corpse": "snake skin",
 		"drop": ["none", "fish_food"],
 		"drop-chances": [5,1],
-		"desc": "Great yellow snake is moving slowly on the floor."
+		"desc": "Great white snake is moving slowly on the floor."
 	},
 
 	"snake": {

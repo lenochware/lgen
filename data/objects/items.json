@@ -11,7 +11,7 @@
 		"family": ["item", "useless"],
 		"render": {"char": "~", "color": "gray" },
 		"tags": ["item", "useless"],
-		"name": "corpse",
+		"name": "bones",
 		"desc": "Who left his bones in this sad place?"
 	},
 
@@ -100,8 +100,8 @@
 		"family": ["item", "gold"],
 		"render": {"char": "$", "color": "brown" },
 		"tags": ["item", "gold"],
-		"name": "copper coins",
-		"desc": "A pile of {0} copper coins."
+		"name": "silver coins",
+		"desc": "A pile of {0} silver coins."
 },
 
 	"old-bread": {

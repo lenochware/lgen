@@ -129,14 +129,6 @@
 		"desc": "Blood stains on the floor looks suspicious."
 	},
 
-	"blood_floor": {
-		"family": ["ground", "floor"],
-		"render": {"char": ".", "color": "red" },
-		"tags": ["floor"],
-		"name": "blood stains",
-		"desc": "Blood stains on the floor looks suspicious."
-	},
-
 	"wet-floor": {
 		"family": ["ground", "floor"],
 		"render": {"char": ".", "color": "blue" },
