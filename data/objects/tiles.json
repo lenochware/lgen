@@ -1,9 +1,9 @@
 {
-	"null": {
+	"permawall": {
 		"family": ["ground", "wall"],
 		"render": {"char": "█", "color": "brown" },
 		"tags": ["wall", "inpenetrable", "opaque", "blocking"],
-		"name": "unknown grid",
+		"name": "Permawall",
 		"desc": "You see nothing."
 	},
 

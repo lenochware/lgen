@@ -1,25 +1,22 @@
-<div style="position: fixed; color:red">Dungeon base</div>
-<div id="tiles" style="margin-top: 20px">
-	<% for (const id in db.tiles) {
-		const it = db.tiles[id];
+<div style="color:red">DungeonBase</div>
+<div id="object-list" style="margin-top: 20px; overflow-y: auto; height: calc(100% - 30px); width: 100%;">
+	<span class="command" data-id="none">None</span><br>
+	<% for (let id in db.tiles) {
+		let it = db.tiles[id];
 		 %>
 		<span class="command" data-id="<%= id %>"><%= it.name %></span><br>
 
 	<% } %>
-</div>
 
-<div id="actors">
-	<% for (const id in db.actors) {
-		const it = db.actors[id];
+	<% for (let id in db.actors) {
+		let it = db.actors[id];
 		 %>
 		<span class="command" data-id="<%= id %>"><%= it.name %></span><br>
 
-	<% } %>
-</div>
+	<% } %>	
 
-<div id="items">
-	<% for (const id in db.items) {
-		const it = db.items[id];
+	<% for (let id in db.items) {
+		let it = db.items[id];
 		 %>
 		<span class="command" data-id="<%= id %>"><%= it.name %></span><br>
 
